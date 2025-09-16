@@ -1,10 +1,4 @@
-import { BrowserRou          <Route path="/" element={<Home />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:id" element={<BlogPost />} />
-          <Route path="/clients" element={<Clients />} />
-          <Route path="/contact" element={<Contact />} /> Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -15,6 +9,12 @@ import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import Clients from './pages/Clients';
 import Contact from './pages/Contact';
+
+// Admin components
+import AdminLayout from './components/AdminLayout';
+import ProtectedRoute from './components/ProtectedRoute';
+import Login from './pages/admin/Login';
+import Dashboard from './pages/admin/Dashboard';
 
 function App() {
   return (
@@ -27,10 +27,19 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/about" element={<About />} />
             <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:slug" element={<BlogPost />} />
+            <Route path="/blog/:id" element={<BlogPost />} />
             <Route path="/clients" element={<Clients />} />
-            {/* Additional routes will be added as we build more pages */}
-            <Route path="/contact" element={<div className="p-8 text-center">Contact Page - Coming Soon</div>} />
+            <Route path="/contact" element={<Contact />} />
+            
+            {/* Admin Routes */}
+            <Route path="/admin/login" element={<Login />} />
+            <Route path="/admin/*" element={
+              <ProtectedRoute>
+                <AdminLayout />
+              </ProtectedRoute>
+            }>
+              <Route path="dashboard" element={<Dashboard />} />
+            </Route>
           </Routes>
         </main>
         <Footer />
