@@ -37,3 +37,39 @@ api.interceptors.response.use(
 );
 
 export default api;
+
+// Auth API
+export const authAPI = {
+  login: (credentials) => api.post('/auth/login', credentials),
+  register: (userData) => api.post('/auth/register', userData),
+  getProfile: () => api.get('/auth/profile'),
+  updateProfile: (data) => api.put('/auth/profile', data)
+};
+
+// Blog API
+export const blogAPI = {
+  getAllBlogs: () => api.get('/blogs'),
+  getBlogById: (id) => api.get(`/blogs/${id}`),
+  createBlog: (data) => api.post('/blogs', data),
+  updateBlog: (id, data) => api.put(`/blogs/${id}`, data),
+  deleteBlog: (id) => api.delete(`/blogs/${id}`)
+};
+
+// Service API
+export const serviceAPI = {
+  getAllServices: () => api.get('/services'),
+  getServiceById: (id) => api.get(`/services/${id}`),
+  createService: (data) => api.post('/services', data),
+  updateService: (id, data) => api.put(`/services/${id}`, data),
+  deleteService: (id) => api.delete(`/services/${id}`)
+};
+
+// Contact API
+export const contactAPI = {
+  submitContact: (data) => api.post('/contact', data),
+  getAllContacts: (params) => api.get('/contact', { params }),
+  getContactById: (id) => api.get(`/contact/${id}`),
+  updateContactStatus: (id, status) => api.put(`/contact/${id}/status`, { status }),
+  deleteContact: (id) => api.delete(`/contact/${id}`),
+  getContactStats: () => api.get('/contact/admin/stats')
+};
