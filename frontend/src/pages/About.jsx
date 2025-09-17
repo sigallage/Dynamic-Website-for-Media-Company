@@ -1,4 +1,5 @@
 import { UserIcon, AcademicCapIcon, TrophyIcon, HeartIcon } from '@heroicons/react/24/outline';
+import '../styles/about.css';
 
 const teamMembers = [
   {
@@ -70,15 +71,15 @@ const milestones = [
 
 export default function About() {
   return (
-    <div className="bg-white">
+    <div className="about-page">
       {/* Hero Section */}
-      <div className="relative bg-gray-900 py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
+      <div className="about-hero">
+        <div className="about-hero-container">
+          <div className="about-hero-content">
+            <h1 className="about-hero-title">
               About Elite Audit Solutions
             </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-300">
+            <p className="about-hero-description">
               For over 15 years, we've been providing exceptional audit, tax, and consulting services 
               to businesses across all industries. Our commitment to excellence and client success 
               drives everything we do.
@@ -88,36 +89,36 @@ export default function About() {
       </div>
 
       {/* Mission & Vision */}
-      <div className="py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <div>
-              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+      <div className="mission-vision-section">
+        <div className="mission-vision-container">
+          <div className="mission-vision-grid">
+            <div className="mission-card">
+              <h2 className="mission-title">
                 Our Mission
               </h2>
-              <p className="mt-6 text-lg leading-8 text-gray-600">
+              <p className="mission-description">
                 To provide exceptional audit, tax, and consulting services that help businesses 
                 achieve their financial goals while maintaining the highest standards of 
                 compliance and ethical practice. We are committed to building lasting 
                 relationships with our clients through personalized service and expert guidance.
               </p>
-              <p className="mt-4 text-lg leading-8 text-gray-600">
+              <p className="mission-description">
                 We believe that every business deserves access to top-tier financial expertise, 
                 regardless of size or industry. Our mission is to democratize professional 
                 financial services while never compromising on quality or attention to detail.
               </p>
             </div>
             
-            <div>
-              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            <div className="vision-card">
+              <h2 className="vision-title">
                 Our Vision
               </h2>
-              <p className="mt-6 text-lg leading-8 text-gray-600">
+              <p className="vision-description">
                 To be the most trusted and respected audit and consulting firm in our region, 
                 known for our unwavering commitment to client success, professional excellence, 
                 and innovative solutions to complex financial challenges.
               </p>
-              <p className="mt-4 text-lg leading-8 text-gray-600">
+              <p className="vision-description">
                 We envision a future where every business has the financial clarity and 
                 strategic guidance needed to thrive in an increasingly complex business 
                 environment. We aim to be the partner that helps make that vision a reality.
@@ -128,27 +129,27 @@ export default function About() {
       </div>
 
       {/* Values Section */}
-      <div className="bg-gray-50 py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+      <div className="values-section">
+        <div className="values-container">
+          <div className="values-header">
+            <h2 className="values-title">
               Our Core Values
             </h2>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
+            <p className="values-description">
               These values guide every decision we make and every relationship we build.
             </p>
           </div>
           
-          <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+          <div className="values-grid">
             {values.map((value) => (
-              <div key={value.name} className="bg-white rounded-lg p-8 shadow-sm">
-                <div className="flex items-center">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary-600">
-                    <value.icon className="h-6 w-6 text-white" aria-hidden="true" />
+              <div key={value.name} className="value-card">
+                <div className="value-header">
+                  <div className="value-icon-container">
+                    <value.icon className="value-icon" aria-hidden="true" />
                   </div>
-                  <h3 className="ml-4 text-xl font-semibold text-gray-900">{value.name}</h3>
+                  <h3 className="value-name">{value.name}</h3>
                 </div>
-                <p className="mt-4 text-gray-600">{value.description}</p>
+                <p className="value-description">{value.description}</p>
               </div>
             ))}
           </div>
@@ -156,44 +157,42 @@ export default function About() {
       </div>
 
       {/* Team Section */}
-      <div className="py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+      <div className="team-section">
+        <div className="team-container">
+          <div className="team-header">
+            <h2 className="team-title">
               Meet Our Expert Team
             </h2>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
+            <p className="team-description">
               Our team of certified professionals brings decades of combined experience 
               in audit, tax, and consulting services.
             </p>
           </div>
           
-          <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-12 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+          <div className="team-grid">
             {teamMembers.map((member) => (
-              <div key={member.name} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-                <div className="p-8">
-                  <div className="flex items-start space-x-6">
-                    <div className="flex-shrink-0">
-                      <div className="h-20 w-20 rounded-full bg-gray-300 flex items-center justify-center">
-                        <UserIcon className="h-12 w-12 text-gray-600" />
-                      </div>
+              <div key={member.name} className="team-member-card">
+                <div className="team-member-content">
+                  <div className="team-member-header">
+                    <div className="team-member-avatar">
+                      <UserIcon className="team-member-avatar-icon" />
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="text-xl font-semibold text-gray-900">{member.name}</h3>
-                      <p className="text-primary-600 font-medium">{member.position}</p>
-                      <p className="mt-2 text-sm text-gray-500">{member.education}</p>
+                    <div className="team-member-info">
+                      <h3 className="team-member-name">{member.name}</h3>
+                      <p className="team-member-position">{member.position}</p>
+                      <p className="team-member-education">{member.education}</p>
                     </div>
                   </div>
                   
-                  <p className="mt-4 text-gray-600">{member.bio}</p>
+                  <p className="team-member-bio">{member.bio}</p>
                   
-                  <div className="mt-4">
-                    <h4 className="text-sm font-medium text-gray-900 mb-2">Specializations:</h4>
-                    <div className="flex flex-wrap gap-2">
+                  <div className="team-member-specializations">
+                    <h4 className="specializations-title">Specializations:</h4>
+                    <div className="specializations-list">
                       {member.specializations.map((spec) => (
                         <span
                           key={spec}
-                          className="inline-flex items-center rounded-full bg-primary-100 px-3 py-1 text-xs font-medium text-primary-800"
+                          className="specialization-tag"
                         >
                           {spec}
                         </span>
@@ -208,28 +207,26 @@ export default function About() {
       </div>
 
       {/* Company History Timeline */}
-      <div className="bg-gray-50 py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+      <div className="timeline-section">
+        <div className="timeline-container">
+          <div className="timeline-header">
+            <h2 className="timeline-title">
               Our Journey
             </h2>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
+            <p className="timeline-description">
               Over 15 years of growth, innovation, and client success.
             </p>
           </div>
           
-          <div className="mx-auto mt-16 max-w-4xl">
-            <div className="space-y-8">
+          <div className="timeline-content">
+            <div className="timeline-list">
               {milestones.map((milestone, index) => (
-                <div key={milestone.year} className="flex items-start space-x-6">
-                  <div className="flex-shrink-0">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-600">
-                      <span className="text-sm font-medium text-white">{milestone.year}</span>
-                    </div>
+                <div key={milestone.year} className="timeline-item">
+                  <div className="timeline-year-container">
+                    <span className="timeline-year">{milestone.year}</span>
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-lg text-gray-900">{milestone.event}</p>
+                  <div className="timeline-event">
+                    <p>{milestone.event}</p>
                   </div>
                 </div>
               ))}
@@ -239,48 +236,48 @@ export default function About() {
       </div>
 
       {/* Stats Section */}
-      <div className="py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-4 text-center">
-            <div>
-              <div className="text-4xl font-bold text-primary-600">500+</div>
-              <div className="mt-2 text-lg text-gray-600">Clients Served</div>
+      <div className="stats-section">
+        <div className="stats-container">
+          <div className="stats-grid">
+            <div className="stat-item">
+              <div className="stat-number">500+</div>
+              <div className="stat-label">Clients Served</div>
             </div>
-            <div>
-              <div className="text-4xl font-bold text-primary-600">15+</div>
-              <div className="mt-2 text-lg text-gray-600">Years Experience</div>
+            <div className="stat-item">
+              <div className="stat-number">15+</div>
+              <div className="stat-label">Years Experience</div>
             </div>
-            <div>
-              <div className="text-4xl font-bold text-primary-600">1000+</div>
-              <div className="mt-2 text-lg text-gray-600">Successful Audits</div>
+            <div className="stat-item">
+              <div className="stat-number">1000+</div>
+              <div className="stat-label">Successful Audits</div>
             </div>
-            <div>
-              <div className="text-4xl font-bold text-primary-600">25+</div>
-              <div className="mt-2 text-lg text-gray-600">Expert Professionals</div>
+            <div className="stat-item">
+              <div className="stat-number">25+</div>
+              <div className="stat-label">Expert Professionals</div>
             </div>
           </div>
         </div>
       </div>
 
       {/* CTA Section */}
-      <div className="bg-primary-600">
-        <div className="px-6 py-24 sm:px-6 sm:py-32 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+      <div className="about-cta-section">
+        <div className="about-cta-container">
+          <div className="about-cta-content">
+            <h2 className="about-cta-title">
               Partner with Elite Audit Solutions
             </h2>
-            <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-primary-200">
+            <p className="about-cta-description">
               Join hundreds of businesses who trust us with their most important financial needs. 
               Let's discuss how we can help your business thrive.
             </p>
-            <div className="mt-10 flex items-center justify-center gap-x-6">
+            <div className="about-cta-buttons">
               <a
                 href="/contact"
-                className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-primary-600 shadow-sm hover:bg-primary-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                className="about-cta-primary"
               >
                 Start a Conversation
               </a>
-              <a href="/services" className="text-sm font-semibold leading-6 text-white">
+              <a href="/services" className="about-cta-secondary">
                 View our services <span aria-hidden="true">→</span>
               </a>
             </div>

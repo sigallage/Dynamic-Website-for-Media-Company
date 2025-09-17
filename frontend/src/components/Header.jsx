@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Bars3Icon } from '@heroicons/react/24/outline';
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -28,7 +28,6 @@ export default function Header() {
             type="button"
             onClick={() => setMobileMenuOpen(true)}
           >
-            <span className="sr-only">Open main menu</span>
             <Bars3Icon style={{width: '24px', height: '24px'}} aria-hidden="true" />
           </button>
         </div>
@@ -63,47 +62,45 @@ export default function Header() {
       
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="mobile-menu">
-          <div className="mobile-menu-nav">
-            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem'}}>
-              <Link to="/" className="header-logo">
-                Elite Audit
+        <div className="mobile-menu" onClick={() => setMobileMenuOpen(false)}>
+          <div className="mobile-menu-nav" onClick={(e) => e.stopPropagation()}>
+            <div className="mobile-menu-header">
+              <Link to="/" className="header-logo" onClick={() => setMobileMenuOpen(false)}>
+                Elite Audit Solutions
               </Link>
-              <button
-                type="button"
-                onClick={() => setMobileMenuOpen(false)}
-                style={{background: 'none', border: 'none', cursor: 'pointer'}}
-              >
-                <span className="sr-only">Close menu</span>
-                <XMarkIcon style={{width: '24px', height: '24px'}} aria-hidden="true" />
-              </button>
             </div>
-            {navigation.map((item) => (
+            
+            <div className="mobile-menu-links">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className={`mobile-menu-link ${
+                    location.pathname === item.href ? 'active' : ''
+                  }`}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+            
+            <div className="mobile-menu-actions">
               <Link
-                key={item.name}
-                to={item.href}
-                className={`mobile-menu-link ${
-                  location.pathname === item.href ? 'active' : ''
-                }`}
+                to="/admin/login"
+                className="mobile-menu-admin"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                {item.name}
+                Admin Login
               </Link>
-            ))}
-            <Link
-              to="/admin/login"
-              className="mobile-menu-link"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Admin Login
-            </Link>
-            <Link
-              to="/contact"
-              className="btn btn-primary"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Get Quote
-            </Link>
+              <Link
+                to="/contact"
+                className="mobile-menu-cta"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Get Quote
+              </Link>
+            </div>
           </div>
         </div>
       )}
