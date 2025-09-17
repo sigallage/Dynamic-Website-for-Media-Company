@@ -9,6 +9,7 @@ import {
   BriefcaseIcon,
   CheckIcon
 } from '@heroicons/react/24/outline';
+import '../styles/services.css';
 
 const serviceCategories = [
   { id: 'all', name: 'All Services' },
@@ -167,15 +168,15 @@ export default function Services() {
   };
 
   return (
-    <div className="bg-white">
+    <div className="services-page">
       {/* Header */}
-      <div className="bg-gray-900 py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
+      <div className="services-header">
+        <div className="services-header-container">
+          <div className="services-header-content">
+            <h1 className="services-header-title">
               Our Services
             </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-300">
+            <p className="services-header-description">
               Comprehensive audit, tax, and consulting services tailored to meet your business needs. 
               Our expert team delivers reliable solutions with exceptional attention to detail.
             </p>
@@ -184,17 +185,15 @@ export default function Services() {
       </div>
 
       {/* Category Filter */}
-      <div className="border-b border-gray-200 bg-white py-8">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="flex flex-wrap justify-center gap-4">
+      <div className="services-filter">
+        <div className="services-filter-container">
+          <div className="services-filter-buttons">
             {serviceCategories.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
-                className={`rounded-full px-6 py-2 text-sm font-medium transition-colors ${
-                  selectedCategory === category.id
-                    ? 'bg-primary-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                className={`filter-button ${
+                  selectedCategory === category.id ? 'active' : ''
                 }`}
               >
                 {category.name}
@@ -205,42 +204,40 @@ export default function Services() {
       </div>
 
       {/* Services Grid */}
-      <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
+      <div className="services-main">
+        <div className="services-grid">
           {filteredServices.map((service) => (
             <div
               key={service.id}
-              className="group relative bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-lg transition-shadow"
+              className="service-card"
             >
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary-600 group-hover:bg-primary-700 transition-colors">
-                    <service.icon className="h-6 w-6 text-white" aria-hidden="true" />
-                  </div>
+              <div className="service-card-header">
+                <div className="service-icon-container">
+                  <service.icon className="service-icon" aria-hidden="true" />
                 </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                <div className="service-content">
+                  <h3 className="service-title">
                     {service.title}
                   </h3>
-                  <p className="text-gray-600 mb-4">
+                  <p className="service-short-description">
                     {service.shortDescription}
                   </p>
-                  <p className="text-sm text-gray-500 mb-6">
+                  <p className="service-description">
                     {service.description}
                   </p>
                   
                   {/* Features */}
-                  <div className="mb-6">
-                    <h4 className="text-sm font-medium text-gray-900 mb-3">Key Features:</h4>
-                    <ul className="space-y-2">
+                  <div className="service-features">
+                    <h4 className="service-features-title">Key Features:</h4>
+                    <ul className="service-features-list">
                       {service.features.slice(0, 4).map((feature, index) => (
-                        <li key={index} className="flex items-start">
-                          <CheckIcon className="h-4 w-4 text-green-500 mt-0.5 mr-2 flex-shrink-0" />
-                          <span className="text-sm text-gray-600">{feature}</span>
+                        <li key={index} className="service-feature">
+                          <CheckIcon className="service-feature-icon" />
+                          <span className="service-feature-text">{feature}</span>
                         </li>
                       ))}
                       {service.features.length > 4 && (
-                        <li className="text-sm text-gray-500 italic">
+                        <li className="service-features-more">
                           +{service.features.length - 4} more features
                         </li>
                       )}
@@ -248,18 +245,18 @@ export default function Services() {
                   </div>
 
                   {/* Pricing */}
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-lg font-semibold text-primary-600">
+                  <div className="service-pricing">
+                    <div className="service-pricing-info">
+                      <p className="service-price">
                         {formatPrice(service)}
                       </p>
-                      <p className="text-xs text-gray-500">
+                      <p className="service-price-note">
                         Custom packages available
                       </p>
                     </div>
                     <Link
                       to="/contact"
-                      className="inline-flex items-center rounded-md bg-primary-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors"
+                      className="service-cta-button"
                     >
                       Get Quote
                     </Link>
@@ -272,44 +269,44 @@ export default function Services() {
       </div>
 
       {/* Why Choose Us Section */}
-      <div className="bg-gray-50 py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+      <div className="why-choose-section">
+        <div className="why-choose-container">
+          <div className="why-choose-header">
+            <h2 className="why-choose-title">
               Why Choose Elite Audit Solutions?
             </h2>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
+            <p className="why-choose-description">
               We combine deep industry expertise with personalized service to deliver exceptional results for our clients.
             </p>
           </div>
           
-          <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-            <div className="text-center">
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary-600">
-                <UserGroupIcon className="h-8 w-8 text-white" />
+          <div className="why-choose-grid">
+            <div className="why-choose-item">
+              <div className="why-choose-icon-container">
+                <UserGroupIcon className="why-choose-icon" />
               </div>
-              <h3 className="mt-6 text-lg font-semibold text-gray-900">Expert Team</h3>
-              <p className="mt-2 text-gray-600">
+              <h3 className="why-choose-item-title">Expert Team</h3>
+              <p className="why-choose-item-description">
                 Certified professionals with decades of combined experience in audit, tax, and consulting services.
               </p>
             </div>
             
-            <div className="text-center">
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary-600">
-                <ShieldCheckIcon className="h-8 w-8 text-white" />
+            <div className="why-choose-item">
+              <div className="why-choose-icon-container">
+                <ShieldCheckIcon className="why-choose-icon" />
               </div>
-              <h3 className="mt-6 text-lg font-semibold text-gray-900">Proven Track Record</h3>
-              <p className="mt-2 text-gray-600">
+              <h3 className="why-choose-item-title">Proven Track Record</h3>
+              <p className="why-choose-item-description">
                 Over 15 years of successful engagements with businesses ranging from startups to Fortune 500 companies.
               </p>
             </div>
             
-            <div className="text-center">
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary-600">
-                <ChartBarIcon className="h-8 w-8 text-white" />
+            <div className="why-choose-item">
+              <div className="why-choose-icon-container">
+                <ChartBarIcon className="why-choose-icon" />
               </div>
-              <h3 className="mt-6 text-lg font-semibold text-gray-900">Results-Driven</h3>
-              <p className="mt-2 text-gray-600">
+              <h3 className="why-choose-item-title">Results-Driven</h3>
+              <p className="why-choose-item-description">
                 We focus on delivering measurable results that help your business achieve its financial and operational goals.
               </p>
             </div>
@@ -318,23 +315,23 @@ export default function Services() {
       </div>
 
       {/* CTA Section */}
-      <div className="bg-primary-600">
-        <div className="px-6 py-24 sm:px-6 sm:py-32 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+      <div className="services-cta">
+        <div className="services-cta-container">
+          <div className="services-cta-content">
+            <h2 className="services-cta-title">
               Ready to get started?
             </h2>
-            <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-primary-200">
+            <p className="services-cta-description">
               Contact us today to discuss your specific needs and learn how our services can benefit your business.
             </p>
-            <div className="mt-10 flex items-center justify-center gap-x-6">
+            <div className="services-cta-buttons">
               <Link
                 to="/contact"
-                className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-primary-600 shadow-sm hover:bg-primary-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                className="services-cta-primary"
               >
                 Contact Us Today
               </Link>
-              <Link to="/about" className="text-sm font-semibold leading-6 text-white">
+              <Link to="/about" className="services-cta-secondary">
                 Learn more about us <span aria-hidden="true">→</span>
               </Link>
             </div>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { CalendarIcon, ClockIcon, EyeIcon, TagIcon } from '@heroicons/react/24/outline';
+import '../styles/blog.css';
 
 const categories = [
   { id: 'all', name: 'All Posts' },
@@ -184,15 +185,15 @@ export default function Blog() {
   const paginatedBlogs = filteredBlogs.slice(startIndex, startIndex + blogsPerPage);
 
   return (
-    <div className="bg-white">
+    <div className="blog-page">
       {/* Header */}
-      <div className="bg-gray-900 py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
+      <div className="blog-header">
+        <div className="blog-header-container">
+          <div className="blog-header-content">
+            <h1 className="blog-header-title">
               Insights & Updates
             </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-300">
+            <p className="blog-header-description">
               Stay informed with the latest trends, regulations, and best practices in audit, 
               tax, and business consulting. Expert insights from our professional team.
             </p>
@@ -201,12 +202,12 @@ export default function Blog() {
       </div>
 
       {/* Search and Filter */}
-      <div className="border-b border-gray-200 bg-white py-8">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="flex flex-col space-y-4 lg:flex-row lg:items-center lg:justify-between lg:space-y-0">
+      <div className="blog-search-filter">
+        <div className="blog-search-filter-container">
+          <div className="blog-search-filter-content">
             {/* Search */}
-            <div className="flex-1 max-w-lg">
-              <label htmlFor="search" className="sr-only">
+            <div className="blog-search-container">
+              <label htmlFor="search" className="blog-search-label">
                 Search blog posts
               </label>
               <input
@@ -215,20 +216,18 @@ export default function Blog() {
                 placeholder="Search articles..."
                 value={searchTerm}
                 onChange={handleSearchChange}
-                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+                className="blog-search-input"
               />
             </div>
 
             {/* Category Filter */}
-            <div className="flex flex-wrap gap-2">
+            <div className="blog-category-filters">
               {categories.map((category) => (
                 <button
                   key={category.id}
                   onClick={() => handleCategoryChange(category.id)}
-                  className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                    selectedCategory === category.id
-                      ? 'bg-primary-600 text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  className={`blog-category-button ${
+                    selectedCategory === category.id ? 'active' : ''
                   }`}
                 >
                   {category.name}
@@ -240,81 +239,81 @@ export default function Blog() {
       </div>
 
       {/* Blog Grid */}
-      <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
+      <div className="blog-main">
         {filteredBlogs.length === 0 ? (
-          <div className="text-center py-12">
-            <p className="text-gray-500 text-lg">No blog posts found matching your criteria.</p>
+          <div className="blog-empty-state">
+            <p className="blog-empty-text">No blog posts found matching your criteria.</p>
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 xl:grid-cols-3">
+            <div className="blog-grid">
               {paginatedBlogs.map((blog) => (
                 <article
                   key={blog.id}
-                  className="group bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden"
+                  className="blog-card"
                 >
                   {/* Featured Image Placeholder */}
-                  <div className="aspect-video bg-gray-100 group-hover:bg-gray-200 transition-colors">
-                    <div className="h-full flex items-center justify-center">
-                      <span className="text-gray-400">Featured Image</span>
+                  <div className="blog-card-image">
+                    <div className="blog-card-image-placeholder">
+                      <span>Featured Image</span>
                     </div>
                   </div>
 
-                  <div className="p-6">
+                  <div className="blog-card-content">
                     {/* Category Badge */}
-                    <div className="mb-3">
-                      <span className="inline-flex items-center rounded-full bg-primary-100 px-3 py-1 text-xs font-medium text-primary-800">
+                    <div className="blog-card-category">
+                      <span className="blog-category-badge">
                         {categories.find(cat => cat.id === blog.category)?.name}
                       </span>
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-xl font-semibold text-gray-900 group-hover:text-primary-600 transition-colors">
-                      <Link to={`/blog/${blog.slug}`}>
+                    <h3>
+                      <Link to={`/blog/${blog.slug}`} className="blog-card-title">
                         {blog.title}
                       </Link>
                     </h3>
 
                     {/* Excerpt */}
-                    <p className="mt-3 text-gray-600 line-clamp-3">
+                    <p className="blog-card-excerpt">
                       {blog.excerpt}
                     </p>
 
                     {/* Meta Information */}
-                    <div className="mt-4 flex items-center text-sm text-gray-500">
-                      <div className="flex items-center">
-                        <CalendarIcon className="h-4 w-4 mr-1" />
+                    <div className="blog-card-meta">
+                      <div className="blog-meta-item">
+                        <CalendarIcon className="blog-meta-icon" />
                         {formatDate(blog.publishedDate)}
                       </div>
-                      <span className="mx-2">•</span>
-                      <div className="flex items-center">
-                        <ClockIcon className="h-4 w-4 mr-1" />
+                      <span className="blog-meta-separator">•</span>
+                      <div className="blog-meta-item">
+                        <ClockIcon className="blog-meta-icon" />
                         {getReadTime(blog.content)} min read
                       </div>
-                      <span className="mx-2">•</span>
-                      <div className="flex items-center">
-                        <EyeIcon className="h-4 w-4 mr-1" />
+                      <span className="blog-meta-separator">•</span>
+                      <div className="blog-meta-item">
+                        <EyeIcon className="blog-meta-icon" />
                         {blog.views}
                       </div>
                     </div>
 
                     {/* Tags */}
-                    <div className="mt-4 flex flex-wrap gap-2">
+                    <div className="blog-card-tags">
                       {blog.tags.slice(0, 3).map((tag) => (
                         <span
                           key={tag}
-                          className="inline-flex items-center text-xs text-gray-600"
+                          className="blog-tag"
                         >
-                          <TagIcon className="h-3 w-3 mr-1" />
+                          <TagIcon className="blog-tag-icon" />
                           {tag}
                         </span>
                       ))}
                     </div>
 
                     {/* Author */}
-                    <div className="mt-4 pt-4 border-t border-gray-100">
-                      <p className="text-sm text-gray-600">
-                        By <span className="font-medium">{blog.author.name}</span>
+                    <div className="blog-card-author">
+                      <p className="blog-author-text">
+                        By <span className="blog-author-name">{blog.author.name}</span>
                       </p>
                     </div>
                   </div>
@@ -324,12 +323,12 @@ export default function Blog() {
 
             {/* Pagination */}
             {totalPages > 1 && (
-              <div className="mt-12 flex justify-center">
-                <nav className="flex items-center space-x-2">
+              <div className="blog-pagination">
+                <nav className="blog-pagination-nav">
                   <button
                     onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
                     disabled={currentPage === 1}
-                    className="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="blog-pagination-button"
                   >
                     Previous
                   </button>
@@ -338,10 +337,8 @@ export default function Blog() {
                     <button
                       key={index}
                       onClick={() => setCurrentPage(index + 1)}
-                      className={`px-3 py-2 text-sm font-medium rounded-md ${
-                        currentPage === index + 1
-                          ? 'bg-primary-600 text-white'
-                          : 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-50'
+                      className={`blog-pagination-button ${
+                        currentPage === index + 1 ? 'active' : ''
                       }`}
                     >
                       {index + 1}
@@ -351,7 +348,7 @@ export default function Blog() {
                   <button
                     onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
                     disabled={currentPage === totalPages}
-                    className="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="blog-pagination-button"
                   >
                     Next
                   </button>
@@ -363,19 +360,19 @@ export default function Blog() {
       </div>
 
       {/* Newsletter Signup */}
-      <div className="bg-primary-600">
-        <div className="px-6 py-24 sm:px-6 sm:py-32 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+      <div className="blog-newsletter">
+        <div className="blog-newsletter-container">
+          <div className="blog-newsletter-content">
+            <h2 className="blog-newsletter-title">
               Stay Updated
             </h2>
-            <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-primary-200">
+            <p className="blog-newsletter-description">
               Subscribe to our newsletter to receive the latest insights and updates directly in your inbox.
             </p>
-            <div className="mt-10 flex items-center justify-center gap-x-6">
+            <div className="blog-newsletter-actions">
               <Link
                 to="/contact"
-                className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-primary-600 shadow-sm hover:bg-primary-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                className="blog-newsletter-button"
               >
                 Subscribe Now
               </Link>

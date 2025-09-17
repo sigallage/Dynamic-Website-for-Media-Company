@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { StarIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
 import { BuildingOfficeIcon, UserGroupIcon, TrophyIcon, ChartBarIcon } from '@heroicons/react/24/outline';
+import '../styles/clients.css';
 
 const testimonials = [
   {
@@ -154,21 +155,21 @@ export default function Clients() {
     return [...Array(5)].map((_, i) => (
       <StarIcon
         key={i}
-        className={`h-5 w-5 ${i < rating ? 'text-yellow-400' : 'text-gray-300'}`}
+        className={`star-icon ${i < rating ? 'filled' : 'empty'}`}
       />
     ));
   };
 
   return (
-    <div className="bg-white">
+    <div className="clients-page">
       {/* Header */}
-      <div className="bg-gray-900 py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
+      <div className="clients-header">
+        <div className="clients-header-container">
+          <div className="clients-header-content">
+            <h1 className="clients-header-title">
               Our Clients
             </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-300">
+            <p className="clients-header-description">
               Trusted by businesses across industries. From startups to Fortune 500 companies, 
               we deliver exceptional results that drive success and growth.
             </p>
@@ -177,16 +178,16 @@ export default function Clients() {
       </div>
 
       {/* Stats Section */}
-      <div className="py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="stats-section">
+        <div className="stats-container">
+          <div className="stats-grid">
             {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary-100 mb-4">
-                  <stat.icon className="h-8 w-8 text-primary-600" />
+              <div key={index} className="stat-item">
+                <div className="stat-icon-container">
+                  <stat.icon className="stat-icon" />
                 </div>
-                <div className="text-3xl font-bold text-gray-900">{stat.value}</div>
-                <div className="mt-2 text-lg text-gray-600">{stat.label}</div>
+                <div className="stat-value">{stat.value}</div>
+                <div className="stat-label">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -194,95 +195,64 @@ export default function Clients() {
       </div>
 
       {/* Client Testimonials */}
-      <div className="bg-gray-50 py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center mb-16">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+      <div className="testimonials-section">
+        <div className="testimonials-container">
+          <div className="testimonials-header">
+            <h2 className="testimonials-title">
               What Our Clients Say
             </h2>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
+            <p className="testimonials-description">
               Real feedback from real clients who have experienced the Elite Audit Solutions difference.
             </p>
           </div>
 
-          <div className="relative">
-            <div className="bg-white rounded-2xl shadow-lg p-8 lg:p-12">
-              <div className="flex items-center justify-between mb-8">
-                <button
-                  onClick={prevTestimonial}
-                  className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
-                >
-                  <ChevronLeftIcon className="h-6 w-6 text-gray-600" />
-                </button>
-                
-                <div className="flex space-x-2">
-                  {testimonials.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentTestimonial(index)}
-                      className={`w-3 h-3 rounded-full transition-colors ${
-                        index === currentTestimonial ? 'bg-primary-600' : 'bg-gray-300'
-                      }`}
-                    />
-                  ))}
-                </div>
-
-                <button
-                  onClick={nextTestimonial}
-                  className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
-                >
-                  <ChevronRightIcon className="h-6 w-6 text-gray-600" />
-                </button>
+          <div className="testimonial-card">
+            <div className="testimonial-navigation">
+              <button
+                onClick={prevTestimonial}
+                className="nav-button"
+              >
+                <ChevronLeftIcon className="nav-icon" />
+              </button>
+              
+              <div className="testimonial-dots">
+                {testimonials.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentTestimonial(index)}
+                    className={`dot-button ${
+                      index === currentTestimonial ? 'active' : ''
+                    }`}
+                  />
+                ))}
               </div>
 
-              <div className="text-center">
-                <div className="flex justify-center mb-6">
-                  {renderStars(testimonials[currentTestimonial].rating)}
-                </div>
-                
-                <blockquote className="text-xl lg:text-2xl font-medium text-gray-900 mb-8">
-                  "{testimonials[currentTestimonial].content}"
-                </blockquote>
+              <button
+                onClick={nextTestimonial}
+                className="nav-button"
+              >
+                <ChevronRightIcon className="nav-icon" />
+              </button>
+            </div>
 
-                <div className="mb-6">
-                  <div className="text-lg font-semibold text-gray-900">
-                    {testimonials[currentTestimonial].name}
-                  </div>
-                  <div className="text-primary-600 font-medium">
-                    {testimonials[currentTestimonial].position}
-                  </div>
-                  <div className="text-gray-600">
-                    {testimonials[currentTestimonial].company}
-                  </div>
-                </div>
+            <div className="testimonial-content">
+              <div className="testimonial-stars">
+                {renderStars(testimonials[currentTestimonial].rating)}
+              </div>
+              
+              <blockquote className="testimonial-quote">
+                "{testimonials[currentTestimonial].content}"
+              </blockquote>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 text-sm">
-                  <div>
-                    <span className="font-medium text-gray-900">Project: </span>
-                    <span className="text-gray-600">{testimonials[currentTestimonial].projectType}</span>
-                  </div>
-                  <div>
-                    <span className="font-medium text-gray-900">Industry: </span>
-                    <span className="text-gray-600">{testimonials[currentTestimonial].industry}</span>
-                  </div>
-                  <div>
-                    <span className="font-medium text-gray-900">Size: </span>
-                    <span className="text-gray-600">{testimonials[currentTestimonial].companySize}</span>
-                  </div>
+              <div className="testimonial-author">
+                <div className="author-name">
+                  {testimonials[currentTestimonial].name}
                 </div>
-
-                <div className="mt-6">
-                  <h4 className="text-sm font-medium text-gray-900 mb-2">Key Results:</h4>
-                  <div className="flex flex-wrap justify-center gap-2">
-                    {testimonials[currentTestimonial].results.map((result, index) => (
-                      <span
-                        key={index}
-                        className="inline-flex items-center rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-800"
-                      >
-                        {result}
-                      </span>
-                    ))}
-                  </div>
+                <div className="author-position">
+                  {testimonials[currentTestimonial].position}
+                </div>
+                <div className="author-company">
+                  {testimonials[currentTestimonial].company}
                 </div>
               </div>
             </div>
@@ -291,35 +261,35 @@ export default function Clients() {
       </div>
 
       {/* Case Studies */}
-      <div className="py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center mb-16">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+      <div className="case-studies-section">
+        <div className="case-studies-container">
+          <div className="case-studies-header">
+            <h2 className="case-studies-title">
               Success Stories
             </h2>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
+            <p className="case-studies-description">
               Detailed case studies showcasing how we've helped clients overcome challenges and achieve their goals.
             </p>
           </div>
 
-          <div className="space-y-8">
+          <div className="case-studies-list">
             {caseStudies.map((study, index) => (
               <div
                 key={study.id}
-                className={`bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden ${
-                  index === selectedCaseStudy ? 'ring-2 ring-primary-500' : ''
+                className={`case-study-item ${
+                  index === selectedCaseStudy ? 'selected' : ''
                 }`}
               >
                 <div
-                  className="p-6 cursor-pointer hover:bg-gray-50 transition-colors"
+                  className="case-study-header-section"
                   onClick={() => setSelectedCaseStudy(selectedCaseStudy === index ? -1 : index)}
                 >
-                  <div className="flex items-center justify-between">
+                  <div className="case-study-header-content">
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900">{study.title}</h3>
-                      <p className="text-primary-600 font-medium">{study.client} • {study.industry}</p>
+                      <h3 className="case-study-item-title">{study.title}</h3>
+                      <p className="case-study-client-info">{study.client} • {study.industry}</p>
                     </div>
-                    <div className="text-sm text-gray-500">
+                    <div className="case-study-meta">
                       <div>{study.duration}</div>
                       <div>{study.teamSize}</div>
                     </div>
@@ -327,22 +297,22 @@ export default function Clients() {
                 </div>
 
                 {selectedCaseStudy === index && (
-                  <div className="px-6 pb-6 border-t border-gray-100">
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+                  <div className="case-study-details">
+                    <div className="case-study-details-grid">
                       <div>
-                        <h4 className="font-semibold text-gray-900 mb-2">Challenge</h4>
-                        <p className="text-gray-600 text-sm">{study.challenge}</p>
+                        <h4 className="detail-section-title">Challenge</h4>
+                        <p className="detail-section-content">{study.challenge}</p>
                       </div>
                       <div>
-                        <h4 className="font-semibold text-gray-900 mb-2">Our Solution</h4>
-                        <p className="text-gray-600 text-sm">{study.solution}</p>
+                        <h4 className="detail-section-title">Our Solution</h4>
+                        <p className="detail-section-content">{study.solution}</p>
                       </div>
                       <div>
-                        <h4 className="font-semibold text-gray-900 mb-2">Results Achieved</h4>
-                        <ul className="space-y-1">
+                        <h4 className="detail-section-title">Results Achieved</h4>
+                        <ul className="results-list">
                           {study.results.map((result, idx) => (
-                            <li key={idx} className="text-green-700 text-sm flex items-start">
-                              <span className="text-green-500 mr-2">✓</span>
+                            <li key={idx} className="result-item">
+                              <span className="result-checkmark">✓</span>
                               {result}
                             </li>
                           ))}
@@ -358,28 +328,28 @@ export default function Clients() {
       </div>
 
       {/* Client Logos */}
-      <div className="bg-gray-50 py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center mb-16">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+      <div className="client-logos-section">
+        <div className="client-logos-container">
+          <div className="client-logos-header">
+            <h2 className="client-logos-title">
               Trusted by Industry Leaders
             </h2>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
+            <p className="client-logos-description">
               We're proud to serve clients across diverse industries, from emerging startups to established enterprises.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          <div className="client-logos-grid">
             {clientLogos.map((client, index) => (
               <div
                 key={index}
-                className="bg-white rounded-lg p-6 shadow-sm border border-gray-200 flex flex-col items-center justify-center text-center hover:shadow-md transition-shadow"
+                className="client-logo-card"
               >
-                <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center mb-3">
-                  <span className="text-gray-400 font-medium text-xs">LOGO</span>
+                <div className="client-logo-placeholder">
+                  <span className="logo-placeholder-text">LOGO</span>
                 </div>
-                <div className="text-sm font-medium text-gray-900">{client.name}</div>
-                <div className="text-xs text-gray-500">{client.industry}</div>
+                <div className="client-name">{client.name}</div>
+                <div className="client-industry">{client.industry}</div>
               </div>
             ))}
           </div>
@@ -387,23 +357,23 @@ export default function Clients() {
       </div>
 
       {/* CTA Section */}
-      <div className="bg-primary-600">
-        <div className="px-6 py-24 sm:px-6 sm:py-32 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+      <div className="cta-section">
+        <div className="cta-container">
+          <div className="cta-content">
+            <h2 className="cta-title">
               Ready to Join Our Success Stories?
             </h2>
-            <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-primary-200">
+            <p className="cta-description">
               Let us help your business achieve its financial goals with expert audit, tax, and consulting services.
             </p>
-            <div className="mt-10 flex items-center justify-center gap-x-6">
+            <div className="cta-buttons">
               <a
                 href="/contact"
-                className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-primary-600 shadow-sm hover:bg-primary-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                className="cta-primary-button"
               >
                 Start Your Success Story
               </a>
-              <a href="/services" className="text-sm font-semibold leading-6 text-white">
+              <a href="/services" className="cta-secondary-button">
                 View our services <span aria-hidden="true">→</span>
               </a>
             </div>
