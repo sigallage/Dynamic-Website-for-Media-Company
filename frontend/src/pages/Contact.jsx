@@ -9,6 +9,7 @@ import {
   ClockIcon,
   CheckCircleIcon 
 } from '@heroicons/react/24/outline';
+import '../styles/contact.css';
 
 const contactInfo = {
   address: {
@@ -84,15 +85,15 @@ export default function Contact() {
   };
 
   return (
-    <div className="bg-white">
+    <div className="contact-page">
       {/* Header */}
-      <div className="bg-gray-900 py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
+      <div className="contact-header">
+        <div className="contact-header-container">
+          <div className="contact-header-content">
+            <h1 className="contact-header-title">
               Contact Us
             </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-300">
+            <p className="contact-header-description">
               Ready to get started? We'd love to hear from you. Send us a message and we'll 
               respond as soon as possible to discuss your needs.
             </p>
@@ -101,52 +102,52 @@ export default function Contact() {
       </div>
 
       {/* Contact Form and Info */}
-      <div className="py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+      <div className="contact-main">
+        <div className="contact-main-container">
+          <div className="contact-grid">
             {/* Contact Form */}
-            <div>
-              <h2 className="text-3xl font-bold tracking-tight text-gray-900 mb-8">
+            <div className="contact-form-section">
+              <h2 className="contact-form-title">
                 Get in Touch
               </h2>
               
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
+              <form onSubmit={handleSubmit(onSubmit)} className="contact-form">
+                <div className="form-row">
+                  <div className="form-group">
+                    <label htmlFor="firstName" className="form-label">
                       First Name *
                     </label>
                     <input
                       type="text"
                       id="firstName"
                       {...register('firstName', { required: 'First name is required' })}
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+                      className="form-input"
                       placeholder="John"
                     />
                     {errors.firstName && (
-                      <p className="mt-1 text-sm text-red-600">{errors.firstName.message}</p>
+                      <p className="form-error">{errors.firstName.message}</p>
                     )}
                   </div>
                   
-                  <div>
-                    <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
+                  <div className="form-group">
+                    <label htmlFor="lastName" className="form-label">
                       Last Name *
                     </label>
                     <input
                       type="text"
                       id="lastName"
                       {...register('lastName', { required: 'Last name is required' })}
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+                      className="form-input"
                       placeholder="Doe"
                     />
                     {errors.lastName && (
-                      <p className="mt-1 text-sm text-red-600">{errors.lastName.message}</p>
+                      <p className="form-error">{errors.lastName.message}</p>
                     )}
                   </div>
                 </div>
 
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                <div className="form-group">
+                  <label htmlFor="email" className="form-label">
                     Email Address *
                   </label>
                   <input
@@ -159,48 +160,48 @@ export default function Contact() {
                         message: 'Please enter a valid email address'
                       }
                     })}
-                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+                    className="form-input"
                     placeholder="john.doe@company.com"
                   />
                   {errors.email && (
-                    <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
+                    <p className="form-error">{errors.email.message}</p>
                   )}
                 </div>
 
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                <div className="form-group">
+                  <label htmlFor="phone" className="form-label">
                     Phone Number
                   </label>
                   <input
                     type="tel"
                     id="phone"
                     {...register('phone')}
-                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+                    className="form-input"
                     placeholder="+1 (555) 123-4567"
                   />
                 </div>
 
-                <div>
-                  <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
+                <div className="form-group">
+                  <label htmlFor="company" className="form-label">
                     Company Name
                   </label>
                   <input
                     type="text"
                     id="company"
                     {...register('company')}
-                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+                    className="form-input"
                     placeholder="Your Company Inc."
                   />
                 </div>
 
-                <div>
-                  <label htmlFor="serviceInterest" className="block text-sm font-medium text-gray-700 mb-2">
+                <div className="form-group">
+                  <label htmlFor="serviceInterest" className="form-label">
                     Service of Interest
                   </label>
                   <select
                     id="serviceInterest"
                     {...register('serviceInterest')}
-                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+                    className="form-select"
                   >
                     <option value="">Select a service</option>
                     {serviceInterests.map((service) => (
@@ -211,46 +212,46 @@ export default function Contact() {
                   </select>
                 </div>
 
-                <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                <div className="form-group">
+                  <label htmlFor="subject" className="form-label">
                     Subject *
                   </label>
                   <input
                     type="text"
                     id="subject"
                     {...register('subject', { required: 'Subject is required' })}
-                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+                    className="form-input"
                     placeholder="How can we help you?"
                   />
                   {errors.subject && (
-                    <p className="mt-1 text-sm text-red-600">{errors.subject.message}</p>
+                    <p className="form-error">{errors.subject.message}</p>
                   )}
                 </div>
 
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                <div className="form-group">
+                  <label htmlFor="message" className="form-label">
                     Message *
                   </label>
                   <textarea
                     id="message"
                     rows={6}
                     {...register('message', { required: 'Message is required' })}
-                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
+                    className="form-textarea"
                     placeholder="Please provide details about your inquiry..."
                   />
                   {errors.message && (
-                    <p className="mt-1 text-sm text-red-600">{errors.message.message}</p>
+                    <p className="form-error">{errors.message.message}</p>
                   )}
                 </div>
 
-                <div className="flex items-start">
+                <div className="form-checkbox-group">
                   <input
                     type="checkbox"
                     id="newsletter"
                     {...register('newsletter')}
-                    className="h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+                    className="form-checkbox"
                   />
-                  <label htmlFor="newsletter" className="ml-2 text-sm text-gray-600">
+                  <label htmlFor="newsletter" className="form-checkbox-label">
                     I would like to receive updates and insights via email
                   </label>
                 </div>
@@ -258,11 +259,11 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="form-submit-btn"
                 >
                   {isSubmitting ? (
                     <div className="flex items-center">
-                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                      <div className="loading-spinner"></div>
                       Sending...
                     </div>
                   ) : (
@@ -273,20 +274,20 @@ export default function Contact() {
             </div>
 
             {/* Contact Information */}
-            <div>
-              <h2 className="text-3xl font-bold tracking-tight text-gray-900 mb-8">
+            <div className="contact-info-section">
+              <h2 className="contact-info-title">
                 Contact Information
               </h2>
 
-              <div className="space-y-8">
+              <div className="contact-info-list">
                 {/* Main Contact Info */}
-                <div className="bg-gray-50 rounded-lg p-6">
-                  <div className="space-y-6">
-                    <div className="flex items-start">
-                      <MapPinIcon className="h-6 w-6 text-primary-600 mt-1 mr-4 flex-shrink-0" />
-                      <div>
-                        <h3 className="font-medium text-gray-900 mb-1">Address</h3>
-                        <p className="text-gray-600">
+                <div className="contact-info-card">
+                  <div className="contact-info-items">
+                    <div className="contact-info-item">
+                      <MapPinIcon className="contact-info-icon" />
+                      <div className="contact-info-content">
+                        <h3>Address</h3>
+                        <p>
                           {contactInfo.address.street}<br />
                           {contactInfo.address.city}, {contactInfo.address.state} {contactInfo.address.zip}<br />
                           {contactInfo.address.country}
@@ -294,27 +295,27 @@ export default function Contact() {
                       </div>
                     </div>
 
-                    <div className="flex items-start">
-                      <PhoneIcon className="h-6 w-6 text-primary-600 mt-1 mr-4 flex-shrink-0" />
-                      <div>
-                        <h3 className="font-medium text-gray-900 mb-1">Phone</h3>
-                        <p className="text-gray-600">{contactInfo.phone}</p>
+                    <div className="contact-info-item">
+                      <PhoneIcon className="contact-info-icon" />
+                      <div className="contact-info-content">
+                        <h3>Phone</h3>
+                        <p>{contactInfo.phone}</p>
                       </div>
                     </div>
 
-                    <div className="flex items-start">
-                      <EnvelopeIcon className="h-6 w-6 text-primary-600 mt-1 mr-4 flex-shrink-0" />
-                      <div>
-                        <h3 className="font-medium text-gray-900 mb-1">Email</h3>
-                        <p className="text-gray-600">{contactInfo.email}</p>
+                    <div className="contact-info-item">
+                      <EnvelopeIcon className="contact-info-icon" />
+                      <div className="contact-info-content">
+                        <h3>Email</h3>
+                        <p>{contactInfo.email}</p>
                       </div>
                     </div>
 
-                    <div className="flex items-start">
-                      <ClockIcon className="h-6 w-6 text-primary-600 mt-1 mr-4 flex-shrink-0" />
-                      <div>
-                        <h3 className="font-medium text-gray-900 mb-1">Business Hours</h3>
-                        <div className="text-gray-600 text-sm space-y-1">
+                    <div className="contact-info-item">
+                      <ClockIcon className="contact-info-icon" />
+                      <div className="contact-info-content">
+                        <h3>Business Hours</h3>
+                        <div className="contact-info-hours">
                           <p>{contactInfo.hours.weekdays}</p>
                           <p>{contactInfo.hours.weekends}</p>
                           <p>{contactInfo.hours.closed}</p>
@@ -325,12 +326,12 @@ export default function Contact() {
                 </div>
 
                 {/* Quick Response Promise */}
-                <div className="bg-primary-50 rounded-lg p-6">
-                  <div className="flex items-start">
-                    <CheckCircleIcon className="h-6 w-6 text-primary-600 mt-1 mr-4 flex-shrink-0" />
-                    <div>
-                      <h3 className="font-medium text-gray-900 mb-2">Quick Response Guarantee</h3>
-                      <p className="text-gray-600 text-sm">
+                <div className="quick-response-card">
+                  <div className="quick-response-content">
+                    <CheckCircleIcon className="quick-response-icon" />
+                    <div className="quick-response-text">
+                      <h3>Quick Response Guarantee</h3>
+                      <p>
                         We respond to all inquiries within 24 hours during business days. 
                         For urgent matters, please call us directly.
                       </p>
@@ -344,43 +345,43 @@ export default function Contact() {
       </div>
 
       {/* Map Section */}
-      <div className="bg-gray-50 py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center mb-16">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+      <div className="locations-section">
+        <div className="locations-container">
+          <div className="locations-header">
+            <h2 className="locations-title">
               Our Locations
             </h2>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
+            <p className="locations-description">
               With offices across major business centers, we're here to serve you locally.
             </p>
           </div>
 
           {/* Map Placeholder */}
-          <div className="aspect-video bg-gray-200 rounded-lg mb-12 flex items-center justify-center">
-            <div className="text-center">
-              <MapPinIcon className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-500">Interactive Map Integration</p>
-              <p className="text-sm text-gray-400">Google Maps or similar service would be embedded here</p>
+          <div className="map-placeholder">
+            <div className="map-placeholder-content">
+              <MapPinIcon className="map-placeholder-icon" />
+              <p className="map-placeholder-title">Interactive Map Integration</p>
+              <p className="map-placeholder-subtitle">Google Maps or similar service would be embedded here</p>
             </div>
           </div>
 
           {/* Office Locations */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="offices-grid">
             {offices.map((office, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">{office.name}</h3>
-                <div className="space-y-3 text-sm">
-                  <div className="flex items-start">
-                    <MapPinIcon className="h-4 w-4 text-gray-400 mt-1 mr-2 flex-shrink-0" />
-                    <p className="text-gray-600">{office.address}</p>
+              <div key={index} className="office-card">
+                <h3 className="office-name">{office.name}</h3>
+                <div className="office-details">
+                  <div className="office-detail">
+                    <MapPinIcon className="office-detail-icon" />
+                    <p className="office-detail-text">{office.address}</p>
                   </div>
-                  <div className="flex items-center">
-                    <PhoneIcon className="h-4 w-4 text-gray-400 mr-2 flex-shrink-0" />
-                    <p className="text-gray-600">{office.phone}</p>
+                  <div className="office-detail">
+                    <PhoneIcon className="office-detail-icon" />
+                    <p className="office-detail-text">{office.phone}</p>
                   </div>
-                  <div className="flex items-center">
-                    <EnvelopeIcon className="h-4 w-4 text-gray-400 mr-2 flex-shrink-0" />
-                    <p className="text-gray-600">{office.email}</p>
+                  <div className="office-detail">
+                    <EnvelopeIcon className="office-detail-icon" />
+                    <p className="office-detail-text">{office.email}</p>
                   </div>
                 </div>
               </div>
@@ -390,76 +391,76 @@ export default function Contact() {
       </div>
 
       {/* FAQ Section */}
-      <div className="py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center mb-16">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+      <div className="faq-section">
+        <div className="faq-container">
+          <div className="faq-header">
+            <h2 className="faq-title">
               Frequently Asked Questions
             </h2>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
+            <p className="faq-description">
               Quick answers to common questions about our services and process.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+          <div className="faq-grid">
+            <div className="faq-column">
+              <div className="faq-item">
+                <h3 className="faq-question">
                   How quickly can you start our audit?
                 </h3>
-                <p className="text-gray-600">
+                <p className="faq-answer">
                   We typically can begin new engagements within 2-3 weeks of initial consultation, 
                   depending on the scope and our current capacity. Rush engagements may be accommodated.
                 </p>
               </div>
               
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+              <div className="faq-item">
+                <h3 className="faq-question">
                   Do you work with small businesses?
                 </h3>
-                <p className="text-gray-600">
+                <p className="faq-answer">
                   Absolutely! We serve businesses of all sizes, from startups to Fortune 500 companies. 
                   Our services are tailored to meet the specific needs and budget of each client.
                 </p>
               </div>
               
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+              <div className="faq-item">
+                <h3 className="faq-question">
                   What industries do you specialize in?
                 </h3>
-                <p className="text-gray-600">
+                <p className="faq-answer">
                   Our team has expertise across multiple industries including technology, healthcare, 
                   manufacturing, retail, and financial services. We adapt our approach to each industry's unique requirements.
                 </p>
               </div>
             </div>
 
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+            <div className="faq-column">
+              <div className="faq-item">
+                <h3 className="faq-question">
                   How do you ensure data security?
                 </h3>
-                <p className="text-gray-600">
+                <p className="faq-answer">
                   We maintain strict confidentiality protocols and use secure, encrypted systems for all 
                   client data. Our team is trained in the latest cybersecurity best practices.
                 </p>
               </div>
               
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+              <div className="faq-item">
+                <h3 className="faq-question">
                   Can you help with tax planning?
                 </h3>
-                <p className="text-gray-600">
+                <p className="faq-answer">
                   Yes, our tax services include both preparation and strategic planning. We help clients 
                   optimize their tax position while ensuring full compliance with all regulations.
                 </p>
               </div>
               
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+              <div className="faq-item">
+                <h3 className="faq-question">
                   Do you offer virtual consultations?
                 </h3>
-                <p className="text-gray-600">
+                <p className="faq-answer">
                   We offer both in-person and virtual consultations to accommodate our clients' preferences 
                   and schedules. Many of our services can be delivered remotely.
                 </p>
