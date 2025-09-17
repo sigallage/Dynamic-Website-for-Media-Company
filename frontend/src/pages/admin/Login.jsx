@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate, Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { authAPI } from '../../services/api';
+import { isAuthenticated } from '../../utils/auth';
 import { EyeIcon, EyeSlashIcon, LockClosedIcon } from '@heroicons/react/24/outline';
 
 export default function Login() {
@@ -12,12 +13,11 @@ export default function Login() {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   // Check if user is already authenticated
-  const token = localStorage.getItem('token');
-  const user = localStorage.getItem('user');
-  
-  if (token && user) {
-    return <Navigate to="/admin/dashboard" replace />;
-  }
+  useEffect(() => {
+    if (isAuthenticated()) {
+      navigate('/admin/dashboard', { replace: true });
+    }
+  }, [navigate]);
 
   const onSubmit = async (data) => {
     setIsLoading(true);
@@ -25,7 +25,7 @@ export default function Login() {
     try {
       const response = await authAPI.login(data);
       
-      if (response.data.success) {
+      if (response.data.token && response.data.user) {
         // Store token and user data
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('user', JSON.stringify(response.data.user));
