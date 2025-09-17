@@ -6,7 +6,7 @@ import {
   EnvelopeIcon,
   DocumentTextIcon,
   TrendingUpIcon,
-  TrendingDownIcon
+  ArrowTrendingDownIcon
 } from '@heroicons/react/24/outline';
 
 export default function Analytics() {
@@ -49,7 +49,7 @@ export default function Analytics() {
     return trend > 0 ? (
       <TrendingUpIcon className="h-4 w-4 text-green-500" />
     ) : (
-      <TrendingDownIcon className="h-4 w-4 text-red-500" />
+      <ArrowTrendingDownIcon className="h-4 w-4 text-red-500" />
     );
   };
 
@@ -141,7 +141,7 @@ export default function Analytics() {
               </p>
             </div>
             <div className="p-3 bg-yellow-100 rounded-full">
-              <TrendingDownIcon className="h-6 w-6 text-yellow-600" />
+              <ArrowTrendingDownIcon className="h-6 w-6 text-yellow-600" />
             </div>
           </div>
           <div className="mt-4 flex items-center">
