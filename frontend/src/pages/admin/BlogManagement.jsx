@@ -8,6 +8,7 @@ import {
   TrashIcon,
   EyeIcon,
   MagnifyingGlassIcon,
+  FunnelIcon,
   CalendarIcon,
   UserIcon,
   TagIcon
@@ -79,14 +80,37 @@ export default function BlogManagement() {
   );
 
   const getStatusBadge = (status) => {
-    const colors = {
-      published: 'bg-green-100 text-green-800',
-      draft: 'bg-yellow-100 text-yellow-800',
-      archived: 'bg-gray-100 text-gray-800'
+    const statusStyles = {
+      published: {
+        background: 'linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%)',
+        border: '1px solid #86efac',
+        color: '#047857'
+      },
+      draft: {
+        background: 'linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)',
+        border: '1px solid #fbbf24',
+        color: '#92400e'
+      },
+      archived: {
+        background: 'linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%)',
+        border: '1px solid #cbd5e1',
+        color: '#475569'
+      }
     };
     
+    const style = statusStyles[status] || statusStyles.draft;
+    
     return (
-      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${colors[status] || colors.draft}`}>
+      <span style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        padding: '0.25rem 0.75rem',
+        borderRadius: '9999px',
+        fontSize: '0.75rem',
+        fontWeight: '600',
+        textTransform: 'capitalize',
+        ...style
+      }}>
         {status}
       </span>
     );
@@ -101,52 +125,83 @@ export default function BlogManagement() {
   };
 
   return (
-    <div>
+    <div className="admin-dashboard">
       {/* Header */}
-      <div className="sm:flex sm:items-center sm:justify-between mb-8">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">Blog Management</h1>
-          <p className="mt-1 text-sm text-gray-600">
-            Create, edit, and manage your blog posts
-          </p>
+      <div className="admin-dashboard-header">
+        <div className="admin-dashboard-title">
+          <h1>Blog Management</h1>
+          <p>Create, edit, and manage your blog posts</p>
         </div>
-        <div className="mt-4 sm:mt-0">
+        <div className="admin-dashboard-actions">
           <Link
             to="/admin/blogs/new"
-            className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+            className="admin-btn admin-btn-primary"
           >
-            <PlusIcon className="-ml-1 mr-2 h-5 w-5" />
+            <PlusIcon className="admin-btn-icon" />
             New Blog Post
           </Link>
         </div>
       </div>
 
       {/* Filters and Search */}
-      <div className="bg-white shadow rounded-lg mb-6">
-        <div className="p-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="admin-content-card" style={{marginBottom: '2rem'}}>
+        <div className="admin-content-card-header">
+          <div style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+            <FunnelIcon style={{width: '1.25rem', height: '1.25rem', color: '#6b7280'}} />
+            <h3 style={{margin: 0, fontSize: '1.125rem', fontWeight: '600', color: '#1f2937'}}>
+              Search & Filter
+            </h3>
+          </div>
+        </div>
+        <div className="admin-content-card-body">
+          <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem'}}>
             {/* Search */}
-            <div className="md:col-span-2">
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" />
+            <div style={{gridColumn: 'span 2'}}>
+              <label style={{display: 'block', fontSize: '0.875rem', fontWeight: '500', color: '#374151', marginBottom: '0.5rem'}}>
+                Search Posts
+              </label>
+              <div style={{position: 'relative'}}>
+                <div style={{position: 'absolute', top: '50%', left: '12px', transform: 'translateY(-50%)', pointerEvents: 'none'}}>
+                  <MagnifyingGlassIcon style={{width: '1.25rem', height: '1.25rem', color: '#9ca3af'}} />
                 </div>
                 <input
                   type="text"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
-                  placeholder="Search blogs..."
+                  style={{
+                    width: '100%',
+                    paddingLeft: '3rem',
+                    paddingRight: '1rem',
+                    paddingTop: '0.75rem',
+                    paddingBottom: '0.75rem',
+                    border: '1px solid #d1d5db',
+                    borderRadius: '8px',
+                    fontSize: '0.875rem',
+                    background: 'white',
+                    transition: 'all 0.2s ease'
+                  }}
+                  placeholder="Search by title, excerpt, or author..."
                 />
               </div>
             </div>
 
             {/* Status Filter */}
             <div>
+              <label style={{display: 'block', fontSize: '0.875rem', fontWeight: '500', color: '#374151', marginBottom: '0.5rem'}}>
+                Status
+              </label>
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
-                className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+                style={{
+                  width: '100%',
+                  padding: '0.75rem',
+                  border: '1px solid #d1d5db',
+                  borderRadius: '8px',
+                  fontSize: '0.875rem',
+                  background: 'white',
+                  transition: 'all 0.2s ease'
+                }}
               >
                 <option value="all">All Status</option>
                 <option value="published">Published</option>
@@ -157,6 +212,9 @@ export default function BlogManagement() {
 
             {/* Sort */}
             <div>
+              <label style={{display: 'block', fontSize: '0.875rem', fontWeight: '500', color: '#374151', marginBottom: '0.5rem'}}>
+                Sort By
+              </label>
               <select
                 value={`${sortBy}-${sortOrder}`}
                 onChange={(e) => {
@@ -164,7 +222,15 @@ export default function BlogManagement() {
                   setSortBy(field);
                   setSortOrder(order);
                 }}
-                className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
+                style={{
+                  width: '100%',
+                  padding: '0.75rem',
+                  border: '1px solid #d1d5db',
+                  borderRadius: '8px',
+                  fontSize: '0.875rem',
+                  background: 'white',
+                  transition: 'all 0.2s ease'
+                }}
               >
                 <option value="createdAt-desc">Newest First</option>
                 <option value="createdAt-asc">Oldest First</option>
@@ -178,109 +244,264 @@ export default function BlogManagement() {
       </div>
 
       {/* Blog List */}
-      <div className="bg-white shadow rounded-lg">
+      <div className="admin-content-card">
         {loading ? (
-          <div className="p-6 text-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600 mx-auto"></div>
-            <p className="mt-2 text-sm text-gray-600">Loading blogs...</p>
+          <div className="admin-loading">
+            <div className="admin-loading-spinner"></div>
+            <span>Loading blogs...</span>
           </div>
         ) : filteredBlogs.length === 0 ? (
-          <div className="p-6 text-center">
-            <p className="text-gray-500">No blog posts found.</p>
-            <Link
-              to="/admin/blogs/new"
-              className="mt-2 inline-flex items-center text-primary-600 hover:text-primary-900"
-            >
-              <PlusIcon className="h-5 w-5 mr-1" />
-              Create your first blog post
+          <div style={{padding: '3rem', textAlign: 'center'}}>
+            <div style={{
+              width: '4rem',
+              height: '4rem',
+              background: 'linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%)',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              margin: '0 auto 1rem'
+            }}>
+              <PencilIcon style={{width: '2rem', height: '2rem', color: '#9ca3af'}} />
+            </div>
+            <h3 style={{fontSize: '1.125rem', fontWeight: '600', color: '#374151', marginBottom: '0.5rem'}}>
+              No blog posts found
+            </h3>
+            <p style={{color: '#6b7280', marginBottom: '1.5rem'}}>
+              {searchTerm || statusFilter !== 'all' 
+                ? 'No posts match your current search criteria.'
+                : 'Get started by creating your first blog post.'
+              }
+            </p>
+            <Link to="/admin/blogs/new" className="admin-btn admin-btn-primary">
+              <PlusIcon className="admin-btn-icon" />
+              Create First Post
             </Link>
           </div>
         ) : (
-          <div className="overflow-hidden">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+          <div style={{overflowX: 'auto'}}>
+            <table style={{width: '100%', borderCollapse: 'collapse'}}>
+              <thead style={{background: 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)', borderBottom: '2px solid #e2e8f0'}}>
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Title
+                  <th style={{
+                    padding: '1rem 1.5rem',
+                    textAlign: 'left',
+                    fontSize: '0.75rem',
+                    fontWeight: '600',
+                    color: '#64748b',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em'
+                  }}>
+                    Post
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th style={{
+                    padding: '1rem 1.5rem',
+                    textAlign: 'left',
+                    fontSize: '0.75rem',
+                    fontWeight: '600',
+                    color: '#64748b',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em'
+                  }}>
                     Author
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th style={{
+                    padding: '1rem 1.5rem',
+                    textAlign: 'left',
+                    fontSize: '0.75rem',
+                    fontWeight: '600',
+                    color: '#64748b',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em'
+                  }}>
                     Status
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th style={{
+                    padding: '1rem 1.5rem',
+                    textAlign: 'left',
+                    fontSize: '0.75rem',
+                    fontWeight: '600',
+                    color: '#64748b',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em'
+                  }}>
                     Date
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th style={{
+                    padding: '1rem 1.5rem',
+                    textAlign: 'left',
+                    fontSize: '0.75rem',
+                    fontWeight: '600',
+                    color: '#64748b',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em'
+                  }}>
                     Actions
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody style={{background: 'white'}}>
                 {filteredBlogs.map((blog) => (
-                  <tr key={blog._id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4">
-                      <div className="flex items-start">
-                        <div className="flex-1 min-w-0">
-                          <div className="text-sm font-medium text-gray-900 truncate">
+                  <tr 
+                    key={blog._id} 
+                    style={{
+                      borderBottom: '1px solid #f1f5f9',
+                      transition: 'background-color 0.2s ease'
+                    }}
+                    onMouseEnter={(e) => e.target.closest('tr').style.background = '#f8fafc'}
+                    onMouseLeave={(e) => e.target.closest('tr').style.background = 'white'}
+                  >
+                    <td style={{padding: '1.5rem'}}>
+                      <div style={{display: 'flex', alignItems: 'flex-start', gap: '1rem'}}>
+                        <div style={{flex: 1, minWidth: 0}}>
+                          <div style={{
+                            fontSize: '0.875rem',
+                            fontWeight: '600',
+                            color: '#1e293b',
+                            marginBottom: '0.5rem',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            whiteSpace: 'nowrap'
+                          }}>
                             {blog.title}
                           </div>
-                          <div className="text-sm text-gray-500 mt-1">
-                            {blog.excerpt.substring(0, 100)}...
+                          <div style={{
+                            fontSize: '0.75rem',
+                            color: '#64748b',
+                            lineHeight: '1.4',
+                            marginBottom: '0.5rem'
+                          }}>
+                            {blog.excerpt.substring(0, 120)}...
                           </div>
-                          <div className="flex items-center mt-2 text-xs text-gray-400">
-                            <TagIcon className="h-4 w-4 mr-1" />
-                            {blog.category}
+                          <div style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            fontSize: '0.75rem',
+                            color: '#94a3b8'
+                          }}>
+                            <span style={{
+                              background: 'linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%)',
+                              padding: '0.25rem 0.5rem',
+                              borderRadius: '4px',
+                              fontWeight: '500'
+                            }}>
+                              {blog.category}
+                            </span>
                           </div>
                         </div>
                         {blog.featuredImage && (
                           <img
                             src={blog.featuredImage}
                             alt=""
-                            className="ml-4 w-16 h-16 object-cover rounded-lg"
+                            style={{
+                              width: '4rem',
+                              height: '4rem',
+                              objectFit: 'cover',
+                              borderRadius: '8px',
+                              border: '2px solid #f1f5f9'
+                            }}
                           />
                         )}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="flex items-center text-sm text-gray-900">
-                        <UserIcon className="h-4 w-4 mr-2 text-gray-400" />
+                    <td style={{padding: '1.5rem', whiteSpace: 'nowrap'}}>
+                      <div style={{display: 'flex', alignItems: 'center', fontSize: '0.875rem', color: '#1e293b'}}>
+                        <UserIcon style={{width: '1rem', height: '1rem', marginRight: '0.5rem', color: '#94a3b8'}} />
                         {blog.author}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td style={{padding: '1.5rem', whiteSpace: 'nowrap'}}>
                       {getStatusBadge(blog.status)}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="flex items-center text-sm text-gray-900">
-                        <CalendarIcon className="h-4 w-4 mr-2 text-gray-400" />
+                    <td style={{padding: '1.5rem', whiteSpace: 'nowrap'}}>
+                      <div style={{display: 'flex', alignItems: 'center', fontSize: '0.875rem', color: '#1e293b'}}>
+                        <CalendarIcon style={{width: '1rem', height: '1rem', marginRight: '0.5rem', color: '#94a3b8'}} />
                         {formatDate(blog.publishedAt || blog.createdAt)}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                      <div className="flex items-center space-x-2">
+                    <td style={{padding: '1.5rem', whiteSpace: 'nowrap'}}>
+                      <div style={{display: 'flex', alignItems: 'center', gap: '0.75rem'}}>
                         <Link
                           to={`/blog/${blog._id}`}
                           target="_blank"
-                          className="text-gray-400 hover:text-gray-600"
-                          title="View"
+                          style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            width: '2rem',
+                            height: '2rem',
+                            borderRadius: '6px',
+                            background: 'linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%)',
+                            border: '1px solid #cbd5e1',
+                            color: '#64748b',
+                            transition: 'all 0.2s ease',
+                            textDecoration: 'none'
+                          }}
+                          title="View Post"
+                          onMouseEnter={(e) => {
+                            e.target.style.background = 'linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%)';
+                            e.target.style.color = '#1e293b';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.target.style.background = 'linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%)';
+                            e.target.style.color = '#64748b';
+                          }}
                         >
-                          <EyeIcon className="h-5 w-5" />
+                          <EyeIcon style={{width: '1rem', height: '1rem'}} />
                         </Link>
                         <Link
                           to={`/admin/blogs/edit/${blog._id}`}
-                          className="text-primary-600 hover:text-primary-900"
-                          title="Edit"
+                          style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            width: '2rem',
+                            height: '2rem',
+                            borderRadius: '6px',
+                            background: 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)',
+                            border: '1px solid #93c5fd',
+                            color: '#3b82f6',
+                            transition: 'all 0.2s ease',
+                            textDecoration: 'none'
+                          }}
+                          title="Edit Post"
+                          onMouseEnter={(e) => {
+                            e.target.style.background = 'linear-gradient(135deg, #bfdbfe 0%, #93c5fd 100%)';
+                            e.target.style.color = '#1e40af';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.target.style.background = 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)';
+                            e.target.style.color = '#3b82f6';
+                          }}
                         >
-                          <PencilIcon className="h-5 w-5" />
+                          <PencilIcon style={{width: '1rem', height: '1rem'}} />
                         </Link>
                         <button
                           onClick={() => handleDelete(blog._id, blog.title)}
-                          className="text-red-600 hover:text-red-900"
-                          title="Delete"
+                          style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            width: '2rem',
+                            height: '2rem',
+                            borderRadius: '6px',
+                            background: 'linear-gradient(135deg, #fee2e2 0%, #fecaca 100%)',
+                            border: '1px solid #fca5a5',
+                            color: '#dc2626',
+                            transition: 'all 0.2s ease',
+                            cursor: 'pointer'
+                          }}
+                          title="Delete Post"
+                          onMouseEnter={(e) => {
+                            e.target.style.background = 'linear-gradient(135deg, #fecaca 0%, #fca5a5 100%)';
+                            e.target.style.color = '#991b1b';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.target.style.background = 'linear-gradient(135deg, #fee2e2 0%, #fecaca 100%)';
+                            e.target.style.color = '#dc2626';
+                          }}
                         >
-                          <TrashIcon className="h-5 w-5" />
+                          <TrashIcon style={{width: '1rem', height: '1rem'}} />
                         </button>
                       </div>
                     </td>
@@ -293,24 +514,45 @@ export default function BlogManagement() {
       </div>
 
       {/* Stats */}
-      <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="bg-white p-4 rounded-lg shadow">
-          <div className="text-2xl font-bold text-gray-900">
-            {blogs.filter(b => b.status === 'published').length}
+      <div className="admin-stats-grid" style={{marginTop: '2rem'}}>
+        <div className="admin-stat-card">
+          <div className="admin-stat-card-content">
+            <div className="admin-stat-icon-wrapper blogs">
+              <PencilIcon className="admin-stat-icon" />
+            </div>
+            <div className="admin-stat-content">
+              <div className="admin-stat-title">Published Posts</div>
+              <div className="admin-stat-value">
+                {blogs.filter(b => b.status === 'published').length}
+              </div>
+            </div>
           </div>
-          <div className="text-sm text-gray-600">Published Posts</div>
         </div>
-        <div className="bg-white p-4 rounded-lg shadow">
-          <div className="text-2xl font-bold text-gray-900">
-            {blogs.filter(b => b.status === 'draft').length}
+        <div className="admin-stat-card">
+          <div className="admin-stat-card-content">
+            <div className="admin-stat-icon-wrapper services">
+              <EyeIcon className="admin-stat-icon" />
+            </div>
+            <div className="admin-stat-content">
+              <div className="admin-stat-title">Draft Posts</div>
+              <div className="admin-stat-value">
+                {blogs.filter(b => b.status === 'draft').length}
+              </div>
+            </div>
           </div>
-          <div className="text-sm text-gray-600">Draft Posts</div>
         </div>
-        <div className="bg-white p-4 rounded-lg shadow">
-          <div className="text-2xl font-bold text-gray-900">
-            {blogs.length}
+        <div className="admin-stat-card">
+          <div className="admin-stat-card-content">
+            <div className="admin-stat-icon-wrapper contacts">
+              <TrashIcon className="admin-stat-icon" />
+            </div>
+            <div className="admin-stat-content">
+              <div className="admin-stat-title">Total Posts</div>
+              <div className="admin-stat-value">
+                {blogs.length}
+              </div>
+            </div>
           </div>
-          <div className="text-sm text-gray-600">Total Posts</div>
         </div>
       </div>
     </div>

@@ -25,7 +25,7 @@ const mockBlogs = [
     author: { name: 'Sarah Johnson' },
     publishedDate: '2024-03-15',
     views: 1245,
-    featuredImage: '',
+    featuredImage: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=400&fit=crop',
     status: 'published'
   },
   {
@@ -39,7 +39,7 @@ const mockBlogs = [
     author: { name: 'Michael Chen' },
     publishedDate: '2024-03-10',
     views: 892,
-    featuredImage: '',
+    featuredImage: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=400&fit=crop',
     status: 'published'
   },
   {
@@ -53,7 +53,7 @@ const mockBlogs = [
     author: { name: 'Emily Rodriguez' },
     publishedDate: '2024-03-08',
     views: 1567,
-    featuredImage: '',
+    featuredImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop',
     status: 'published'
   },
   {
@@ -67,7 +67,7 @@ const mockBlogs = [
     author: { name: 'David Thompson' },
     publishedDate: '2024-03-05',
     views: 734,
-    featuredImage: '',
+    featuredImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=400&fit=crop',
     status: 'published'
   },
   {
@@ -81,7 +81,7 @@ const mockBlogs = [
     author: { name: 'Sarah Johnson' },
     publishedDate: '2024-03-01',
     views: 456,
-    featuredImage: '',
+    featuredImage: 'https://images.unsplash.com/photo-1554224154-26032fced8bd?w=800&h=400&fit=crop',
     status: 'published'
   },
   {
@@ -95,7 +95,175 @@ const mockBlogs = [
     author: { name: 'Emily Rodriguez' },
     publishedDate: '2024-02-28',
     views: 1123,
-    featuredImage: '',
+    featuredImage: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&h=400&fit=crop',
+    status: 'published'
+  },
+  {
+    id: 7,
+    title: 'Digital Transformation in Financial Services',
+    slug: 'digital-transformation-financial-services',
+    excerpt: 'How digital transformation is reshaping financial services and what it means for audit professionals and businesses.',
+    content: 'Full content would be here...',
+    category: 'industry-news',
+    tags: ['Digital Transformation', 'FinTech', 'Innovation'],
+    author: { name: 'Alex Wang' },
+    publishedDate: '2024-02-25',
+    views: 987,
+    featuredImage: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=800&h=400&fit=crop',
+    status: 'published'
+  },
+  {
+    id: 8,
+    title: 'ESG Reporting: The New Compliance Frontier',
+    slug: 'esg-reporting-new-compliance-frontier',
+    excerpt: 'Environmental, Social, and Governance reporting is becoming mandatory. Learn how to prepare your organization.',
+    content: 'Full content would be here...',
+    category: 'compliance',
+    tags: ['ESG', 'Sustainability', 'Reporting'],
+    author: { name: 'Lisa Parker' },
+    publishedDate: '2024-02-22',
+    views: 1456,
+    featuredImage: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=400&fit=crop',
+    status: 'published'
+  },
+  {
+    id: 9,
+    title: 'Fraud Detection in the Digital Age',
+    slug: 'fraud-detection-digital-age',
+    excerpt: 'Advanced techniques and technologies for detecting and preventing fraud in modern business environments.',
+    content: 'Full content would be here...',
+    category: 'audit-insights',
+    tags: ['Fraud Detection', 'Cybersecurity', 'Risk Assessment'],
+    author: { name: 'Robert Kim' },
+    publishedDate: '2024-02-20',
+    views: 2134,
+    featuredImage: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=400&fit=crop',
+    status: 'published'
+  },
+  {
+    id: 10,
+    title: 'Cryptocurrency and Tax Implications',
+    slug: 'cryptocurrency-tax-implications',
+    excerpt: 'Understanding the complex tax landscape of cryptocurrency transactions and how to stay compliant.',
+    content: 'Full content would be here...',
+    category: 'tax-updates',
+    tags: ['Cryptocurrency', 'Tax Law', 'Digital Assets'],
+    author: { name: 'Jennifer Liu' },
+    publishedDate: '2024-02-18',
+    views: 1678,
+    featuredImage: 'https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&h=400&fit=crop',
+    status: 'published'
+  },
+  {
+    id: 11,
+    title: 'Building Effective Audit Committees',
+    slug: 'building-effective-audit-committees',
+    excerpt: 'Best practices for establishing and managing audit committees that provide genuine oversight and value.',
+    content: 'Full content would be here...',
+    category: 'business-tips',
+    tags: ['Audit Committee', 'Governance', 'Best Practices'],
+    author: { name: 'Thomas Anderson' },
+    publishedDate: '2024-02-15',
+    views: 856,
+    featuredImage: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&h=400&fit=crop',
+    status: 'published'
+  },
+  {
+    id: 12,
+    title: 'Remote Work Impact on Financial Controls',
+    slug: 'remote-work-impact-financial-controls',
+    excerpt: 'How the shift to remote work has affected financial controls and what organizations need to do to adapt.',
+    content: 'Full content would be here...',
+    category: 'compliance',
+    tags: ['Remote Work', 'Internal Controls', 'Risk Management'],
+    author: { name: 'Maria Gonzalez' },
+    publishedDate: '2024-02-12',
+    views: 1234,
+    featuredImage: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=400&fit=crop',
+    status: 'published'
+  },
+  {
+    id: 13,
+    title: 'AI in Audit: Opportunities and Challenges',
+    slug: 'ai-in-audit-opportunities-challenges',
+    excerpt: 'Exploring the potential of artificial intelligence in auditing while addressing implementation challenges.',
+    content: 'Full content would be here...',
+    category: 'audit-insights',
+    tags: ['Artificial Intelligence', 'Audit Technology', 'Innovation'],
+    author: { name: 'Dr. Kevin Park' },
+    publishedDate: '2024-02-10',
+    views: 1789,
+    featuredImage: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=400&fit=crop',
+    status: 'published'
+  },
+  {
+    id: 14,
+    title: 'Quarterly Tax Filing Tips for Businesses',
+    slug: 'quarterly-tax-filing-tips-businesses',
+    excerpt: 'Essential tips and strategies to streamline your quarterly tax filing process and avoid common pitfalls.',
+    content: 'Full content would be here...',
+    category: 'tax-updates',
+    tags: ['Quarterly Taxes', 'Business Filing', 'Tax Strategy'],
+    author: { name: 'Amanda Brooks' },
+    publishedDate: '2024-02-08',
+    views: 967,
+    featuredImage: 'https://images.unsplash.com/photo-1554224154-22dec7ec8818?w=800&h=400&fit=crop',
+    status: 'published'
+  },
+  {
+    id: 15,
+    title: 'Supply Chain Auditing in Post-Pandemic Era',
+    slug: 'supply-chain-auditing-post-pandemic',
+    excerpt: 'How supply chain auditing has evolved and what auditors need to focus on in the post-pandemic business environment.',
+    content: 'Full content would be here...',
+    category: 'industry-news',
+    tags: ['Supply Chain', 'Post-Pandemic', 'Risk Assessment'],
+    author: { name: 'Carlos Rivera' },
+    publishedDate: '2024-02-05',
+    views: 1345,
+    featuredImage: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=400&fit=crop',
+    status: 'published'
+  },
+  {
+    id: 16,
+    title: 'Data Privacy and Financial Records',
+    slug: 'data-privacy-financial-records',
+    excerpt: 'Understanding data privacy requirements when handling financial records and ensuring compliance with regulations.',
+    content: 'Full content would be here...',
+    category: 'compliance',
+    tags: ['Data Privacy', 'GDPR', 'Financial Records'],
+    author: { name: 'Sophie Turner' },
+    publishedDate: '2024-02-02',
+    views: 876,
+    featuredImage: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=400&fit=crop',
+    status: 'published'
+  },
+  {
+    id: 17,
+    title: 'Best Practices for Financial Reporting',
+    slug: 'best-practices-financial-reporting',
+    excerpt: 'Comprehensive guide to financial reporting best practices that ensure accuracy, transparency, and compliance.',
+    content: 'Full content would be here...',
+    category: 'business-tips',
+    tags: ['Financial Reporting', 'Best Practices', 'Transparency'],
+    author: { name: 'Mark Johnson' },
+    publishedDate: '2024-01-30',
+    views: 1456,
+    featuredImage: 'https://images.unsplash.com/photo-1554224154-26032fced8bd?w=800&h=400&fit=crop',
+    status: 'published'
+  },
+  {
+    id: 18,
+    title: 'Technology Trends Shaping Modern Audits',
+    slug: 'technology-trends-shaping-modern-audits',
+    excerpt: 'Latest technology trends that are revolutionizing the audit profession and improving audit quality.',
+    content: 'Full content would be here...',
+    category: 'audit-insights',
+    tags: ['Technology Trends', 'Modern Auditing', 'Innovation'],
+    author: { name: 'Rachel Green' },
+    publishedDate: '2024-01-28',
+    views: 1123,
+    featuredImage: 'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&h=400&fit=crop',
     status: 'published'
   }
 ];
@@ -252,11 +420,19 @@ export default function Blog() {
                   key={blog.id}
                   className="blog-card"
                 >
-                  {/* Featured Image Placeholder */}
+                  {/* Featured Image */}
                   <div className="blog-card-image">
-                    <div className="blog-card-image-placeholder">
-                      <span>Featured Image</span>
-                    </div>
+                    {blog.featuredImage ? (
+                      <img 
+                        src={blog.featuredImage} 
+                        alt={blog.title}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                      />
+                    ) : (
+                      <div className="blog-card-image-placeholder">
+                        <span>Featured Image</span>
+                      </div>
+                    )}
                   </div>
 
                   <div className="blog-card-content">

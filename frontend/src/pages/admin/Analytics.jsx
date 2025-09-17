@@ -8,6 +8,7 @@ import {
   ArrowTrendingUpIcon,
   ArrowTrendingDownIcon
 } from '@heroicons/react/24/outline';
+import '../../styles/adminDashboard.css';
 
 export default function Analytics() {
   const [analyticsData, setAnalyticsData] = useState({
@@ -58,235 +59,224 @@ export default function Analytics() {
   };
 
   return (
-    <div>
+    <div className="admin-page">
       {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-900">Analytics Dashboard</h1>
-        <p className="mt-1 text-sm text-gray-600">
+      <div className="admin-page-header">
+        <h1 className="admin-page-title">Analytics Dashboard</h1>
+        <p className="admin-page-subtitle">
           Website performance and content analytics overview
         </p>
       </div>
 
       {/* Overview Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <div className="bg-white p-6 rounded-lg shadow">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-gray-600">Total Visits</p>
-              <p className="text-2xl font-bold text-gray-900">
-                {analyticsData.overview.totalVisits.toLocaleString()}
-              </p>
-            </div>
-            <div className="p-3 bg-blue-100 rounded-full">
-              <EyeIcon className="h-6 w-6 text-blue-600" />
+      <div className="admin-stats-grid">
+        <div className="admin-stat-card">
+          <div className="admin-stat-header">
+            <h3>Total Visits</h3>
+            <div className="admin-stat-icon blue">
+              <EyeIcon className="h-5 w-5" />
             </div>
           </div>
-          <div className="mt-4 flex items-center">
-            {getTrendIcon(analyticsData.trends.visitsTrend)}
-            <span className={`ml-1 text-sm font-medium ${getTrendColor(analyticsData.trends.visitsTrend)}`}>
-              {Math.abs(analyticsData.trends.visitsTrend)}%
-            </span>
-            <span className="ml-1 text-sm text-gray-600">vs last month</span>
-          </div>
-        </div>
-
-        <div className="bg-white p-6 rounded-lg shadow">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-gray-600">Page Views</p>
-              <p className="text-2xl font-bold text-gray-900">
-                {analyticsData.overview.pageViews.toLocaleString()}
-              </p>
+          <div className="admin-stat-numbers">
+            <div className="admin-stat-main">
+              {analyticsData.overview.totalVisits.toLocaleString()}
             </div>
-            <div className="p-3 bg-green-100 rounded-full">
-              <ChartBarIcon className="h-6 w-6 text-green-600" />
+            <div className="admin-stat-trend">
+              {getTrendIcon(analyticsData.trends.visitsTrend)}
+              <span className={`admin-trend-value ${analyticsData.trends.visitsTrend > 0 ? 'positive' : 'negative'}`}>
+                {Math.abs(analyticsData.trends.visitsTrend)}%
+              </span>
+              <span className="admin-trend-label">vs last month</span>
             </div>
-          </div>
-          <div className="mt-4 flex items-center">
-            {getTrendIcon(analyticsData.trends.pageViewsTrend)}
-            <span className={`ml-1 text-sm font-medium ${getTrendColor(analyticsData.trends.pageViewsTrend)}`}>
-              {Math.abs(analyticsData.trends.pageViewsTrend)}%
-            </span>
-            <span className="ml-1 text-sm text-gray-600">vs last month</span>
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-gray-600">Unique Visitors</p>
-              <p className="text-2xl font-bold text-gray-900">
-                {analyticsData.overview.uniqueVisitors.toLocaleString()}
-              </p>
-            </div>
-            <div className="p-3 bg-purple-100 rounded-full">
-              <UsersIcon className="h-6 w-6 text-purple-600" />
+        <div className="admin-stat-card">
+          <div className="admin-stat-header">
+            <h3>Page Views</h3>
+            <div className="admin-stat-icon green">
+              <ChartBarIcon className="h-5 w-5" />
             </div>
           </div>
-          <div className="mt-4 flex items-center">
-            {getTrendIcon(analyticsData.trends.visitorsTrend)}
-            <span className={`ml-1 text-sm font-medium ${getTrendColor(analyticsData.trends.visitorsTrend)}`}>
-              {Math.abs(analyticsData.trends.visitorsTrend)}%
-            </span>
-            <span className="ml-1 text-sm text-gray-600">vs last month</span>
+          <div className="admin-stat-numbers">
+            <div className="admin-stat-main">
+              {analyticsData.overview.pageViews.toLocaleString()}
+            </div>
+            <div className="admin-stat-trend">
+              {getTrendIcon(analyticsData.trends.pageViewsTrend)}
+              <span className={`admin-trend-value ${analyticsData.trends.pageViewsTrend > 0 ? 'positive' : 'negative'}`}>
+                {Math.abs(analyticsData.trends.pageViewsTrend)}%
+              </span>
+              <span className="admin-trend-label">vs last month</span>
+            </div>
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-gray-600">Bounce Rate</p>
-              <p className="text-2xl font-bold text-gray-900">
-                {analyticsData.overview.bounceRate}%
-              </p>
-            </div>
-            <div className="p-3 bg-yellow-100 rounded-full">
-              <ArrowTrendingDownIcon className="h-6 w-6 text-yellow-600" />
+        <div className="admin-stat-card">
+          <div className="admin-stat-header">
+            <h3>Unique Visitors</h3>
+            <div className="admin-stat-icon purple">
+              <UsersIcon className="h-5 w-5" />
             </div>
           </div>
-          <div className="mt-4 flex items-center">
-            {getTrendIcon(analyticsData.trends.bounceTrend)}
-            <span className={`ml-1 text-sm font-medium ${getTrendColor(analyticsData.trends.bounceTrend)}`}>
-              {Math.abs(analyticsData.trends.bounceTrend)}%
-            </span>
-            <span className="ml-1 text-sm text-gray-600">vs last month</span>
+          <div className="admin-stat-numbers">
+            <div className="admin-stat-main">
+              {analyticsData.overview.uniqueVisitors.toLocaleString()}
+            </div>
+            <div className="admin-stat-trend">
+              {getTrendIcon(analyticsData.trends.visitorsTrend)}
+              <span className={`admin-trend-value ${analyticsData.trends.visitorsTrend > 0 ? 'positive' : 'negative'}`}>
+                {Math.abs(analyticsData.trends.visitorsTrend)}%
+              </span>
+              <span className="admin-trend-label">vs last month</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="admin-stat-card">
+          <div className="admin-stat-header">
+            <h3>Bounce Rate</h3>
+            <div className="admin-stat-icon orange">
+              <ArrowTrendingDownIcon className="h-5 w-5" />
+            </div>
+          </div>
+          <div className="admin-stat-numbers">
+            <div className="admin-stat-main">
+              {analyticsData.overview.bounceRate}%
+            </div>
+            <div className="admin-stat-trend">
+              {getTrendIcon(analyticsData.trends.bounceTrend)}
+              <span className={`admin-trend-value ${analyticsData.trends.bounceTrend > 0 ? 'negative' : 'positive'}`}>
+                {Math.abs(analyticsData.trends.bounceTrend)}%
+              </span>
+              <span className="admin-trend-label">vs last month</span>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+      <div className="admin-analytics-grid">
         {/* Top Pages */}
-        <div className="bg-white shadow rounded-lg">
-          <div className="px-6 py-4 border-b border-gray-200">
-            <h3 className="text-lg font-medium text-gray-900">Top Pages</h3>
+        <div className="admin-top-pages">
+          <div className="admin-top-pages-header">
+            <h3>Top Pages</h3>
           </div>
-          <div className="p-6">
-            <div className="space-y-4">
-              {analyticsData.topPages.map((page, index) => (
-                <div key={page.path} className="flex items-center justify-between">
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center">
-                      <span className="text-sm font-medium text-gray-900 mr-2">
-                        {index + 1}.
-                      </span>
-                      <div>
-                        <p className="text-sm font-medium text-gray-900 truncate">
-                          {page.title}
-                        </p>
-                        <p className="text-sm text-gray-500">{page.path}</p>
-                      </div>
+          <div className="admin-top-pages-content">
+            {analyticsData.topPages.map((page, index) => (
+              <div key={page.path} className="admin-page-item">
+                <div className="admin-page-info">
+                  <span className="admin-page-rank">
+                    {index + 1}.
+                  </span>
+                  <div className="admin-page-details">
+                    <div className="admin-page-title">
+                      {page.title}
                     </div>
-                  </div>
-                  <div className="flex items-center space-x-4">
-                    <div className="text-right">
-                      <p className="text-sm font-medium text-gray-900">
-                        {page.views.toLocaleString()}
-                      </p>
-                      <p className="text-sm text-gray-500">{page.percentage}%</p>
-                    </div>
-                    <div className="w-20 bg-gray-200 rounded-full h-2">
-                      <div
-                        className="bg-primary-600 h-2 rounded-full"
-                        style={{ width: `${page.percentage}%` }}
-                      ></div>
-                    </div>
+                    <div className="admin-page-path">{page.path}</div>
                   </div>
                 </div>
-              ))}
-            </div>
+                <div className="admin-page-stats">
+                  <div className="admin-page-numbers">
+                    <div className="admin-page-views">
+                      {page.views.toLocaleString()}
+                    </div>
+                    <div className="admin-page-percentage">{page.percentage}%</div>
+                  </div>
+                  <div className="admin-page-progress">
+                    <div
+                      className="admin-page-progress-bar"
+                      style={{ width: `${page.percentage}%` }}
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
         {/* Content Statistics */}
-        <div className="bg-white shadow rounded-lg">
-          <div className="px-6 py-4 border-b border-gray-200">
-            <h3 className="text-lg font-medium text-gray-900">Content Overview</h3>
+        <div className="admin-content-overview">
+          <div className="admin-content-overview-header">
+            <h3>Content Overview</h3>
           </div>
-          <div className="p-6">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="text-center p-4 bg-blue-50 rounded-lg">
-                <DocumentTextIcon className="h-8 w-8 text-blue-600 mx-auto mb-2" />
-                <p className="text-2xl font-bold text-blue-600">
-                  {analyticsData.contentStats.blogPosts}
-                </p>
-                <p className="text-sm text-gray-600">Total Blog Posts</p>
+          <div className="admin-content-grid">
+            <div className="admin-content-metric blog">
+              <div className="admin-content-icon">
+                <DocumentTextIcon className="h-8 w-8" />
               </div>
-              <div className="text-center p-4 bg-green-50 rounded-lg">
-                <ChartBarIcon className="h-8 w-8 text-green-600 mx-auto mb-2" />
-                <p className="text-2xl font-bold text-green-600">
-                  {analyticsData.contentStats.services}
-                </p>
-                <p className="text-sm text-gray-600">Active Services</p>
+              <div className="admin-content-number">
+                {analyticsData.contentStats.blogPosts}
               </div>
-              <div className="text-center p-4 bg-purple-50 rounded-lg">
-                <EnvelopeIcon className="h-8 w-8 text-purple-600 mx-auto mb-2" />
-                <p className="text-2xl font-bold text-purple-600">
-                  {analyticsData.contentStats.contactInquiries}
-                </p>
-                <p className="text-sm text-gray-600">Contact Inquiries</p>
+              <div className="admin-content-label">Total Blog Posts</div>
+            </div>
+            <div className="admin-content-metric service">
+              <div className="admin-content-icon">
+                <ChartBarIcon className="h-8 w-8" />
               </div>
-              <div className="text-center p-4 bg-yellow-50 rounded-lg">
-                <EyeIcon className="h-8 w-8 text-yellow-600 mx-auto mb-2" />
-                <p className="text-2xl font-bold text-yellow-600">
-                  {analyticsData.contentStats.publishedPosts}
-                </p>
-                <p className="text-sm text-gray-600">Published Posts</p>
+              <div className="admin-content-number">
+                {analyticsData.contentStats.services}
               </div>
+              <div className="admin-content-label">Active Services</div>
+            </div>
+            <div className="admin-content-metric contact">
+              <div className="admin-content-icon">
+                <EnvelopeIcon className="h-8 w-8" />
+              </div>
+              <div className="admin-content-number">
+                {analyticsData.contentStats.contactInquiries}
+              </div>
+              <div className="admin-content-label">Contact Inquiries</div>
+            </div>
+            <div className="admin-content-metric published">
+              <div className="admin-content-icon">
+                <EyeIcon className="h-8 w-8" />
+              </div>
+              <div className="admin-content-number">
+                {analyticsData.contentStats.publishedPosts}
+              </div>
+              <div className="admin-content-label">Published Posts</div>
             </div>
           </div>
         </div>
       </div>
 
       {/* Recent Activity */}
-      <div className="bg-white shadow rounded-lg">
-        <div className="px-6 py-4 border-b border-gray-200">
-          <h3 className="text-lg font-medium text-gray-900">Recent Activity</h3>
-        </div>
-        <div className="p-6">
-          <div className="space-y-4">
-            {analyticsData.recentActivity.map((activity, index) => (
-              <div key={index} className="flex items-center space-x-3">
-                <div className={`flex-shrink-0 w-2 h-2 rounded-full ${
-                  activity.type === 'blog' ? 'bg-blue-500' :
-                  activity.type === 'contact' ? 'bg-green-500' :
-                  activity.type === 'visitor' ? 'bg-purple-500' :
-                  'bg-yellow-500'
-                }`}></div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-gray-900">{activity.action}</p>
-                  <p className="text-sm text-gray-500">{activity.time}</p>
-                </div>
+      <div className="admin-recent-activity">
+        <h3>Recent Activity</h3>
+        <div>
+          {analyticsData.recentActivity.map((activity, index) => (
+            <div key={index} className="admin-activity-item">
+              <div className={`admin-activity-dot ${activity.type}`}></div>
+              <div className="admin-activity-content">
+                <div className="admin-activity-action">{activity.action}</div>
+                <div className="admin-activity-time">{activity.time}</div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
 
       {/* Performance Insights */}
-      <div className="mt-8 bg-white shadow rounded-lg">
-        <div className="px-6 py-4 border-b border-gray-200">
-          <h3 className="text-lg font-medium text-gray-900">Performance Insights</h3>
-        </div>
-        <div className="p-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-gray-900">
-                {analyticsData.overview.avgSessionDuration}
-              </div>
-              <div className="text-sm text-gray-600">Average Session Duration</div>
+      <div className="admin-performance-insights">
+        <h3>Performance Insights</h3>
+        <div className="admin-performance-grid">
+          <div className="admin-performance-metric">
+            <div className="admin-performance-value">
+              {analyticsData.overview.avgSessionDuration}
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-gray-900">
-                {(analyticsData.overview.pageViews / analyticsData.overview.uniqueVisitors).toFixed(1)}
-              </div>
-              <div className="text-sm text-gray-600">Pages per Session</div>
+            <div className="admin-performance-label">Average Session Duration</div>
+          </div>
+          <div className="admin-performance-metric">
+            <div className="admin-performance-value">
+              {(analyticsData.overview.pageViews / analyticsData.overview.uniqueVisitors).toFixed(1)}
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-gray-900">
-                {((analyticsData.overview.uniqueVisitors / analyticsData.overview.totalVisits) * 100).toFixed(1)}%
-              </div>
-              <div className="text-sm text-gray-600">New Visitor Rate</div>
+            <div className="admin-performance-label">Pages per Session</div>
+          </div>
+          <div className="admin-performance-metric">
+            <div className="admin-performance-value">
+              {((analyticsData.overview.uniqueVisitors / analyticsData.overview.totalVisits) * 100).toFixed(1)}%
             </div>
+            <div className="admin-performance-label">New Visitor Rate</div>
           </div>
         </div>
       </div>
