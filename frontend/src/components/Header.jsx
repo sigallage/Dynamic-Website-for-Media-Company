@@ -32,7 +32,7 @@ export default function Header() {
             <Bars3Icon style={{width: '24px', height: '24px'}} aria-hidden="true" />
           </button>
         </div>
-        <div className="header-nav">
+        <div className="header-nav-main">
           {navigation.map((item) => (
             <Link
               key={item.name}
@@ -45,7 +45,7 @@ export default function Header() {
             </Link>
           ))}
         </div>
-        <div className="header-nav" style={{justifyContent: 'flex-end', gap: '1rem'}}>
+        <div className="header-nav-actions">
           <Link
             to="/admin/login"
             className="header-nav-link"

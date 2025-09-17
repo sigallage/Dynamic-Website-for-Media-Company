@@ -45,52 +45,50 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="flex justify-center">
-          <LockClosedIcon className="h-12 w-12 text-primary-600" />
+    <div className="admin-login-container">
+      <div className="admin-login-header">
+        <div className="admin-login-icon-container">
+          <LockClosedIcon className="admin-login-icon" />
         </div>
-        <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
+        <h2 className="admin-login-title">
           Admin Login
         </h2>
-        <p className="mt-2 text-center text-sm text-gray-600">
+        <p className="admin-login-subtitle">
           Sign in to your admin account to manage the website
         </p>
       </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-          <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+      <div className="admin-login-form-container">
+        <div className="admin-login-form-card">
+          <form className="admin-login-form" onSubmit={handleSubmit(onSubmit)}>
+            <div className="admin-form-group">
+              <label htmlFor="email" className="admin-form-label">
                 Email address
               </label>
-              <div className="mt-1">
-                <input
-                  id="email"
-                  type="email"
-                  autoComplete="email"
-                  {...register('email', {
-                    required: 'Email is required',
-                    pattern: {
-                      value: /^\S+@\S+$/i,
-                      message: 'Please enter a valid email address'
-                    }
-                  })}
-                  className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-primary-500 sm:text-sm"
-                  placeholder="admin@eliteaudit.com"
-                />
-                {errors.email && (
-                  <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
-                )}
-              </div>
+              <input
+                id="email"
+                type="email"
+                autoComplete="email"
+                {...register('email', {
+                  required: 'Email is required',
+                  pattern: {
+                    value: /^\S+@\S+$/i,
+                    message: 'Please enter a valid email address'
+                  }
+                })}
+                className="admin-form-input"
+                placeholder="admin@eliteaudit.com"
+              />
+              {errors.email && (
+                <p className="admin-form-error">{errors.email.message}</p>
+              )}
             </div>
 
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+            <div className="admin-form-group">
+              <label htmlFor="password" className="admin-form-label">
                 Password
               </label>
-              <div className="mt-1 relative">
+              <div className="admin-password-container">
                 <input
                   id="password"
                   type={showPassword ? 'text' : 'password'}
@@ -102,54 +100,67 @@ export default function Login() {
                       message: 'Password must be at least 6 characters'
                     }
                   })}
-                  className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 pr-10 placeholder-gray-400 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-primary-500 sm:text-sm"
+                  className="admin-form-input"
                   placeholder="Enter your password"
                 />
                 <button
                   type="button"
-                  className="absolute inset-y-0 right-0 flex items-center pr-3"
+                  className="admin-password-toggle"
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? (
-                    <EyeSlashIcon className="h-5 w-5 text-gray-400" />
+                    <EyeSlashIcon className="admin-password-icon" />
                   ) : (
-                    <EyeIcon className="h-5 w-5 text-gray-400" />
+                    <EyeIcon className="admin-password-icon" />
                   )}
                 </button>
-                {errors.password && (
-                  <p className="mt-1 text-sm text-red-600">{errors.password.message}</p>
-                )}
+              </div>
+              {errors.password && (
+                <p className="admin-form-error">{errors.password.message}</p>
+              )}
+            </div>
+
+            <div className="admin-form-group">
+              <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+                <div style={{display: 'flex', alignItems: 'center'}}>
+                  <input
+                    id="remember-me"
+                    type="checkbox"
+                    style={{
+                      width: '1rem',
+                      height: '1rem',
+                      borderRadius: '0.25rem',
+                      border: '1px solid var(--gray-300)',
+                      color: 'var(--primary-600)',
+                      marginRight: '0.5rem'
+                    }}
+                  />
+                  <label htmlFor="remember-me" style={{fontSize: '0.875rem', color: 'var(--gray-900)'}}>
+                    Remember me
+                  </label>
+                </div>
+
+                <div style={{fontSize: '0.875rem'}}>
+                  <a href="#" style={{
+                    fontWeight: '500',
+                    color: 'var(--primary-600)',
+                    textDecoration: 'none'
+                  }}>
+                    Forgot your password?
+                  </a>
+                </div>
               </div>
             </div>
 
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <input
-                  id="remember-me"
-                  type="checkbox"
-                  className="h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500"
-                />
-                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-                  Remember me
-                </label>
-              </div>
-
-              <div className="text-sm">
-                <a href="#" className="font-medium text-primary-600 hover:text-primary-500">
-                  Forgot your password?
-                </a>
-              </div>
-            </div>
-
-            <div>
+            <div className="admin-form-group">
               <button
                 type="submit"
                 disabled={isLoading}
-                className="flex w-full justify-center rounded-md border border-transparent bg-primary-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="admin-submit-button"
               >
                 {isLoading ? (
-                  <div className="flex items-center">
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                  <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                    <div className="admin-loading-spinner"></div>
                     Signing in...
                   </div>
                 ) : (
@@ -159,25 +170,68 @@ export default function Login() {
             </div>
           </form>
 
-          <div className="mt-6">
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-300" />
+          <div style={{marginTop: '1.5rem'}}>
+            <div style={{position: 'relative'}}>
+              <div style={{
+                position: 'absolute',
+                inset: '0',
+                display: 'flex',
+                alignItems: 'center'
+              }}>
+                <div style={{
+                  width: '100%',
+                  borderTop: '1px solid var(--gray-300)'
+                }} />
               </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="bg-white px-2 text-gray-500">Demo Credentials</span>
+              <div style={{
+                position: 'relative',
+                display: 'flex',
+                justifyContent: 'center',
+                fontSize: '0.875rem'
+              }}>
+                <span style={{
+                  backgroundColor: 'white',
+                  padding: '0 0.5rem',
+                  color: 'var(--gray-500)'
+                }}>Demo Credentials</span>
               </div>
             </div>
 
-            <div className="mt-4 p-4 bg-gray-50 rounded-md">
-              <p className="text-sm text-gray-600 mb-2">
+            <div style={{
+              marginTop: '1rem',
+              padding: '1rem',
+              backgroundColor: 'var(--gray-50)',
+              borderRadius: '0.375rem'
+            }}>
+              <p style={{
+                fontSize: '0.875rem',
+                color: 'var(--gray-600)',
+                marginBottom: '0.5rem'
+              }}>
                 <strong>For demonstration purposes:</strong>
               </p>
-              <p className="text-sm text-gray-600">
-                Email: <code className="bg-gray-200 px-1 rounded">admin@eliteaudit.com</code>
+              <p style={{
+                fontSize: '0.875rem',
+                color: 'var(--gray-600)',
+                marginBottom: '0.25rem'
+              }}>
+                Email: <code style={{
+                  backgroundColor: 'var(--gray-200)',
+                  padding: '0.125rem 0.25rem',
+                  borderRadius: '0.25rem',
+                  fontFamily: 'monospace'
+                }}>admin@eliteaudit.com</code>
               </p>
-              <p className="text-sm text-gray-600">
-                Password: <code className="bg-gray-200 px-1 rounded">admin123</code>
+              <p style={{
+                fontSize: '0.875rem',
+                color: 'var(--gray-600)'
+              }}>
+                Password: <code style={{
+                  backgroundColor: 'var(--gray-200)',
+                  padding: '0.125rem 0.25rem',
+                  borderRadius: '0.25rem',
+                  fontFamily: 'monospace'
+                }}>admin123</code>
               </p>
             </div>
           </div>

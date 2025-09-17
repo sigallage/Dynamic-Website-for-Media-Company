@@ -25,14 +25,26 @@
   text-decoration: none;
 }
 
-.header-nav {
+.header-nav-main {
   display: none;
 }
 
 @media (min-width: 768px) {
-  .header-nav {
+  .header-nav-main {
     display: flex;
     gap: 2rem;
+  }
+}
+
+.header-nav-actions {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .header-nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
 }
 
