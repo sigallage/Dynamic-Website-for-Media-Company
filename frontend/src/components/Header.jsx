@@ -16,54 +16,45 @@ export default function Header() {
   const location = useLocation();
 
   return (
-    <header className="bg-white shadow-lg">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+    <header className="header">
+      <nav className="header-container" aria-label="Global">
         <div className="flex lg:flex-1">
-          <Link to="/" className="-m-1.5 p-1.5">
-            <span className="sr-only">Elite Audit Solutions</span>
-            <div className="flex items-center">
-              <div className="h-8 w-8 bg-primary-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">E</span>
-              </div>
-              <span className="ml-2 text-xl font-bold text-gray-900">Elite Audit Solutions</span>
-            </div>
+          <Link to="/" className="header-logo">
+            Elite Audit Solutions
           </Link>
         </div>
-        <div className="flex lg:hidden">
+        <div className="mobile-menu-button">
           <button
             type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
             onClick={() => setMobileMenuOpen(true)}
           >
             <span className="sr-only">Open main menu</span>
-            <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+            <Bars3Icon style={{width: '24px', height: '24px'}} aria-hidden="true" />
           </button>
         </div>
-        <div className="hidden lg:flex lg:gap-x-12">
+        <div className="header-nav">
           {navigation.map((item) => (
             <Link
               key={item.name}
               to={item.href}
-              className={`text-sm font-semibold leading-6 hover:text-primary-600 transition-colors ${
-                location.pathname === item.href
-                  ? 'text-primary-600'
-                  : 'text-gray-900'
+              className={`header-nav-link ${
+                location.pathname === item.href ? 'active' : ''
               }`}
             >
               {item.name}
             </Link>
           ))}
         </div>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:space-x-4">
+        <div className="header-nav" style={{justifyContent: 'flex-end', gap: '1rem'}}>
           <Link
             to="/admin/login"
-            className="text-sm font-semibold leading-6 text-gray-900 hover:text-primary-600"
+            className="header-nav-link"
           >
             Admin
           </Link>
           <Link
             to="/contact"
-            className="bg-primary-600 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-primary-700 transition-colors"
+            className="btn btn-primary"
           >
             Get Quote
           </Link>
@@ -71,65 +62,51 @@ export default function Header() {
       </nav>
       
       {/* Mobile menu */}
-      <div className={`lg:hidden ${mobileMenuOpen ? 'fixed inset-0 z-50' : 'hidden'}`}>
-        <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-          <div className="flex items-center justify-between">
-            <Link to="/" className="-m-1.5 p-1.5">
-              <span className="sr-only">Elite Audit Solutions</span>
-              <div className="flex items-center">
-                <div className="h-8 w-8 bg-primary-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">E</span>
-                </div>
-                <span className="ml-2 text-xl font-bold text-gray-900">Elite Audit</span>
-              </div>
-            </Link>
-            <button
-              type="button"
-              className="-m-2.5 rounded-md p-2.5 text-gray-700"
+      {mobileMenuOpen && (
+        <div className="mobile-menu">
+          <div className="mobile-menu-nav">
+            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem'}}>
+              <Link to="/" className="header-logo">
+                Elite Audit
+              </Link>
+              <button
+                type="button"
+                onClick={() => setMobileMenuOpen(false)}
+                style={{background: 'none', border: 'none', cursor: 'pointer'}}
+              >
+                <span className="sr-only">Close menu</span>
+                <XMarkIcon style={{width: '24px', height: '24px'}} aria-hidden="true" />
+              </button>
+            </div>
+            {navigation.map((item) => (
+              <Link
+                key={item.name}
+                to={item.href}
+                className={`mobile-menu-link ${
+                  location.pathname === item.href ? 'active' : ''
+                }`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {item.name}
+              </Link>
+            ))}
+            <Link
+              to="/admin/login"
+              className="mobile-menu-link"
               onClick={() => setMobileMenuOpen(false)}
             >
-              <span className="sr-only">Close menu</span>
-              <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-            </button>
-          </div>
-          <div className="mt-6 flow-root">
-            <div className="-my-6 divide-y divide-gray-500/10">
-              <div className="space-y-2 py-6">
-                {navigation.map((item) => (
-                  <Link
-                    key={item.name}
-                    to={item.href}
-                    className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-gray-50 ${
-                      location.pathname === item.href
-                        ? 'text-primary-600'
-                        : 'text-gray-900'
-                    }`}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-              <div className="py-6 space-y-2">
-                <Link
-                  to="/admin/login"
-                  className="block text-base font-semibold leading-7 text-gray-900 hover:text-primary-600"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Admin Login
-                </Link>
-                <Link
-                  to="/contact"
-                  className="bg-primary-600 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-primary-700 transition-colors block text-center"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Get Quote
-                </Link>
-              </div>
-            </div>
+              Admin Login
+            </Link>
+            <Link
+              to="/contact"
+              className="btn btn-primary"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Get Quote
+            </Link>
           </div>
         </div>
-      </div>
+      )}
     </header>
   );
 }

@@ -1,57 +1,182 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { ChartBarIcon, ShieldCheckIcon, UserGroupIcon, CheckCircleIcon } from '@heroicons/react/24/outline';
+import { Link } from 'react-router-dom';import { Link } from 'react-router-dom';import { Link } from 'react-router-dom';import { useState, useEffect } from 'react';
 
-const features = [
-  {
-    name: 'Financial Audit',
-    description: 'Comprehensive financial statement audits ensuring compliance and accuracy for your business.',
-    icon: ChartBarIcon,
-  },
-  {
-    name: 'Tax Services',
-    description: 'Expert tax planning and preparation services to optimize your tax position.',
-    icon: ShieldCheckIcon,
-  },
-  {
-    name: 'Business Consulting',
-    description: 'Strategic business advisory services to help you make informed decisions.',
-    icon: UserGroupIcon,
-  },
-];
 
-const stats = [
-  { id: 1, name: 'Clients Served', value: '500+' },
-  { id: 2, name: 'Years Experience', value: '15+' },
-  { id: 3, name: 'Successful Audits', value: '1000+' },
-  { id: 4, name: 'Expert Team', value: '25+' },
-];
-
-const testimonials = [
-  {
-    id: 1,
-    name: 'Sarah Johnson',
-    company: 'Tech Innovations LLC',
-    position: 'CEO',
-    content: 'Elite Audit Solutions provided exceptional service during our annual audit. Their attention to detail and professional approach gave us complete confidence.',
-    rating: 5,
-  },
-  {
-    id: 2,
-    name: 'Michael Chen',
-    company: 'Global Manufacturing Corp',
-    position: 'CFO',
-    content: 'Outstanding tax advisory services. They helped us optimize our tax strategy and saved us significant costs while ensuring full compliance.',
-    rating: 5,
-  },
-];
 
 export default function Home() {
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+  return (
+
+    <div className="bg-white">export default function Home() {import { Link } from 'react-router-dom';
+
+      <div className="hero">
+
+        <div className="hero-container">  return (
+
+          <h1 className="hero-title">
+
+            Professional Audit & Consulting Services    <div className="bg-white">export default function Home() {import { ChartBarIcon, ShieldCheckIcon, UserGroupIcon, CheckCircleIcon } from '@heroicons/react/24/outline';
+
+          </h1>
+
+          <p className="hero-subtitle">      <div className="hero">
+
+            Trusted by businesses nationwide for comprehensive audit, tax, and consulting services.
+
+          </p>        <div className="hero-container">  return (
+
+          <div className="hero-buttons">
+
+            <Link to="/contact" className="hero-btn-primary">          <h1 className="hero-title">
+
+              Get Free Consultation
+
+            </Link>            Professional Audit & <span className="text-primary-600">Consulting Services</span>    <div className="bg-white">const features = [
+
+            <Link to="/services" className="hero-btn-secondary">
+
+              Our Services          </h1>
+
+            </Link>
+
+          </div>          <p className="hero-subtitle">      {/* Hero section */}  {
+
+        </div>
+
+      </div>            Trusted by businesses nationwide for comprehensive audit, tax, and consulting services.
+
+    </div>
+
+  );          </p>      <div className="hero">    name: 'Financial Audit',
+
+}
+          <div className="hero-buttons">
+
+            <Link to="/contact" className="hero-btn-primary">        <div className="hero-container">    description: 'Comprehensive financial statement audits ensuring compliance and accuracy for your business.',
+
+              Get Free Consultation
+
+            </Link>          <h1 className="hero-title">    icon: ChartBarIcon,
+
+            <Link to="/services" className="hero-btn-secondary">
+
+              Our Services            Professional Audit & <span className="text-primary-600">Consulting Services</span>  },
+
+            </Link>
+
+          </div>          </h1>  {
+
+        </div>
+
+      </div>          <p className="hero-subtitle">    name: 'Tax Services',
+
+
+
+      <div className="container py-16">            Trusted by businesses nationwide for comprehensive audit, tax, and consulting services.     description: 'Expert tax planning and preparation services to optimize your tax position.',
+
+        <div className="text-center">
+
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">            We help you maintain compliance, optimize operations, and drive sustainable growth.    icon: ShieldCheckIcon,
+
+            Comprehensive Services
+
+          </h2>          </p>  },
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            <div className="bg-gray-50 p-6 rounded-lg">          <div className="hero-buttons">  {
+
+              <h3 className="text-xl font-semibold mb-4">Financial Audit</h3>
+
+              <p className="text-gray-600">Comprehensive audits for compliance.</p>            <Link to="/contact" className="hero-btn-primary">    name: 'Business Consulting',
+
+            </div>
+
+            <div className="bg-gray-50 p-6 rounded-lg">              Get Free Consultation    description: 'Strategic business advisory services to help you make informed decisions.',
+
+              <h3 className="text-xl font-semibold mb-4">Tax Services</h3>
+
+              <p className="text-gray-600">Expert tax planning services.</p>            </Link>    icon: UserGroupIcon,
+
+            </div>
+
+            <div className="bg-gray-50 p-6 rounded-lg">            <Link to="/services" className="hero-btn-secondary">  },
+
+              <h3 className="text-xl font-semibold mb-4">Business Consulting</h3>
+
+              <p className="text-gray-600">Strategic business advisory.</p>              Our Services →];
+
+            </div>
+
+          </div>            </Link>
+
+        </div>
+
+      </div>          </div>const stats = [
+
+    </div>
+
+  );        </div>  { id: 1, name: 'Clients Served', value: '500+' },
+
+}
+      </div>  { id: 2, name: 'Years Experience', value: '15+' },
+
+  { id: 3, name: 'Successful Audits', value: '1000+' },
+
+      {/* Simple content section */}  { id: 4, name: 'Expert Team', value: '25+' },
+
+      <div className="container py-16">];
+
+        <div className="text-center">
+
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">const testimonials = [
+
+            Comprehensive Services  {
+
+          </h2>    id: 1,
+
+          <p className="text-lg text-gray-600 mb-8">    name: 'Sarah Johnson',
+
+            Everything you need for financial compliance and business growth.    company: 'Tech Innovations LLC',
+
+          </p>    position: 'CEO',
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">    content: 'Elite Audit Solutions provided exceptional service during our annual audit. Their attention to detail and professional approach gave us complete confidence.',
+
+            <div className="bg-gray-50 p-6 rounded-lg">    rating: 5,
+
+              <h3 className="text-xl font-semibold mb-4">Financial Audit</h3>  },
+
+              <p className="text-gray-600">Comprehensive financial statement audits ensuring compliance and accuracy.</p>  {
+
+            </div>    id: 2,
+
+            <div className="bg-gray-50 p-6 rounded-lg">    name: 'Michael Chen',
+
+              <h3 className="text-xl font-semibold mb-4">Tax Services</h3>    company: 'Global Manufacturing Corp',
+
+              <p className="text-gray-600">Expert tax planning and preparation services to optimize your position.</p>    position: 'CFO',
+
+            </div>    content: 'Outstanding tax advisory services. They helped us optimize our tax strategy and saved us significant costs while ensuring full compliance.',
+
+            <div className="bg-gray-50 p-6 rounded-lg">    rating: 5,
+
+              <h3 className="text-xl font-semibold mb-4">Business Consulting</h3>  },
+
+              <p className="text-gray-600">Strategic business advisory services for informed decision making.</p>];
+
+            </div>
+
+          </div>export default function Home() {
+
+        </div>  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+
+      </div>
+
+    </div>  useEffect(() => {
+
+  );    const timer = setInterval(() => {
+
+}      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
     }, 5000);
 
     return () => clearInterval(timer);
@@ -60,39 +185,26 @@ export default function Home() {
   return (
     <div className="bg-white">
       {/* Hero section */}
-      <div className="relative isolate px-6 pt-14 lg:px-8">
-        <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
-          <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" />
-        </div>
-        
-        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-              Professional Audit & <span className="text-primary-600">Consulting Services</span>
-            </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
-              Trusted by businesses nationwide for comprehensive audit, tax, and consulting services. 
-              We help you maintain compliance, optimize operations, and drive sustainable growth.
-            </p>
-            <div className="mt-10 flex items-center justify-center gap-x-6">
-              <Link
-                to="/contact"
-                className="rounded-md bg-primary-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
-              >
-                Get Free Consultation
-              </Link>
-              <Link to="/services" className="text-sm font-semibold leading-6 text-gray-900">
-                Our Services <span aria-hidden="true">→</span>
-              </Link>
-            </div>
+      <div className="hero">
+        <div className="hero-container">
+          <h1 className="hero-title">
+            Professional Audit & <span className="text-primary-600">Consulting Services</span>
+          </h1>
+          <p className="hero-subtitle">
+            Trusted by businesses nationwide for comprehensive audit, tax, and consulting services. 
+            We help you maintain compliance, optimize operations, and drive sustainable growth.
+          </p>
+          <div className="hero-buttons">
+            <Link to="/contact" className="hero-btn-primary">
+              Get Free Consultation
+            </Link>
+            <Link to="/services" className="hero-btn-secondary">
+              Our Services →
+            </Link>
           </div>
         </div>
-        
-        <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
-          <div className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" />
-        </div>
       </div>
-
+      
       {/* Feature section */}
       <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24 sm:py-32">
         <div className="mx-auto max-w-2xl lg:text-center">
