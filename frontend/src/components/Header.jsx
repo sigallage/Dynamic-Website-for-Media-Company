@@ -54,7 +54,13 @@ export default function Header() {
             </Link>
           ))}
         </div>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:space-x-4">
+          <Link
+            to="/admin/login"
+            className="text-sm font-semibold leading-6 text-gray-900 hover:text-primary-600"
+          >
+            Admin
+          </Link>
           <Link
             to="/contact"
             className="bg-primary-600 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-primary-700 transition-colors"
@@ -104,7 +110,14 @@ export default function Header() {
                   </Link>
                 ))}
               </div>
-              <div className="py-6">
+              <div className="py-6 space-y-2">
+                <Link
+                  to="/admin/login"
+                  className="block text-base font-semibold leading-7 text-gray-900 hover:text-primary-600"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Admin Login
+                </Link>
                 <Link
                   to="/contact"
                   className="bg-primary-600 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-primary-700 transition-colors block text-center"

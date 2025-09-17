@@ -15,6 +15,10 @@ import AdminLayout from './components/AdminLayout';
 import ProtectedRoute from './components/ProtectedRoute';
 import Login from './pages/admin/Login';
 import Dashboard from './pages/admin/Dashboard';
+import BlogManagement from './pages/admin/BlogManagement';
+import ContactManagement from './pages/admin/ContactManagement';
+import ServiceManagement from './pages/admin/ServiceManagement';
+import Analytics from './pages/admin/Analytics';
 
 function App() {
   return (
@@ -39,6 +43,10 @@ function App() {
               </ProtectedRoute>
             }>
               <Route path="dashboard" element={<Dashboard />} />
+              <Route path="analytics" element={<Analytics />} />
+              <Route path="blogs" element={<BlogManagement />} />
+              <Route path="contacts" element={<ContactManagement />} />
+              <Route path="services" element={<ServiceManagement />} />
             </Route>
           </Routes>
         </main>
