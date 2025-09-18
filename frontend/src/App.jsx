@@ -18,6 +18,7 @@ import Dashboard from './pages/admin/Dashboard';
 import BlogManagement from './pages/admin/BlogManagement';
 import ContactManagement from './pages/admin/ContactManagement';
 import ServiceManagement from './pages/admin/ServiceManagement';
+import UserManagement from './pages/admin/UserManagement';
 import Analytics from './pages/admin/Analytics';
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
               <Route path="blogs" element={<BlogManagement />} />
               <Route path="contacts" element={<ContactManagement />} />
               <Route path="services" element={<ServiceManagement />} />
+              <Route path="users" element={<UserManagement />} />
             </Route>
           </Routes>
         </main>

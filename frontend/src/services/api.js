@@ -73,3 +73,14 @@ export const contactAPI = {
   deleteContact: (id) => api.delete(`/contact/${id}`),
   getContactStats: () => api.get('/contact/admin/stats')
 };
+
+export const userAPI = {
+  getAllUsers: (params) => api.get('/users', { params }),
+  getUserById: (id) => api.get(`/users/${id}`),
+  createUser: (data) => api.post('/users', data),
+  updateUser: (id, data) => api.put(`/users/${id}`, data),
+  updateUserRole: (id, role) => api.put(`/users/${id}/role`, { role }),
+  updateUserStatus: (id, isActive) => api.put(`/users/${id}/status`, { isActive }),
+  deleteUser: (id) => api.delete(`/users/${id}`),
+  getUserStats: () => api.get('/users/admin/stats')
+};
