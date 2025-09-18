@@ -276,57 +276,103 @@ export default function UserManagement() {
         </div>
       </div>
 
-      {/* Filters */}
+      {/* Filters and Search */}
       <div className="admin-content-card" style={{marginBottom: '2rem'}}>
-        <div className="admin-section-header">
-          <div className="admin-section-title">
-            <FunnelIcon style={{width: '1rem', height: '1rem'}} />
-            <span>Search & Filter</span>
+        <div className="admin-content-card-header">
+          <div style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+            <FunnelIcon style={{width: '1.25rem', height: '1.25rem', color: '#6b7280'}} />
+            <h3 style={{margin: 0, fontSize: '1.125rem', fontWeight: '600', color: '#1f2937'}}>
+              Search & Filter
+            </h3>
           </div>
         </div>
-        
-        <div className="admin-form-grid">
-          {/* Search */}
-          <div className="admin-form-group">
-            <label className="admin-form-label">Search Users</label>
-            <div className="admin-search-container">
-              <MagnifyingGlassIcon className="admin-search-icon" />
-              <input
-                type="text"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="admin-search-input"
-                placeholder="Search by name or email..."
-              />
+        <div className="admin-content-card-body">
+          <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem'}}>
+            {/* Search */}
+            <div>
+              <label style={{display: 'block', fontSize: '0.875rem', fontWeight: '500', color: '#374151', marginBottom: '0.5rem'}}>
+                Search Users
+              </label>
+              <div style={{position: 'relative'}}>
+                <div style={{position: 'absolute', top: '50%', left: '12px', transform: 'translateY(-50%)', pointerEvents: 'none'}}>
+                  <MagnifyingGlassIcon style={{width: '1.25rem', height: '1.25rem', color: '#9ca3af'}} />
+                </div>
+                <input
+                  type="text"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  style={{
+                    width: '100%',
+                    paddingLeft: '3rem',
+                    paddingRight: '1rem',
+                    paddingTop: '0.75rem',
+                    paddingBottom: '0.75rem',
+                    border: '1px solid #d1d5db',
+                    borderRadius: '8px',
+                    fontSize: '0.875rem',
+                    background: 'white',
+                    transition: 'all 0.2s ease'
+                  }}
+                  placeholder="Search by name or email..."
+                  onFocus={(e) => e.target.style.borderColor = '#3b82f6'}
+                  onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
+                />
+              </div>
             </div>
-          </div>
 
-          {/* Role Filter */}
-          <div className="admin-form-group">
-            <label className="admin-form-label">Filter by Role</label>
-            <select
-              value={roleFilter}
-              onChange={(e) => setRoleFilter(e.target.value)}
-              className="admin-select"
-            >
-              <option value="all">All Roles</option>
-              <option value="admin">Administrators</option>
-              <option value="user">Users</option>
-            </select>
-          </div>
+            {/* Role Filter */}
+            <div>
+              <label style={{display: 'block', fontSize: '0.875rem', fontWeight: '500', color: '#374151', marginBottom: '0.5rem'}}>
+                Filter by Role
+              </label>
+              <select
+                value={roleFilter}
+                onChange={(e) => setRoleFilter(e.target.value)}
+                style={{
+                  width: '100%',
+                  padding: '0.75rem 1rem',
+                  border: '1px solid #d1d5db',
+                  borderRadius: '8px',
+                  fontSize: '0.875rem',
+                  background: 'white',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease'
+                }}
+                onFocus={(e) => e.target.style.borderColor = '#3b82f6'}
+                onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
+              >
+                <option value="all">All Roles</option>
+                <option value="admin">Administrators</option>
+                <option value="user">Users</option>
+              </select>
+            </div>
 
-          {/* Status Filter */}
-          <div className="admin-form-group">
-            <label className="admin-form-label">Filter by Status</label>
-            <select
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-              className="admin-select"
-            >
-              <option value="all">All Status</option>
-              <option value="active">Active</option>
-              <option value="inactive">Inactive</option>
-            </select>
+            {/* Status Filter */}
+            <div>
+              <label style={{display: 'block', fontSize: '0.875rem', fontWeight: '500', color: '#374151', marginBottom: '0.5rem'}}>
+                Filter by Status
+              </label>
+              <select
+                value={statusFilter}
+                onChange={(e) => setStatusFilter(e.target.value)}
+                style={{
+                  width: '100%',
+                  padding: '0.75rem 1rem',
+                  border: '1px solid #d1d5db',
+                  borderRadius: '8px',
+                  fontSize: '0.875rem',
+                  background: 'white',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease'
+                }}
+                onFocus={(e) => e.target.style.borderColor = '#3b82f6'}
+                onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
+              >
+                <option value="all">All Status</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>

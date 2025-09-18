@@ -46,11 +46,15 @@ export default function Analytics() {
     ]
   });
 
+  const formatNumber = (num) => {
+    return num.toLocaleString();
+  };
+
   const getTrendIcon = (trend) => {
     return trend > 0 ? (
-      <ArrowTrendingUpIcon className="h-4 w-4 text-green-500" />
+      <ArrowTrendingUpIcon className="trend-icon" />
     ) : (
-      <ArrowTrendingDownIcon className="h-4 w-4 text-red-500" />
+      <ArrowTrendingDownIcon className="trend-icon" />
     );
   };
 
@@ -68,93 +72,97 @@ export default function Analytics() {
         </p>
       </div>
 
-      {/* Overview Stats */}
-      <div className="admin-stats-grid">
-        <div className="admin-stat-card">
-          <div className="admin-stat-header">
-            <h3>Total Visits</h3>
-            <div className="admin-stat-icon blue">
-              <EyeIcon className="h-5 w-5" />
-            </div>
-          </div>
-          <div className="admin-stat-numbers">
-            <div className="admin-stat-main">
-              {analyticsData.overview.totalVisits.toLocaleString()}
-            </div>
-            <div className="admin-stat-trend">
-              {getTrendIcon(analyticsData.trends.visitsTrend)}
-              <span className={`admin-trend-value ${analyticsData.trends.visitsTrend > 0 ? 'positive' : 'negative'}`}>
-                {Math.abs(analyticsData.trends.visitsTrend)}%
-              </span>
-              <span className="admin-trend-label">vs last month</span>
-            </div>
-          </div>
+      {/* Enhanced Analytics Cards */}
+      <div className="admin-analytics-section">
+        <div className="admin-section-header">
+          <h2>Website Analytics Overview</h2>
+          <p>Comprehensive insights into your website performance</p>
         </div>
+        
+        <div className="admin-analytics-grid">
+          <div className="admin-analytics-card">
+            <div className="admin-analytics-header">
+              <h3>TOTAL VISITS</h3>
+              <div className={`admin-analytics-trend ${analyticsData.trends.visitsTrend > 0 ? 'up' : 'down'}`}>
+                {getTrendIcon(analyticsData.trends.visitsTrend)}
+              </div>
+            </div>
+            <div className="admin-analytics-number">
+              {formatNumber(analyticsData.overview.totalVisits)}
+            </div>
+            <div className={`admin-analytics-change ${analyticsData.trends.visitsTrend > 0 ? 'positive' : 'negative'}`}>
+              {Math.abs(analyticsData.trends.visitsTrend)}% vs last month
+            </div>
+          </div>
 
-        <div className="admin-stat-card">
-          <div className="admin-stat-header">
-            <h3>Page Views</h3>
-            <div className="admin-stat-icon green">
-              <ChartBarIcon className="h-5 w-5" />
+          <div className="admin-analytics-card">
+            <div className="admin-analytics-header">
+              <h3>PAGE VIEWS</h3>
+              <div className={`admin-analytics-trend ${analyticsData.trends.pageViewsTrend > 0 ? 'up' : 'down'}`}>
+                {getTrendIcon(analyticsData.trends.pageViewsTrend)}
+              </div>
+            </div>
+            <div className="admin-analytics-number">
+              {formatNumber(analyticsData.overview.pageViews)}
+            </div>
+            <div className={`admin-analytics-change ${analyticsData.trends.pageViewsTrend > 0 ? 'positive' : 'negative'}`}>
+              {Math.abs(analyticsData.trends.pageViewsTrend)}% vs last month
             </div>
           </div>
-          <div className="admin-stat-numbers">
-            <div className="admin-stat-main">
-              {analyticsData.overview.pageViews.toLocaleString()}
-            </div>
-            <div className="admin-stat-trend">
-              {getTrendIcon(analyticsData.trends.pageViewsTrend)}
-              <span className={`admin-trend-value ${analyticsData.trends.pageViewsTrend > 0 ? 'positive' : 'negative'}`}>
-                {Math.abs(analyticsData.trends.pageViewsTrend)}%
-              </span>
-              <span className="admin-trend-label">vs last month</span>
-            </div>
-          </div>
-        </div>
 
-        <div className="admin-stat-card">
-          <div className="admin-stat-header">
-            <h3>Unique Visitors</h3>
-            <div className="admin-stat-icon purple">
-              <UsersIcon className="h-5 w-5" />
+          <div className="admin-analytics-card">
+            <div className="admin-analytics-header">
+              <h3>UNIQUE VISITORS</h3>
+              <div className={`admin-analytics-trend ${analyticsData.trends.visitorsTrend > 0 ? 'up' : 'down'}`}>
+                {getTrendIcon(analyticsData.trends.visitorsTrend)}
+              </div>
+            </div>
+            <div className="admin-analytics-number">
+              {formatNumber(analyticsData.overview.uniqueVisitors)}
+            </div>
+            <div className={`admin-analytics-change ${analyticsData.trends.visitorsTrend > 0 ? 'positive' : 'negative'}`}>
+              {Math.abs(analyticsData.trends.visitorsTrend)}% vs last month
             </div>
           </div>
-          <div className="admin-stat-numbers">
-            <div className="admin-stat-main">
-              {analyticsData.overview.uniqueVisitors.toLocaleString()}
-            </div>
-            <div className="admin-stat-trend">
-              {getTrendIcon(analyticsData.trends.visitorsTrend)}
-              <span className={`admin-trend-value ${analyticsData.trends.visitorsTrend > 0 ? 'positive' : 'negative'}`}>
-                {Math.abs(analyticsData.trends.visitorsTrend)}%
-              </span>
-              <span className="admin-trend-label">vs last month</span>
-            </div>
-          </div>
-        </div>
 
-        <div className="admin-stat-card">
-          <div className="admin-stat-header">
-            <h3>Bounce Rate</h3>
-            <div className="admin-stat-icon orange">
-              <ArrowTrendingDownIcon className="h-5 w-5" />
+          <div className="admin-analytics-card">
+            <div className="admin-analytics-header">
+              <h3>BOUNCE RATE</h3>
+              <div className={`admin-analytics-trend ${analyticsData.trends.bounceTrend < 0 ? 'up' : 'down'}`}>
+                {getTrendIcon(-analyticsData.trends.bounceTrend)}
+              </div>
             </div>
-          </div>
-          <div className="admin-stat-numbers">
-            <div className="admin-stat-main">
+            <div className="admin-analytics-number">
               {analyticsData.overview.bounceRate}%
             </div>
-            <div className="admin-stat-trend">
-              {getTrendIcon(analyticsData.trends.bounceTrend)}
-              <span className={`admin-trend-value ${analyticsData.trends.bounceTrend > 0 ? 'negative' : 'positive'}`}>
-                {Math.abs(analyticsData.trends.bounceTrend)}%
-              </span>
-              <span className="admin-trend-label">vs last month</span>
+            <div className={`admin-analytics-change ${analyticsData.trends.bounceTrend < 0 ? 'positive' : 'negative'}`}>
+              {Math.abs(analyticsData.trends.bounceTrend)}% vs last month
             </div>
           </div>
         </div>
       </div>
 
+      {/* Additional Analytics Card for Session Duration */}
+      <div className="admin-analytics-section">
+        <div className="admin-analytics-grid" style={{gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))'}}>
+          <div className="admin-analytics-card">
+            <div className="admin-analytics-header">
+              <h3>AVG SESSION</h3>
+              <div className="admin-analytics-trend up">
+                <ArrowTrendingUpIcon className="trend-icon" />
+              </div>
+            </div>
+            <div className="admin-analytics-number" style={{fontSize: '1.875rem'}}>
+              {analyticsData.overview.avgSessionDuration}
+            </div>
+            <div className="admin-analytics-change positive">
+              +8.2% vs last month
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Content Grid */}
       <div className="admin-analytics-grid">
         {/* Top Pages */}
         <div className="admin-top-pages">

@@ -7,7 +7,10 @@ import {
   EnvelopeIcon,
   UsersIcon,
   ChartBarIcon,
-  PlusIcon
+  PlusIcon,
+  EyeIcon,
+  ArrowTrendingUpIcon,
+  ArrowTrendingDownIcon
 } from '@heroicons/react/24/outline';
 
 const Dashboard = () => {
@@ -17,6 +20,17 @@ const Dashboard = () => {
     contacts: { total: 28, unread: 5 },
     users: { total: 3, active: 2 }
   });
+
+  const [analytics] = useState({
+    totalVisits: { value: 12470, change: 12.5, trending: 'up' },
+    pageViews: { value: 48910, change: 8.3, trending: 'up' },
+    uniqueVisitors: { value: 8340, change: 15.2, trending: 'up' },
+    bounceRate: { value: 32.5, change: -5.8, trending: 'down' }
+  });
+
+  const formatNumber = (num) => {
+    return num.toLocaleString();
+  };
 
   return (
     <div className="admin-dashboard">
@@ -31,6 +45,76 @@ const Dashboard = () => {
             <PlusIcon className="admin-btn-icon" />
             Quick Add
           </button>
+        </div>
+      </div>
+
+      {/* Analytics Cards */}
+      <div className="admin-analytics-section">
+        <div className="admin-section-header">
+          <h2>Website Analytics</h2>
+          <p>Your website performance overview</p>
+        </div>
+        
+        <div className="admin-analytics-grid">
+          <div className="admin-analytics-card">
+            <div className="admin-analytics-header">
+              <h3>TOTAL VISITS</h3>
+              <div className="admin-analytics-trend up">
+                <ArrowTrendingUpIcon className="trend-icon" />
+              </div>
+            </div>
+            <div className="admin-analytics-number">
+              {formatNumber(analytics.totalVisits.value)}
+            </div>
+            <div className="admin-analytics-change positive">
+              {analytics.totalVisits.change}% vs last month
+            </div>
+          </div>
+
+          <div className="admin-analytics-card">
+            <div className="admin-analytics-header">
+              <h3>PAGE VIEWS</h3>
+              <div className="admin-analytics-trend up">
+                <ArrowTrendingUpIcon className="trend-icon" />
+              </div>
+            </div>
+            <div className="admin-analytics-number">
+              {formatNumber(analytics.pageViews.value)}
+            </div>
+            <div className="admin-analytics-change positive">
+              {analytics.pageViews.change}% vs last month
+            </div>
+          </div>
+
+          <div className="admin-analytics-card">
+            <div className="admin-analytics-header">
+              <h3>UNIQUE VISITORS</h3>
+              <div className="admin-analytics-trend up">
+                <ArrowTrendingUpIcon className="trend-icon" />
+              </div>
+            </div>
+            <div className="admin-analytics-number">
+              {formatNumber(analytics.uniqueVisitors.value)}
+            </div>
+            <div className="admin-analytics-change positive">
+              {analytics.uniqueVisitors.change}% vs last month
+            </div>
+          </div>
+
+          <div className="admin-analytics-card">
+            <div className="admin-analytics-header">
+              <h3>BOUNCE RATE</h3>
+              <div className="admin-analytics-trend down">
+                <ArrowTrendingDownIcon className="trend-icon" />
+              </div>
+            </div>
+            <div className="admin-analytics-number">
+              {analytics.bounceRate.value}%
+            </div>
+            <div className="admin-analytics-change negative">
+              {Math.abs(analytics.bounceRate.change)}% vs last month
+            </div>
+          </div>
         </div>
       </div>
 
