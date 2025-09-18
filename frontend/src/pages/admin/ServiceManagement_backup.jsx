@@ -14,7 +14,7 @@ import {
   CheckCircleIcon,
   XCircleIcon
 } from '@heroicons/react/24/outline';
-import '../../styles/adminDashboard.css';
+import '../../../src/styles/adminDashboard.css';
 
 export default function ServiceManagement() {
   const [services, setServices] = useState([]);
@@ -60,7 +60,7 @@ export default function ServiceManagement() {
       try {
         await serviceAPI.deleteService(id);
         toast.success('Service deleted successfully');
-        fetchServices();
+        fetchServices(); // Refresh the list
       } catch (error) {
         console.error('Error deleting service:', error);
         toast.error('Failed to delete service');
@@ -70,10 +70,9 @@ export default function ServiceManagement() {
 
   const toggleServiceStatus = async (id, currentStatus) => {
     try {
-      const newStatus = !currentStatus;
-      await serviceAPI.updateService(id, { isActive: newStatus });
-      toast.success(`Service ${newStatus ? 'activated' : 'deactivated'} successfully`);
-      fetchServices();
+      await serviceAPI.updateService(id, { isActive: !currentStatus });
+      toast.success(`Service ${!currentStatus ? 'activated' : 'deactivated'} successfully`);
+      fetchServices(); // Refresh the list
     } catch (error) {
       console.error('Error updating service status:', error);
       toast.error('Failed to update service status');
@@ -724,9 +723,8 @@ export default function ServiceManagement() {
                     {Math.round(percentage)}% active
                   </div>
                 </div>
-              );
-            })}
-          </div>
+            );
+          })}
         </div>
       </div>
     </div>

@@ -6,12 +6,15 @@ import {
   PhoneIcon,
   BuildingOfficeIcon,
   MagnifyingGlassIcon,
+  FunnelIcon,
   EyeIcon,
   TrashIcon,
   CheckCircleIcon,
   ClockIcon,
-  ExclamationTriangleIcon
+  ExclamationTriangleIcon,
+  XCircleIcon
 } from '@heroicons/react/24/outline';
+import '../../styles/adminDashboard.css';
 
 export default function ContactManagement() {
   const [contacts, setContacts] = useState([]);
@@ -79,28 +82,67 @@ export default function ContactManagement() {
     }
   };
 
-  const filteredContacts = contacts.filter(contact =>
-    `${contact.firstName} ${contact.lastName}`.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    contact.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    contact.subject.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    (contact.company && contact.company.toLowerCase().includes(searchTerm.toLowerCase()))
-  );
+  const filteredContacts = contacts.filter(contact => {
+    const matchesSearch = searchTerm === '' || 
+      contact.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      contact.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      contact.subject.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (contact.company && contact.company.toLowerCase().includes(searchTerm.toLowerCase()));
+    
+    const matchesStatus = statusFilter === 'all' || contact.status === statusFilter;
+    
+    return matchesSearch && matchesStatus;
+  });
 
   const getStatusBadge = (status) => {
     const configs = {
-      new: { color: 'bg-blue-100 text-blue-800', icon: ExclamationTriangleIcon },
-      'in-progress': { color: 'bg-yellow-100 text-yellow-800', icon: ClockIcon },
-      resolved: { color: 'bg-green-100 text-green-800', icon: CheckCircleIcon },
-      closed: { color: 'bg-gray-100 text-gray-800', icon: CheckCircleIcon }
+      new: { 
+        background: 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)',
+        border: '1px solid #93c5fd',
+        color: '#1d4ed8',
+        icon: ExclamationTriangleIcon,
+        label: 'New'
+      },
+      'in-progress': { 
+        background: 'linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)',
+        border: '1px solid #f59e0b',
+        color: '#d97706',
+        icon: ClockIcon,
+        label: 'In Progress'
+      },
+      resolved: { 
+        background: 'linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%)',
+        border: '1px solid #86efac',
+        color: '#047857',
+        icon: CheckCircleIcon,
+        label: 'Resolved'
+      },
+      closed: { 
+        background: 'linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%)',
+        border: '1px solid #9ca3af',
+        color: '#374151',
+        icon: XCircleIcon,
+        label: 'Closed'
+      }
     };
     
     const config = configs[status] || configs.new;
     const IconComponent = config.icon;
     
     return (
-      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${config.color}`}>
-        <IconComponent className="h-3 w-3 mr-1" />
-        {status.replace('-', ' ')}
+      <span style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        padding: '0.25rem 0.75rem',
+        borderRadius: '9999px',
+        fontSize: '0.75rem',
+        fontWeight: '600',
+        background: config.background,
+        border: config.border,
+        color: config.color
+      }}>
+        <IconComponent style={{width: '0.75rem', height: '0.75rem', marginRight: '0.25rem'}} />
+        {config.label}
       </span>
     );
   };
@@ -128,183 +170,215 @@ export default function ContactManagement() {
   const statusCounts = getStatusCounts();
 
   return (
-    <div>
+    <div className="admin-dashboard">
       {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-900">Contact Inquiries</h1>
-        <p className="mt-1 text-sm text-gray-600">
-          Manage and respond to customer inquiries
-        </p>
+      <div className="admin-dashboard-header">
+        <div className="admin-dashboard-title">
+          <h1>Contact Inquiries</h1>
+          <p>Manage and respond to customer inquiries</p>
+        </div>
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
-        <div className="bg-white p-4 rounded-lg shadow">
-          <div className="text-2xl font-bold text-gray-900">{statusCounts.total}</div>
-          <div className="text-sm text-gray-600">Total Inquiries</div>
+      <div className="admin-stats-grid" style={{marginBottom: '2rem'}}>
+        <div className="admin-stat-card">
+          <div className="admin-stat-card-content">
+            <div className="admin-stat-icon-wrapper contacts">
+              <EnvelopeIcon className="admin-stat-icon" />
+            </div>
+            <div className="admin-stat-content">
+              <div className="admin-stat-title">Total Inquiries</div>
+              <div className="admin-stat-value">{statusCounts.total}</div>
+            </div>
+          </div>
         </div>
-        <div className="bg-white p-4 rounded-lg shadow">
-          <div className="text-2xl font-bold text-blue-600">{statusCounts.new}</div>
-          <div className="text-sm text-gray-600">New</div>
+        <div className="admin-stat-card">
+          <div className="admin-stat-card-content">
+            <div className="admin-stat-icon-wrapper blogs">
+              <ClockIcon className="admin-stat-icon" />
+            </div>
+            <div className="admin-stat-content">
+              <div className="admin-stat-title">New</div>
+              <div className="admin-stat-value">{statusCounts.new}</div>
+            </div>
+          </div>
         </div>
-        <div className="bg-white p-4 rounded-lg shadow">
-          <div className="text-2xl font-bold text-yellow-600">{statusCounts.inProgress}</div>
-          <div className="text-sm text-gray-600">In Progress</div>
+        <div className="admin-stat-card">
+          <div className="admin-stat-card-content">
+            <div className="admin-stat-icon-wrapper services">
+              <ExclamationTriangleIcon className="admin-stat-icon" />
+            </div>
+            <div className="admin-stat-content">
+              <div className="admin-stat-title">In Progress</div>
+              <div className="admin-stat-value">{statusCounts.inProgress}</div>
+            </div>
+          </div>
         </div>
-        <div className="bg-white p-4 rounded-lg shadow">
-          <div className="text-2xl font-bold text-green-600">{statusCounts.resolved}</div>
-          <div className="text-sm text-gray-600">Resolved</div>
+        <div className="admin-stat-card">
+          <div className="admin-stat-card-content">
+            <div className="admin-stat-icon-wrapper users">
+              <CheckCircleIcon className="admin-stat-icon" />
+            </div>
+            <div className="admin-stat-content">
+              <div className="admin-stat-title">Resolved</div>
+              <div className="admin-stat-value">{statusCounts.resolved}</div>
+            </div>
+          </div>
         </div>
-        <div className="bg-white p-4 rounded-lg shadow">
-          <div className="text-2xl font-bold text-gray-600">{statusCounts.closed}</div>
-          <div className="text-sm text-gray-600">Closed</div>
+        <div className="admin-stat-card">
+          <div className="admin-stat-card-content">
+            <div className="admin-stat-icon-wrapper contacts">
+              <XCircleIcon className="admin-stat-icon" />
+            </div>
+            <div className="admin-stat-content">
+              <div className="admin-stat-title">Closed</div>
+              <div className="admin-stat-value">{statusCounts.closed}</div>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Filters */}
-      <div className="bg-white shadow rounded-lg mb-6">
-        <div className="p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Search */}
-            <div>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" />
-                </div>
-                <input
-                  type="text"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
-                  placeholder="Search contacts..."
-                />
-              </div>
+      <div className="admin-content-card" style={{marginBottom: '2rem'}}>
+        <div className="admin-section-header">
+          <div className="admin-section-title">
+            <FunnelIcon style={{width: '1rem', height: '1rem'}} />
+            <span>Search & Filter</span>
+          </div>
+        </div>
+        
+        <div className="admin-form-grid">
+          {/* Search */}
+          <div className="admin-form-group">
+            <label className="admin-form-label">Search Contacts</label>
+            <div className="admin-search-container">
+              <MagnifyingGlassIcon className="admin-search-icon" />
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="admin-search-input"
+                placeholder="Search by name, email, or company..."
+              />
             </div>
+          </div>
 
-            {/* Status Filter */}
-            <div>
-              <select
-                value={statusFilter}
-                onChange={(e) => setStatusFilter(e.target.value)}
-                className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-              >
-                <option value="all">All Status</option>
-                <option value="new">New</option>
-                <option value="in-progress">In Progress</option>
-                <option value="resolved">Resolved</option>
-                <option value="closed">Closed</option>
-              </select>
-            </div>
+          {/* Status Filter */}
+          <div className="admin-form-group">
+            <label className="admin-form-label">Filter by Status</label>
+            <select
+              value={statusFilter}
+              onChange={(e) => setStatusFilter(e.target.value)}
+              className="admin-select"
+            >
+              <option value="all">All Status</option>
+              <option value="new">New</option>
+              <option value="in-progress">In Progress</option>
+              <option value="resolved">Resolved</option>
+              <option value="closed">Closed</option>
+            </select>
           </div>
         </div>
       </div>
 
       {/* Contact List */}
-      <div className="bg-white shadow rounded-lg">
+      <div className="admin-content-card">
         {loading ? (
-          <div className="p-6 text-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600 mx-auto"></div>
-            <p className="mt-2 text-sm text-gray-600">Loading contacts...</p>
+          <div className="admin-loading-state">
+            <div className="admin-spinner"></div>
+            <p>Loading contacts...</p>
           </div>
         ) : filteredContacts.length === 0 ? (
-          <div className="p-6 text-center">
-            <EnvelopeIcon className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-            <p className="text-gray-500">No contact inquiries found.</p>
+          <div className="admin-empty-state">
+            <EnvelopeIcon style={{width: '3rem', height: '3rem'}} />
+            <h3>No Contact Inquiries</h3>
+            <p>No contact inquiries found matching your criteria.</p>
           </div>
         ) : (
-          <div className="overflow-hidden">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+          <div className="admin-table-container">
+            <table className="admin-table">
+              <thead>
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Contact
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Subject
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Service Interest
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Status
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Date
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Actions
-                  </th>
+                  <th>Contact</th>
+                  <th>Subject</th>
+                  <th>Service Interest</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody>
                 {filteredContacts.map((contact) => (
-                  <tr key={contact._id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4">
-                      <div className="flex items-center">
-                        <div className="flex-1 min-w-0">
-                          <div className="text-sm font-medium text-gray-900">
-                            {contact.firstName} {contact.lastName}
+                  <tr key={contact._id}>
+                    <td>
+                      <div className="admin-table-user">
+                        <div className="admin-table-avatar">
+                          <EnvelopeIcon style={{width: '1rem', height: '1rem'}} />
+                        </div>
+                        <div className="admin-table-user-info">
+                          <div className="admin-table-user-name">
+                            {contact.name}
                           </div>
-                          <div className="flex items-center text-sm text-gray-500 mt-1">
-                            <EnvelopeIcon className="h-4 w-4 mr-1" />
+                          <div className="admin-table-user-email">
                             {contact.email}
                           </div>
                           {contact.phone && (
-                            <div className="flex items-center text-sm text-gray-500">
-                              <PhoneIcon className="h-4 w-4 mr-1" />
+                            <div className="admin-table-user-meta">
+                              <PhoneIcon style={{width: '0.75rem', height: '0.75rem'}} />
                               {contact.phone}
                             </div>
                           )}
                           {contact.company && (
-                            <div className="flex items-center text-sm text-gray-500">
-                              <BuildingOfficeIcon className="h-4 w-4 mr-1" />
+                            <div className="admin-table-user-meta">
+                              <BuildingOfficeIcon style={{width: '0.75rem', height: '0.75rem'}} />
                               {contact.company}
                             </div>
                           )}
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
-                      <div className="text-sm text-gray-900 max-w-xs truncate">
+                    <td>
+                      <div className="admin-table-content">
                         {contact.subject}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900">
+                    <td>
+                      <div className="admin-table-content">
                         {contact.serviceInterest || 'Not specified'}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td>
                       <select
                         value={contact.status}
                         onChange={(e) => handleStatusUpdate(contact._id, e.target.value)}
-                        className="text-xs border-0 bg-transparent font-medium focus:outline-none focus:ring-0"
+                        className="admin-status-select"
                       >
                         <option value="new">New</option>
                         <option value="in-progress">In Progress</option>
                         <option value="resolved">Resolved</option>
                         <option value="closed">Closed</option>
                       </select>
-                      {getStatusBadge(contact.status)}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {formatDate(contact.submittedAt)}
+                    <td>
+                      <div className="admin-table-date">
+                        {formatDate(contact.submittedAt)}
+                      </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                      <div className="flex items-center space-x-2">
+                    <td>
+                      <div className="admin-table-actions">
                         <button
                           onClick={() => openContactModal(contact)}
-                          className="text-primary-600 hover:text-primary-900"
+                          className="admin-action-btn view"
                           title="View Details"
                         >
-                          <EyeIcon className="h-5 w-5" />
+                          <EyeIcon style={{width: '1rem', height: '1rem'}} />
                         </button>
                         <button
-                          onClick={() => handleDelete(contact._id, `${contact.firstName} ${contact.lastName}`)}
-                          className="text-red-600 hover:text-red-900"
+                          onClick={() => handleDelete(contact._id, contact.name)}
+                          className="admin-action-btn delete"
                           title="Delete"
                         >
-                          <TrashIcon className="h-5 w-5" />
+                          <TrashIcon style={{width: '1rem', height: '1rem'}} />
                         </button>
                       </div>
                     </td>
@@ -318,102 +392,99 @@ export default function ContactManagement() {
 
       {/* Contact Detail Modal */}
       {showModal && selectedContact && (
-        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50">
-          <div className="relative top-20 mx-auto p-5 border w-11/12 md:w-3/4 lg:w-1/2 shadow-lg rounded-md bg-white">
-            <div className="mt-3">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-medium text-gray-900">
-                  Contact Inquiry Details
-                </h3>
-                <button
-                  onClick={() => setShowModal(false)}
-                  className="text-gray-400 hover:text-gray-600"
-                >
-                  <span className="sr-only">Close</span>
-                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
-              
-              <div className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">Name</label>
-                    <p className="mt-1 text-sm text-gray-900">
-                      {selectedContact.firstName} {selectedContact.lastName}
-                    </p>
+        <div className="admin-modal-overlay">
+          <div className="admin-modal">
+            <div className="admin-modal-header">
+              <h3>Contact Inquiry Details</h3>
+              <button
+                onClick={() => setShowModal(false)}
+                className="admin-modal-close"
+              >
+                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            
+            <div className="admin-modal-content">
+              <div className="admin-form-grid">
+                <div className="admin-form-group">
+                  <label className="admin-form-label">Name</label>
+                  <div className="admin-form-value">
+                    {selectedContact.name}
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">Email</label>
-                    <p className="mt-1 text-sm text-gray-900">{selectedContact.email}</p>
-                  </div>
-                  {selectedContact.phone && (
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700">Phone</label>
-                      <p className="mt-1 text-sm text-gray-900">{selectedContact.phone}</p>
-                    </div>
-                  )}
-                  {selectedContact.company && (
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700">Company</label>
-                      <p className="mt-1 text-sm text-gray-900">{selectedContact.company}</p>
-                    </div>
-                  )}
                 </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-700">Subject</label>
-                  <p className="mt-1 text-sm text-gray-900">{selectedContact.subject}</p>
+                <div className="admin-form-group">
+                  <label className="admin-form-label">Email</label>
+                  <div className="admin-form-value">{selectedContact.email}</div>
                 </div>
-                
-                {selectedContact.serviceInterest && (
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">Service Interest</label>
-                    <p className="mt-1 text-sm text-gray-900">{selectedContact.serviceInterest}</p>
+                {selectedContact.phone && (
+                  <div className="admin-form-group">
+                    <label className="admin-form-label">Phone</label>
+                    <div className="admin-form-value">{selectedContact.phone}</div>
                   </div>
                 )}
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-700">Message</label>
-                  <div className="mt-1 p-3 bg-gray-50 rounded-md">
-                    <p className="text-sm text-gray-900 whitespace-pre-wrap">{selectedContact.message}</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-center justify-between">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">Status</label>
-                    <div className="mt-1">{getStatusBadge(selectedContact.status)}</div>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">Submitted</label>
-                    <p className="mt-1 text-sm text-gray-900">{formatDate(selectedContact.submittedAt)}</p>
-                  </div>
-                </div>
-                
-                {selectedContact.newsletter && (
-                  <div className="flex items-center">
-                    <CheckCircleIcon className="h-5 w-5 text-green-500 mr-2" />
-                    <span className="text-sm text-gray-700">Subscribed to newsletter</span>
+                {selectedContact.company && (
+                  <div className="admin-form-group">
+                    <label className="admin-form-label">Company</label>
+                    <div className="admin-form-value">{selectedContact.company}</div>
                   </div>
                 )}
               </div>
               
-              <div className="mt-6 flex justify-end space-x-3">
-                <button
-                  onClick={() => setShowModal(false)}
-                  className="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50"
-                >
-                  Close
-                </button>
-                <a
-                  href={`mailto:${selectedContact.email}?subject=Re: ${selectedContact.subject}`}
-                  className="px-4 py-2 bg-primary-600 text-white rounded-md text-sm font-medium hover:bg-primary-700"
-                >
-                  Reply via Email
-                </a>
+              <div className="admin-form-group">
+                <label className="admin-form-label">Subject</label>
+                <div className="admin-form-value">{selectedContact.subject}</div>
               </div>
+              
+              {selectedContact.serviceInterest && (
+                <div className="admin-form-group">
+                  <label className="admin-form-label">Service Interest</label>
+                  <div className="admin-form-value">{selectedContact.serviceInterest}</div>
+                </div>
+              )}
+              
+              <div className="admin-form-group">
+                <label className="admin-form-label">Message</label>
+                <div className="admin-message-display">
+                  {selectedContact.message}
+                </div>
+              </div>
+              
+              <div className="admin-form-grid">
+                <div className="admin-form-group">
+                  <label className="admin-form-label">Status</label>
+                  <div className="admin-form-value">{getStatusBadge(selectedContact.status)}</div>
+                </div>
+                <div className="admin-form-group">
+                  <label className="admin-form-label">Submitted</label>
+                  <div className="admin-form-value">{formatDate(selectedContact.submittedAt)}</div>
+                </div>
+              </div>
+              
+              {selectedContact.newsletter && (
+                <div className="admin-form-group">
+                  <div className="admin-newsletter-indicator">
+                    <CheckCircleIcon style={{width: '1rem', height: '1rem'}} />
+                    <span>Subscribed to newsletter</span>
+                  </div>
+                </div>
+              )}
+            </div>
+            
+            <div className="admin-modal-footer">
+              <button
+                onClick={() => setShowModal(false)}
+                className="admin-btn secondary"
+              >
+                Close
+              </button>
+              <a
+                href={`mailto:${selectedContact.email}?subject=Re: ${selectedContact.subject}`}
+                className="admin-btn primary"
+              >
+                Reply via Email
+              </a>
             </div>
           </div>
         </div>
