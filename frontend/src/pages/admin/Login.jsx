@@ -121,31 +121,20 @@ export default function Login() {
             </div>
 
             <div className="admin-form-group">
-              <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-                <div style={{display: 'flex', alignItems: 'center'}}>
+              <div className="admin-login-remember-section">
+                <div className="admin-login-remember">
                   <input
                     id="remember-me"
                     type="checkbox"
-                    style={{
-                      width: '1rem',
-                      height: '1rem',
-                      borderRadius: '0.25rem',
-                      border: '1px solid #d1d5db',
-                      color: '#3b82f6',
-                      marginRight: '0.5rem'
-                    }}
+                    className="admin-login-checkbox"
                   />
-                  <label htmlFor="remember-me" style={{fontSize: '0.875rem', color: '#374151'}}>
+                  <label htmlFor="remember-me" className="admin-login-remember-label">
                     Remember me
                   </label>
                 </div>
 
-                <div style={{fontSize: '0.875rem'}}>
-                  <a href="#" style={{
-                    fontWeight: '500',
-                    color: '#3b82f6',
-                    textDecoration: 'none'
-                  }}>
+                <div>
+                  <a href="#" className="admin-login-forgot-link">
                     Forgot your password?
                   </a>
                 </div>
@@ -159,7 +148,7 @@ export default function Login() {
                 className="admin-submit-button"
               >
                 {isLoading ? (
-                  <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                  <div className="admin-login-loading">
                     <div className="admin-loading-spinner"></div>
                     Signing in...
                   </div>
@@ -170,70 +159,25 @@ export default function Login() {
             </div>
           </form>
 
-          <div style={{marginTop: '1.5rem'}}>
-            <div style={{position: 'relative'}}>
-              <div style={{
-                position: 'absolute',
-                inset: '0',
-                display: 'flex',
-                alignItems: 'center'
-              }}>
-                <div style={{
-                  width: '100%',
-                  borderTop: '1px solid #d1d5db'
-                }} />
-              </div>
-              <div style={{
-                position: 'relative',
-                display: 'flex',
-                justifyContent: 'center',
-                fontSize: '0.875rem'
-              }}>
-                <span style={{
-                  backgroundColor: 'white',
-                  padding: '0 0.5rem',
-                  color: '#6b7280'
-                }}>Demo Credentials</span>
-              </div>
+          <div className="admin-login-divider">
+            <div className="admin-login-divider-line">
+              <div className="admin-login-divider-border" />
             </div>
+            <div className="admin-login-divider-text-container">
+              <span className="admin-login-divider-text">Demo Credentials</span>
+            </div>
+          </div>
 
-            <div style={{
-              marginTop: '1rem',
-              padding: '1rem',
-              backgroundColor: '#374151',
-              borderRadius: '0.375rem'
-            }}>
-              <p style={{
-                fontSize: '0.875rem',
-                color: '#9ca3af',
-                marginBottom: '0.5rem'
-              }}>
-                <strong>For demonstration purposes:</strong>
-              </p>
-              <p style={{
-                fontSize: '0.875rem',
-                color: '#9ca3af',
-                marginBottom: '0.25rem'
-              }}>
-                Email: <code style={{
-                  backgroundColor: '#9ca3af',
-                  padding: '0.125rem 0.25rem',
-                  borderRadius: '0.25rem',
-                  fontFamily: 'monospace'
-                }}>admin@eliteaudit.com</code>
-              </p>
-              <p style={{
-                fontSize: '0.875rem',
-                color: '#9ca3af'
-              }}>
-                Password: <code style={{
-                  backgroundColor: '#9ca3af',
-                  padding: '0.125rem 0.25rem',
-                  borderRadius: '0.25rem',
-                  fontFamily: 'monospace'
-                }}>admin123</code>
-              </p>
-            </div>
+          <div className="admin-login-demo-credentials">
+            <p className="admin-login-demo-title">
+              <strong>For demonstration purposes:</strong>
+            </p>
+            <p className="admin-login-demo-item">
+              Email: <code className="admin-login-demo-code">admin@eliteaudit.com</code>
+            </p>
+            <p className="admin-login-demo-item">
+              Password: <code className="admin-login-demo-code">admin123</code>
+            </p>
           </div>
         </div>
       </div>

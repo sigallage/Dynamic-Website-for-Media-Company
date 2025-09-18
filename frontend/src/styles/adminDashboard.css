@@ -634,7 +634,7 @@
   border-radius: 8px;
   border: 1px solid #4b5563;
   transition: all 0.2s ease;
-  background: white;
+  background: #1f2937;
 }
 
 .admin-quick-action:hover {
@@ -829,7 +829,7 @@
   font-weight: 500;
   border-radius: 8px;
   color: #f9fafb;
-  background: white;
+  background: #1f2937;
   text-decoration: none;
   transition: all 0.2s ease;
   margin-top: 1rem;
@@ -927,23 +927,23 @@
 
 /* Top Pages Section */
 .admin-top-pages {
-  background: white;
+  background: #1f2937;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  border: 1px solid #374151;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  border: 1px solid #4b5563;
 }
 
 .admin-top-pages-header {
-  background: linear-gradient(135deg, #374151 0%, #f1f5f9 100%);
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
   padding: 1.5rem 2rem;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid #4b5563;
 }
 
 .admin-top-pages-header h3 {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #1e293b;
+  color: #f9fafb;
   margin: 0;
 }
 
@@ -956,7 +956,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 1rem 0;
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid #374151;
   transition: all 0.3s ease;
 }
 
@@ -982,7 +982,7 @@
 .admin-page-rank {
   font-size: 0.875rem;
   font-weight: 700;
-  color: #475569;
+  color: #d1d5db;
   margin-right: 1rem;
   min-width: 1.5rem;
 }
@@ -995,7 +995,7 @@
 .admin-page-title {
   font-size: 0.875rem;
   font-weight: 600;
-  color: #1e293b;
+  color: #f9fafb;
   margin-bottom: 0.25rem;
   overflow: hidden;
   white-space: nowrap;
@@ -1004,7 +1004,7 @@
 
 .admin-page-path {
   font-size: 0.75rem;
-  color: #64748b;
+  color: #9ca3af;
   font-family: 'Monaco', 'Consolas', monospace;
 }
 
@@ -1021,13 +1021,13 @@
 .admin-page-views {
   font-size: 0.875rem;
   font-weight: 700;
-  color: #1e293b;
+  color: #f9fafb;
   margin-bottom: 0.25rem;
 }
 
 .admin-page-percentage {
   font-size: 0.75rem;
-  color: #64748b;
+  color: #9ca3af;
   font-weight: 500;
 }
 
@@ -1048,7 +1048,7 @@
 
 /* Content Overview Section */
 .admin-content-overview {
-  background: white;
+  background: #1f2937;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -1056,7 +1056,7 @@
 }
 
 .admin-content-overview-header {
-  background: linear-gradient(135deg, #374151 0%, #f1f5f9 100%);
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
   padding: 1.5rem 2rem;
   border-bottom: 1px solid #e2e8f0;
 }
@@ -1064,7 +1064,7 @@
 .admin-content-overview-header h3 {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #1e293b;
+  color: #f9fafb;
   margin: 0;
 }
 
@@ -1192,14 +1192,14 @@
 .admin-content-label {
   font-size: 0.875rem;
   font-weight: 600;
-  color: #475569;
+  color: #d1d5db;
   position: relative;
   z-index: 1;
 }
 
 /* Recent Activity Styling */
 .admin-recent-activity {
-  background: white;
+  background: #1f2937;
   border-radius: 16px;
   padding: 2rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -1284,7 +1284,7 @@
 
 /* Performance Insights */
 .admin-performance-insights {
-  background: white;
+  background: #1f2937;
   border-radius: 16px;
   padding: 2rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -1310,22 +1310,22 @@
 .admin-performance-metric {
   text-align: center;
   padding: 1.5rem;
-  background: linear-gradient(135deg, #374151 0%, #f1f5f9 100%);
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
   border-radius: 12px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #4b5563;
   transition: all 0.3s ease;
 }
 
 .admin-performance-metric:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
 }
 
 .admin-performance-value {
   font-size: 2.5rem;
   font-weight: 800;
-  color: #1e293b;
+  color: #f9fafb;
   margin-bottom: 0.5rem;
   line-height: 1;
 }
@@ -1333,7 +1333,7 @@
 .admin-performance-label {
   font-size: 0.875rem;
   font-weight: 600;
-  color: #64748b;
+  color: #9ca3af;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -1439,7 +1439,7 @@
   border: 2px solid #4b5563;
   border-radius: 12px;
   font-size: 0.875rem;
-  background: white;
+  background: #1f2937;
   transition: all 0.3s ease;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
@@ -1469,7 +1469,7 @@
   border-radius: 12px;
   font-size: 0.875rem;
   font-weight: 500;
-  background: white;
+  background: #1f2937;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
   background-position: right 0.75rem center;
   background-repeat: no-repeat;
@@ -1499,7 +1499,7 @@
   border-radius: 6px;
   font-size: 0.75rem;
   font-weight: 500;
-  background: white;
+  background: #1f2937;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -1548,7 +1548,7 @@
 }
 
 .admin-modal {
-  background: white;
+  background: #1f2937;
   border-radius: 12px;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
   max-width: 600px;
@@ -1605,18 +1605,19 @@
 .admin-table-container {
   overflow: hidden;
   border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border: 1px solid #4b5563;
 }
 
 .admin-table {
   width: 100%;
   border-collapse: collapse;
-  background: white;
+  background: #1f2937;
 }
 
 .admin-table thead {
-  background: linear-gradient(135deg, #374151 0%, #f1f5f9 100%);
-  border-bottom: 2px solid #e2e8f0;
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+  border-bottom: 2px solid #4b5563;
 }
 
 .admin-table thead th {
@@ -1624,10 +1625,10 @@
   text-align: left;
   font-size: 0.875rem;
   font-weight: 700;
-  color: #1e293b;
+  color: #f9fafb;
   text-transform: uppercase;
   letter-spacing: 0.025em;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid #4b5563;
   position: relative;
 }
 
@@ -1638,18 +1639,18 @@
   top: 25%;
   height: 50%;
   width: 1px;
-  background: #e2e8f0;
+  background: #4b5563;
 }
 
 .admin-table tbody tr {
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid #374151;
   transition: all 0.2s ease;
 }
 
 .admin-table tbody tr:hover {
-  background: linear-gradient(135deg, #374151 0%, #f1f5f9 100%);
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
   transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .admin-table tbody tr:last-child {
@@ -1659,7 +1660,8 @@
 .admin-table tbody td {
   padding: 1.25rem;
   vertical-align: top;
-  border-right: 1px solid #f1f5f9;
+  border-right: 1px solid #374151;
+  color: #d1d5db;
 }
 
 .admin-table tbody td:last-child {
@@ -1676,14 +1678,14 @@
 .admin-table-avatar {
   width: 2.5rem;
   height: 2.5rem;
-  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+  background: linear-gradient(135deg, #4b5563 0%, #6b7280 100%);
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #4338ca;
+  color: #f9fafb;
   flex-shrink: 0;
-  border: 1px solid #e0e7ff;
+  border: 1px solid #4b5563;
 }
 
 .admin-table-user-info {
@@ -1694,14 +1696,14 @@
 .admin-table-user-name {
   font-size: 0.875rem;
   font-weight: 600;
-  color: #1e293b;
+  color: #f9fafb;
   margin-bottom: 0.25rem;
   line-height: 1.4;
 }
 
 .admin-table-user-email {
   font-size: 0.8125rem;
-  color: #4b5563;
+  color: #9ca3af;
   margin-bottom: 0.25rem;
   word-break: break-word;
 }
@@ -1711,7 +1713,7 @@
   align-items: center;
   gap: 0.375rem;
   font-size: 0.75rem;
-  color: #64748b;
+  color: #6b7280;
   margin-bottom: 0.125rem;
 }
 
@@ -1871,13 +1873,13 @@
 
 .admin-analytics-card {
   background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
-  border: 1px solid #e2e8f0;
+  border: 1px solid #4b5563;
   border-radius: 16px;
   padding: 1.5rem;
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .admin-analytics-card::before {
@@ -1893,8 +1895,8 @@
 
 .admin-analytics-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  border-color: #cbd5e1;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  border-color: #6b7280;
 }
 
 .admin-analytics-header {
@@ -1907,7 +1909,7 @@
 .admin-analytics-header h3 {
   font-size: 0.75rem;
   font-weight: 600;
-  color: #64748b;
+  color: #d1d5db;
   letter-spacing: 0.05em;
   margin: 0;
 }
@@ -1942,12 +1944,10 @@
 .admin-analytics-number {
   font-size: 2.25rem;
   font-weight: 700;
-  color: #1e293b;
+  color: #f9fafb;
   margin-bottom: 0.5rem;
   line-height: 1;
-  background: linear-gradient(135deg, #1e293b 0%, #475569 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+}
   background-clip: text;
 }
 
@@ -1993,7 +1993,7 @@
 
 .admin-settings-nav {
   background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
-  border: 1px solid #e2e8f0;
+  border: 1px solid #4b5563;
   border-radius: 12px;
   padding: 1rem;
   height: fit-content;
@@ -2011,15 +2011,15 @@
   border-radius: 8px;
   font-size: 0.875rem;
   font-weight: 500;
-  color: #64748b;
+  color: #9ca3af;
   cursor: pointer;
   transition: all 0.2s ease;
   margin-bottom: 0.25rem;
 }
 
 .admin-settings-tab:hover {
-  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-  color: #475569;
+  background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+  color: #d1d5db;
 }
 
 .admin-settings-tab.active {
@@ -2030,7 +2030,7 @@
 
 .admin-settings-content {
   background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
-  border: 1px solid #e2e8f0;
+  border: 1px solid #4b5563;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -2090,8 +2090,8 @@
 }
 
 .admin-notification-group {
-  background: linear-gradient(135deg, #374151 0%, #f1f5f9 100%);
-  border: 1px solid #e2e8f0;
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+  border: 1px solid #4b5563;
   border-radius: 8px;
   padding: 1.5rem;
 }
@@ -2121,8 +2121,8 @@
   align-items: center;
   gap: 1.5rem;
   padding: 1.5rem;
-  background: linear-gradient(135deg, #374151 0%, #f1f5f9 100%);
-  border: 1px solid #e2e8f0;
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+  border: 1px solid #4b5563;
   border-radius: 8px;
 }
 
@@ -2134,7 +2134,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #64748b;
+  color: #9ca3af;
 }
 
 .admin-password-section {

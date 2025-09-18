@@ -2,7 +2,7 @@
 .admin-layout {
   height: 100vh;
   display: flex;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #111827;
 }
 
 /* Mobile Menu Overlay */
@@ -29,18 +29,18 @@
   width: 100%;
   padding-top: 1.25rem;
   padding-bottom: 1rem;
-  background: linear-gradient(180deg, #1f2937 0%, #f9fafb 100%);
+  background: linear-gradient(180deg, #1f2937 0%, #111827 100%);
   box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: 1px solid #374151;
 }
 
 .admin-sidebar-desktop {
   display: none;
   width: 16rem;
   flex-direction: column;
-  background: linear-gradient(180deg, #1f2937 0%, #f9fafb 100%);
+  background: linear-gradient(180deg, #1f2937 0%, #111827 100%);
   box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: 1px solid #374151;
 }
 
 @media (min-width: 768px) {
@@ -59,13 +59,9 @@
 }
 
 .admin-sidebar-title {
-  color: #1f2937;
+  color: #f9fafb;
   font-size: 1.25rem;
   font-weight: 700;
-  background: linear-gradient(45deg, #9ca3af, #a78bfa);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
   letter-spacing: -0.025em;
 }
 
@@ -73,7 +69,7 @@
   width: 1.75rem;
   height: 1.75rem;
   margin-right: 0.75rem;
-  background: linear-gradient(45deg, #9ca3af, #a78bfa);
+  background: linear-gradient(45deg, #4b5563, #6b7280);
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
@@ -133,9 +129,9 @@
 }
 
 .admin-nav-item.active {
-  background: linear-gradient(45deg, #9ca3af, #a78bfa);
+  background: linear-gradient(45deg, #4b5563, #6b7280);
   color: white;
-  box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .admin-nav-item.active::before {
@@ -193,7 +189,7 @@
   width: 0;
   flex: 1;
   overflow: hidden;
-  background: #374151;
+  background: #111827;
 }
 
 /* Top Navigation Bar */
