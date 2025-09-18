@@ -25,10 +25,6 @@
   font-weight: 800;
   color: #f9fafb;
   margin: 0 0 0.5rem 0;
-  background: linear-gradient(135deg, #4b5563 0%, #8b5cf6 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
   letter-spacing: -0.025em;
 }
 
@@ -61,7 +57,7 @@
 }
 
 .admin-btn-primary {
-  background: linear-gradient(135deg, #4b5563 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #4b5563 0%, #6b7280 100%);
   color: white;
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
@@ -149,7 +145,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #4b5563, #8b5cf6);
+  background: linear-gradient(90deg, #4b5563, #6b7280);
 }
 
 .admin-stat-icon-wrapper {
@@ -173,19 +169,19 @@
 }
 
 .admin-stat-icon-wrapper.blogs {
-  background: linear-gradient(135deg, #6b7280 0%, #ede9fe 100%);
+  background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
 }
 
 .admin-stat-icon-wrapper.services {
-  background: linear-gradient(135deg, #dcfce7 0%, #f0fdf4 100%);
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
 }
 
 .admin-stat-icon-wrapper.contacts {
-  background: linear-gradient(135deg, #fef3c7 0%, #fef7cd 100%);
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
 }
 
 .admin-stat-icon-wrapper.users {
-  background: linear-gradient(135deg, #fce7f3 0%, #fdf2f8 100%);
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
 }
 
 .admin-stat-icon {
@@ -291,10 +287,12 @@
   border: 2px solid transparent;
   position: relative;
   overflow: hidden;
+  color: #f9fafb !important;
 }
 
 .admin-quick-action * {
   transition: color 0.3s ease;
+  color: #f9fafb !important;
 }
 
 .admin-quick-action::before {
@@ -315,29 +313,29 @@
   opacity: 1;
 }
 
-/* Prevent any white text on hover */
+/* Ensure white text on hover */
 .admin-quick-action:hover,
 .admin-quick-action:hover *,
 .admin-quick-action:hover h4,
 .admin-quick-action:hover p {
-  color: inherit !important;
+  color: #f9fafb !important;
 }
 
 /* Quick Action Color Themes */
 .admin-quick-action.blue {
-  background: linear-gradient(135deg, #6b7280 0%, #eff6ff 100%);
+  background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
   border-color: #d1d5db;
-  color: #1e40af;
+  color: #f9fafb;
 }
 
 .admin-quick-action.blue:hover {
-  color: #1e3a8a !important;
+  color: #f9fafb !important;
 }
 
 .admin-quick-action.blue:hover *,
 .admin-quick-action.blue:hover h4,
 .admin-quick-action.blue:hover p {
-  color: #1e3a8a !important;
+  color: #f9fafb !important;
 }
 
 .admin-quick-action.blue:hover::before {
@@ -345,59 +343,59 @@
 }
 
 .admin-quick-action.green {
-  background: linear-gradient(135deg, #dcfce7 0%, #f0fdf4 100%);
-  border-color: #86efac;
-  color: #166534;
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+  border-color: #6b7280;
+  color: #f9fafb;
 }
 
 .admin-quick-action.green:hover {
-  color: #14532d !important;
+  color: #f9fafb !important;
 }
 
 .admin-quick-action.green:hover *,
 .admin-quick-action.green:hover h4,
 .admin-quick-action.green:hover p {
-  color: #14532d !important;
+  color: #f9fafb !important;
 }
 
 .admin-quick-action.green:hover::before {
-  background: linear-gradient(135deg, #bbf7d0 0%, #dcfce7 100%);
+  background: linear-gradient(135deg, #6b7280 0%, #374151 100%);
 }
 
 .admin-quick-action.purple {
-  background: linear-gradient(135deg, #ede9fe 0%, #f5f3ff 100%);
-  border-color: #c4b5fd;
-  color: #6b21a8;
+  background: linear-gradient(135deg, #4b5563 0%, #1f2937 100%);
+  border-color: #6b7280;
+  color: #f9fafb;
 }
 
 .admin-quick-action.purple:hover {
-  color: #581c87 !important;
+  color: #f9fafb !important;
 }
 
 .admin-quick-action.purple:hover *,
 .admin-quick-action.purple:hover h4,
 .admin-quick-action.purple:hover p {
-  color: #581c87 !important;
+  color: #f9fafb !important;
 }
 
 .admin-quick-action.purple:hover::before {
-  background: linear-gradient(135deg, #ddd6fe 0%, #ede9fe 100%);
+  background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
 }
 
 .admin-quick-action.orange {
-  background: linear-gradient(135deg, #fed7aa 0%, #ffedd5 100%);
-  border-color: #fdba74;
-  color: #c2410c;
+  background: linear-gradient(135deg, #6b7280 0%, #1f2937 100%);
+  border-color: #6b7280;
+  color: #f9fafb;
 }
 
 .admin-quick-action.orange:hover {
-  color: #9a3412 !important;
+  color: #f9fafb !important;
 }
 
 .admin-quick-action.orange:hover *,
 .admin-quick-action.orange:hover h4,
 .admin-quick-action.orange:hover p {
-  color: #9a3412 !important;
+  color: #f9fafb !important;
 }
 
 .admin-quick-action.orange:hover::before {
@@ -412,8 +410,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(75, 85, 99, 0.8);
   backdrop-filter: blur(10px);
+  color: #f9fafb;
 }
 
 .admin-quick-action-content h4 {
@@ -421,27 +420,40 @@
   font-weight: 600;
   margin: 0 0 0.5rem 0;
   transition: color 0.3s ease;
+  color: #f9fafb !important;
 }
 
 .admin-quick-action-content p {
   font-size: 0.875rem;
   margin: 0;
-  opacity: 0.8;
+  opacity: 1;
   transition: opacity 0.3s ease;
+  color: #f9fafb !important;
+}
+
+/* Force white text for all elements inside quick actions */
+.admin-quick-action h4,
+.admin-quick-action p,
+.admin-quick-action span,
+.admin-quick-action div {
+  color: #f9fafb !important;
 }
 
 /* Ensure text visibility on hover */
 .admin-quick-action:hover .admin-quick-action-content h4 {
   opacity: 1;
+  color: #f9fafb !important;
 }
 
 .admin-quick-action:hover .admin-quick-action-content p {
   opacity: 0.9;
+  color: #f9fafb !important;
 }
 
 .admin-icon {
   width: 1.5rem;
   height: 1.5rem;
+  color: #f9fafb;
 }
 
 /* Responsive Design */
@@ -479,7 +491,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #9ca3af, #a78bfa);
+  background: linear-gradient(90deg, #9ca3af, #6b7280);
 }
 
 .admin-stat-card:hover {
@@ -513,7 +525,7 @@
 }
 
 .admin-stat-icon.services {
-  background: linear-gradient(135deg, #10b981, #047857);
+  background: linear-gradient(135deg, #4b5563, #374151);
 }
 
 .admin-stat-icon.contacts {
@@ -521,7 +533,7 @@
 }
 
 .admin-stat-icon.users {
-  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  background: linear-gradient(135deg, #6b7280, #7c3aed);
 }
 
 .admin-stat-icon svg {
@@ -655,7 +667,7 @@
 }
 
 .admin-quick-action-icon.green {
-  background: #10b981;
+  background: #4b5563;
 }
 
 .admin-quick-action-icon.yellow {
@@ -663,7 +675,7 @@
 }
 
 .admin-quick-action-icon.purple {
-  background: #8b5cf6;
+  background: #6b7280;
 }
 
 .admin-quick-action-icon svg {
@@ -736,11 +748,11 @@
 
 .admin-activity-icon.published {
   background: #d1fae5;
-  color: #047857;
+  color: #374151;
 }
 
 .admin-activity-icon.updated {
-  background: #fef3c7;
+  background: #374151;
   color: #d97706;
 }
 
@@ -809,11 +821,11 @@
 }
 
 .admin-overview-change.positive {
-  color: #059669;
+  color: #9ca3af;
 }
 
 .admin-overview-change.negative {
-  color: #dc2626;
+  color: #6b7280;
 }
 
 /* Action Buttons */
@@ -904,11 +916,11 @@
 }
 
 .admin-trend-value.positive {
-  color: #059669;
+  color: #9ca3af;
 }
 
 .admin-trend-value.negative {
-  color: #dc2626;
+  color: #6b7280;
 }
 
 .admin-trend-label {
@@ -1112,21 +1124,21 @@
 }
 
 .admin-content-metric.service {
-  background: linear-gradient(135deg, #dcfce7 0%, #f0fdf4 100%);
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
   border: 1px solid #86efac;
 }
 
 .admin-content-metric.service::before {
-  background: linear-gradient(135deg, #10b981, #059669);
+  background: linear-gradient(135deg, #4b5563, #9ca3af);
 }
 
 .admin-content-metric.contact {
-  background: linear-gradient(135deg, #ede9fe 0%, #f5f3ff 100%);
+  background: linear-gradient(135deg, #4b5563 0%, #f5f3ff 100%);
   border: 1px solid #c4b5fd;
 }
 
 .admin-content-metric.contact::before {
-  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  background: linear-gradient(135deg, #6b7280, #7c3aed);
 }
 
 .admin-content-metric.published {
@@ -1154,7 +1166,7 @@
 }
 
 .admin-content-metric.service .admin-content-icon {
-  color: #059669;
+  color: #9ca3af;
 }
 
 .admin-content-metric.contact .admin-content-icon {
@@ -1178,7 +1190,7 @@
 }
 
 .admin-content-metric.service .admin-content-number {
-  color: #059669;
+  color: #9ca3af;
 }
 
 .admin-content-metric.contact .admin-content-number {
@@ -1251,12 +1263,12 @@
 }
 
 .admin-activity-dot.contact {
-  background: linear-gradient(135deg, #10b981, #059669);
+  background: linear-gradient(135deg, #4b5563, #9ca3af);
   box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
 }
 
 .admin-activity-dot.visitor {
-  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  background: linear-gradient(135deg, #6b7280, #7c3aed);
   box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1);
 }
 
@@ -1341,21 +1353,21 @@
 /* Error States */
 .admin-error {
   background: #fef2f2;
-  border: 1px solid #fecaca;
+  border: 1px solid #4b5563;
   border-radius: 8px;
   padding: 1rem;
-  color: #dc2626;
+  color: #6b7280;
   font-size: 0.875rem;
   margin-bottom: 1rem;
 }
 
 /* Success States */
 .admin-success {
-  background: #f0fdf4;
-  border: 1px solid #bbf7d0;
+  background: #1f2937;
+  border: 1px solid #6b7280;
   border-radius: 8px;
   padding: 1rem;
-  color: #047857;
+  color: #374151;
   font-size: 0.875rem;
   margin-bottom: 1rem;
 }
@@ -1410,7 +1422,7 @@
 }
 
 .admin-section-title span {
-  background: linear-gradient(135deg, #4b5563 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #4b5563 0%, #6b7280 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -1527,7 +1539,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: #059669;
+  color: #9ca3af;
   font-size: 0.875rem;
   font-weight: 500;
 }
@@ -1769,13 +1781,13 @@
 }
 
 .admin-action-btn.delete {
-  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
-  color: #dc2626;
-  border: 1px solid #fecaca;
+  background: linear-gradient(135deg, #374151 0%, #4b5563 100%);
+  color: #6b7280;
+  border: 1px solid #4b5563;
 }
 
 .admin-action-btn.delete:hover {
-  background: linear-gradient(135deg, #fecaca 0%, #fca5a5 100%);
+  background: linear-gradient(135deg, #4b5563 0%, #6b7280 100%);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(220, 38, 38, 0.2);
 }
@@ -1855,7 +1867,7 @@
 }
 
 .required {
-  color: #dc2626;
+  color: #6b7280;
   font-weight: 500;
 }
 
@@ -1889,7 +1901,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #4b5563 0%, #8b5cf6 50%, #06d6a0 100%);
+  background: linear-gradient(90deg, #4b5563 0%, #6b7280 50%, #6b7280 100%);
   border-radius: 16px 16px 0 0;
 }
 
@@ -1925,13 +1937,13 @@
 }
 
 .admin-analytics-trend.up {
-  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
-  color: #16a34a;
+  background: linear-gradient(135deg, #4b5563 0%, #6b7280 100%);
+  color: #d1d5db;
 }
 
 .admin-analytics-trend.down {
-  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
-  color: #dc2626;
+  background: linear-gradient(135deg, #374151 0%, #4b5563 100%);
+  color: #9ca3af;
 }
 
 .trend-icon {
@@ -1958,11 +1970,11 @@
 }
 
 .admin-analytics-change.positive {
-  color: #16a34a;
+  color: #9ca3af;
 }
 
 .admin-analytics-change.negative {
-  color: #dc2626;
+  color: #6b7280;
 }
 
 /* Responsive adjustments */
