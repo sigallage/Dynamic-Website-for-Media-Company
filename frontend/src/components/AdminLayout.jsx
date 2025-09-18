@@ -66,13 +66,6 @@ export default function AdminLayout() {
             </button>
           </div>
           
-          <div className="admin-sidebar-header">
-            <div className="admin-sidebar-logo">
-              <BuildingOfficeIcon className="h-4 w-4" />
-            </div>
-            <h1 className="admin-sidebar-title">Elite Audit</h1>
-          </div>
-          
           <nav className="admin-nav">
             <div className="admin-nav-list">
               {navigation.map((item) => (
@@ -100,13 +93,6 @@ export default function AdminLayout() {
       {/* Static sidebar for desktop */}
       <div className="admin-sidebar-desktop">
         <div className="flex flex-col flex-grow pt-5 overflow-y-auto">
-          <div className="admin-sidebar-header">
-            <div className="admin-sidebar-logo">
-              <BuildingOfficeIcon className="h-4 w-4" />
-            </div>
-            <h1 className="admin-sidebar-title">Elite Audit</h1>
-          </div>
-          
           <nav className="admin-nav">
             <div className="admin-nav-list">
               {navigation.map((item) => (
