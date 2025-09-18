@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export default function Home() {
   return (
-    <div className="bg-white">
+    <div className="bg-gray-900">
       <div className="hero">
         <div className="hero-container">
           <h1 className="hero-title">

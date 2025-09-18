@@ -724,14 +724,13 @@ Example:
                 {/* Enhanced Featured Image */}
                 <div>
                   <label style={{
-                    display: 'block',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
                     fontSize: '0.875rem',
                     fontWeight: '600',
                     color: '#1e293b',
-                    marginBottom: '0.75rem',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.5rem'
+                    marginBottom: '0.75rem'
                   }}>
                     <PhotoIcon style={{ width: '1rem', height: '1rem', color: '#f59e0b' }} />
                     Featured Image URL

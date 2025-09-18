@@ -130,12 +130,12 @@ export default function Login() {
                       width: '1rem',
                       height: '1rem',
                       borderRadius: '0.25rem',
-                      border: '1px solid var(--gray-300)',
-                      color: 'var(--primary-600)',
+                      border: '1px solid #d1d5db',
+                      color: '#3b82f6',
                       marginRight: '0.5rem'
                     }}
                   />
-                  <label htmlFor="remember-me" style={{fontSize: '0.875rem', color: 'var(--gray-900)'}}>
+                  <label htmlFor="remember-me" style={{fontSize: '0.875rem', color: '#374151'}}>
                     Remember me
                   </label>
                 </div>
@@ -143,7 +143,7 @@ export default function Login() {
                 <div style={{fontSize: '0.875rem'}}>
                   <a href="#" style={{
                     fontWeight: '500',
-                    color: 'var(--primary-600)',
+                    color: '#3b82f6',
                     textDecoration: 'none'
                   }}>
                     Forgot your password?
@@ -180,7 +180,7 @@ export default function Login() {
               }}>
                 <div style={{
                   width: '100%',
-                  borderTop: '1px solid var(--gray-300)'
+                  borderTop: '1px solid #d1d5db'
                 }} />
               </div>
               <div style={{
@@ -192,7 +192,7 @@ export default function Login() {
                 <span style={{
                   backgroundColor: 'white',
                   padding: '0 0.5rem',
-                  color: 'var(--gray-500)'
+                  color: '#6b7280'
                 }}>Demo Credentials</span>
               </div>
             </div>
@@ -200,23 +200,23 @@ export default function Login() {
             <div style={{
               marginTop: '1rem',
               padding: '1rem',
-              backgroundColor: 'var(--gray-50)',
+              backgroundColor: '#374151',
               borderRadius: '0.375rem'
             }}>
               <p style={{
                 fontSize: '0.875rem',
-                color: 'var(--gray-600)',
+                color: '#9ca3af',
                 marginBottom: '0.5rem'
               }}>
                 <strong>For demonstration purposes:</strong>
               </p>
               <p style={{
                 fontSize: '0.875rem',
-                color: 'var(--gray-600)',
+                color: '#9ca3af',
                 marginBottom: '0.25rem'
               }}>
                 Email: <code style={{
-                  backgroundColor: 'var(--gray-200)',
+                  backgroundColor: '#9ca3af',
                   padding: '0.125rem 0.25rem',
                   borderRadius: '0.25rem',
                   fontFamily: 'monospace'
@@ -224,10 +224,10 @@ export default function Login() {
               </p>
               <p style={{
                 fontSize: '0.875rem',
-                color: 'var(--gray-600)'
+                color: '#9ca3af'
               }}>
                 Password: <code style={{
-                  backgroundColor: 'var(--gray-200)',
+                  backgroundColor: '#9ca3af',
                   padding: '0.125rem 0.25rem',
                   borderRadius: '0.25rem',
                   fontFamily: 'monospace'
