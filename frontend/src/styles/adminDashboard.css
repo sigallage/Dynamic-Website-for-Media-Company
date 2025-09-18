@@ -1982,3 +1982,211 @@
     font-size: 1.875rem;
   }
 }
+
+/* Settings Page Styles */
+.admin-settings-container {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.admin-settings-nav {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1rem;
+  height: fit-content;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.admin-settings-tab {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 0.25rem;
+}
+
+.admin-settings-tab:hover {
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  color: #475569;
+}
+
+.admin-settings-tab.active {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+}
+
+.admin-settings-content {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.admin-settings-section {
+  padding: 2rem;
+}
+
+.admin-settings-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.admin-settings-header h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.admin-settings-header p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.admin-settings-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.admin-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.admin-form-grid .span-2 {
+  grid-column: span 2;
+}
+
+.admin-settings-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* Notification Settings */
+.admin-notification-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.admin-notification-group {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.admin-notification-group h4 {
+  margin: 0 0 1rem 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.admin-notification-options {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Profile Settings */
+.admin-profile-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.admin-profile-avatar {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.admin-avatar-placeholder {
+  width: 5rem;
+  height: 5rem;
+  background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+}
+
+.admin-password-section {
+  padding-top: 2rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.admin-password-section h4 {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* Responsive Settings */
+@media (max-width: 1024px) {
+  .admin-settings-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .admin-settings-nav {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.5rem;
+  }
+  
+  .admin-settings-tab {
+    justify-content: center;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-form-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .admin-form-grid .span-2 {
+    grid-column: span 1;
+  }
+  
+  .admin-settings-section {
+    padding: 1.5rem;
+  }
+  
+  .admin-notification-groups {
+    grid-template-columns: 1fr;
+  }
+  
+  .admin-profile-avatar {
+    flex-direction: column;
+    text-align: center;
+  }
+}

@@ -20,6 +20,7 @@ import ContactManagement from './pages/admin/ContactManagement';
 import ServiceManagement from './pages/admin/ServiceManagement';
 import UserManagement from './pages/admin/UserManagement';
 import Analytics from './pages/admin/Analytics';
+import Settings from './pages/admin/Settings';
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
               <Route path="contacts" element={<ContactManagement />} />
               <Route path="services" element={<ServiceManagement />} />
               <Route path="users" element={<UserManagement />} />
+              <Route path="settings" element={<Settings />} />
             </Route>
           </Routes>
         </main>

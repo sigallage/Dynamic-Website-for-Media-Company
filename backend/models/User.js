@@ -24,6 +24,16 @@ const userSchema = new mongoose.Schema({
     enum: ['admin', 'user'],
     default: 'user'
   },
+  phone: {
+    type: String,
+    trim: true,
+    default: ''
+  },
+  jobTitle: {
+    type: String,
+    trim: true,
+    default: ''
+  },
   isActive: {
     type: Boolean,
     default: true

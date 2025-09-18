@@ -109,6 +109,86 @@ router.get('/me', auth, async (req, res) => {
   }
 });
 
+// @route   GET /api/auth/profile
+// @desc    Get current user profile
+// @access  Private
+router.get('/profile', auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id).select('-password');
+    res.json({
+      success: true,
+      data: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        phone: user.phone || '',
+        jobTitle: user.jobTitle || '',
+        isActive: user.isActive,
+        createdAt: user.createdAt
+      }
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ 
+      success: false,
+      message: 'Server error' 
+    });
+  }
+});
+
+// @route   PUT /api/auth/profile
+// @desc    Update user profile
+// @access  Private
+router.put('/profile', auth, async (req, res) => {
+  try {
+    const { fullName, email, phone, jobTitle } = req.body;
+
+    // Check if email is already taken by another user
+    if (email && email !== req.user.email) {
+      const existingUser = await User.findOne({ email });
+      if (existingUser) {
+        return res.status(400).json({ 
+          success: false,
+          message: 'Email is already in use by another account' 
+        });
+      }
+    }
+
+    // Update user profile
+    const updatedUser = await User.findByIdAndUpdate(
+      req.user._id,
+      {
+        name: fullName || req.user.name,
+        email: email || req.user.email,
+        phone: phone || req.user.phone,
+        jobTitle: jobTitle || req.user.jobTitle
+      },
+      { new: true, runValidators: true }
+    ).select('-password');
+
+    res.json({
+      success: true,
+      message: 'Profile updated successfully',
+      data: {
+        id: updatedUser._id,
+        name: updatedUser.name,
+        email: updatedUser.email,
+        role: updatedUser.role,
+        phone: updatedUser.phone || '',
+        jobTitle: updatedUser.jobTitle || '',
+        isActive: updatedUser.isActive
+      }
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ 
+      success: false,
+      message: 'Server error' 
+    });
+  }
+});
+
 // @route   PUT /api/auth/change-password
 // @desc    Change user password
 // @access  Private
