@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { CalendarIcon, ClockIcon, EyeIcon, TagIcon } from '@heroicons/react/24/outline';
 import { blogAPI } from '../services/api';
+import { mockBlogPosts } from '../data/blogData';
 import '../styles/blog.css';
 
 const categories = [
@@ -13,93 +14,7 @@ const categories = [
   { id: 'business-tips', name: 'Business Tips' }
 ];
 
-// Fallback mock data for better UX when API is unavailable
-const mockBlogs = [
-  {
-    id: 1,
-    title: 'New SOX Compliance Requirements for 2024',
-    slug: 'new-sox-compliance-requirements-2024',
-    excerpt: 'Understanding the latest Sarbanes-Oxley compliance requirements and how they impact your business operations and financial reporting.',
-    content: 'Full content would be here...',
-    category: 'compliance',
-    tags: ['SOX', 'Compliance', 'Financial Reporting'],
-    author: { name: 'Sarah Johnson' },
-    publishedDate: '2024-03-15',
-    views: 1245,
-    featuredImage: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=400&fit=crop',
-    status: 'published'
-  },
-  {
-    id: 2,
-    title: 'Tax Planning Strategies for Small Businesses',
-    slug: 'tax-planning-strategies-small-businesses',
-    excerpt: 'Discover effective tax planning strategies that can help small businesses reduce their tax burden while maintaining compliance.',
-    content: 'Full content would be here...',
-    category: 'tax-updates',
-    tags: ['Tax Planning', 'Small Business', 'Strategy'],
-    author: { name: 'Michael Chen' },
-    publishedDate: '2024-03-10',
-    views: 892,
-    featuredImage: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=400&fit=crop',
-    status: 'published'
-  },
-  {
-    id: 3,
-    title: 'The Future of Financial Auditing: Technology Trends',
-    slug: 'future-financial-auditing-technology-trends',
-    excerpt: 'Exploring how artificial intelligence, automation, and data analytics are transforming the audit industry.',
-    content: 'Full content would be here...',
-    category: 'audit-insights',
-    tags: ['Technology', 'AI', 'Audit Innovation'],
-    author: { name: 'Emily Rodriguez' },
-    publishedDate: '2024-03-08',
-    views: 1567,
-    featuredImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop',
-    status: 'published'
-  },
-  {
-    id: 4,
-    title: 'Understanding Internal Controls: A Complete Guide',
-    slug: 'understanding-internal-controls-complete-guide',
-    excerpt: 'A comprehensive guide to implementing and maintaining effective internal controls in your organization.',
-    content: 'Full content would be here...',
-    category: 'business-tips',
-    tags: ['Internal Controls', 'Risk Management', 'Best Practices'],
-    author: { name: 'David Thompson' },
-    publishedDate: '2024-03-05',
-    views: 734,
-    featuredImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=400&fit=crop',
-    status: 'published'
-  },
-  {
-    id: 5,
-    title: 'Industry Update: New Accounting Standards',
-    slug: 'industry-update-new-accounting-standards',
-    excerpt: 'Latest updates on new accounting standards and their implications for businesses across different industries.',
-    content: 'Full content would be here...',
-    category: 'industry-news',
-    tags: ['GAAP', 'Standards', 'Industry Update'],
-    author: { name: 'Sarah Johnson' },
-    publishedDate: '2024-03-01',
-    views: 456,
-    featuredImage: 'https://images.unsplash.com/photo-1554224154-26032fced8bd?w=800&h=400&fit=crop',
-    status: 'published'
-  },
-  {
-    id: 6,
-    title: 'Preparing for Year-End Audit: Essential Checklist',
-    slug: 'preparing-year-end-audit-essential-checklist',
-    excerpt: 'A comprehensive checklist to help organizations prepare for their year-end audit and ensure a smooth process.',
-    content: 'Full content would be here...',
-    category: 'audit-insights',
-    tags: ['Year-End Audit', 'Checklist', 'Preparation'],
-    author: { name: 'Emily Rodriguez' },
-    publishedDate: '2024-02-28',
-    views: 1123,
-    featuredImage: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&h=400&fit=crop',
-    status: 'published'
-  }
-];
+// Mock data is now imported from shared data file
 
 export default function Blog() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -142,8 +57,8 @@ export default function Blog() {
           console.log('Using API blogs:', allBlogs.length, 'blogs found');
         } else {
           // No published blogs found, use mock data
-          setBlogs(mockBlogs);
-          setFilteredBlogs(mockBlogs);
+          setBlogs(mockBlogPosts);
+          setFilteredBlogs(mockBlogPosts);
           console.log('Using mock blogs (no published blogs found)');
         }
       } else if (response.data && response.data.success && response.data.data) {
@@ -159,21 +74,21 @@ export default function Blog() {
           setFilteredBlogs(publishedBlogs);
           console.log('Using API blogs (alternative format)');
         } else {
-          setBlogs(mockBlogs);
-          setFilteredBlogs(mockBlogs);
+          setBlogs(mockBlogPosts);
+          setFilteredBlogs(mockBlogPosts);
           console.log('Using mock blogs (no published blogs in alternative format)');
         }
       } else {
         console.log('Unexpected API response format:', response.data);
-        setBlogs(mockBlogs);
-        setFilteredBlogs(mockBlogs);
+        setBlogs(mockBlogPosts);
+        setFilteredBlogs(mockBlogPosts);
       }
     } catch (error) {
       console.log('API error, using demo content:', error);
       console.error('Full error:', error);
       // Use mock data when API is unavailable
-      setBlogs(mockBlogs);
-      setFilteredBlogs(mockBlogs);
+      setBlogs(mockBlogPosts);
+      setFilteredBlogs(mockBlogPosts);
       setError(null); // Don't show error, just use fallback
     } finally {
       setLoading(false);
@@ -252,15 +167,68 @@ export default function Blog() {
   if (loading) {
     return (
       <div className="blog-page">
-        <div className="blog-container">
-          <div className="blog-hero">
-            <div className="blog-hero-content">
-              <h1>Our Blog</h1>
-              <p>Stay updated with the latest insights, industry news, and expert advice</p>
+        {/* Header */}
+        <div className="blog-header">
+          <div className="blog-header-container">
+            <div className="blog-header-content">
+              <h1 className="blog-header-title">
+                Insights & Updates
+              </h1>
+              <p className="blog-header-description">
+                Stay informed with the latest trends, regulations, and best practices in audit, 
+                tax, and business consulting. Expert insights from our professional team.
+              </p>
             </div>
           </div>
-          <div className="blog-loading">
-            <div className="loading-spinner">Loading blogs...</div>
+        </div>
+
+        {/* Search and Filter */}
+        <div className="blog-search-filter">
+          <div className="blog-search-filter-container">
+            <div className="blog-search-filter-content">
+              <div className="blog-search-container">
+                <label htmlFor="search" className="blog-search-label">Search Articles</label>
+                <input
+                  id="search"
+                  type="text"
+                  placeholder="Search by title, content, or tags..."
+                  disabled
+                  className="blog-search-input"
+                />
+              </div>
+              <div className="blog-categories-container">
+                <span className="blog-categories-label">Categories:</span>
+                <div className="blog-categories">
+                  {categories.map((category) => (
+                    <button
+                      key={category.id}
+                      disabled
+                      className="blog-category-btn"
+                    >
+                      {category.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Skeleton Loading */}
+        <div className="blog-container">
+          <div className="blog-skeleton">
+            {[1, 2, 3].map((index) => (
+              <div key={index} className="skeleton-card">
+                <div className="skeleton-image"></div>
+                <div className="skeleton-content">
+                  <div className="skeleton-category"></div>
+                  <div className="skeleton-title"></div>
+                  <div className="skeleton-excerpt"></div>
+                  <div className="skeleton-excerpt"></div>
+                  <div className="skeleton-excerpt"></div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -316,7 +284,7 @@ export default function Blog() {
                 id="search"
                 type="text"
                 placeholder="Search by title, content, or tags..."
-                value={searchTerm}
+                value={searchTerm || ''}
                 onChange={handleSearchChange}
                 className="blog-search-input"
               />
@@ -349,16 +317,6 @@ export default function Blog() {
           </div>
         ) : (
           <>
-            {/* Results Summary */}
-            <div className="blog-results-summary">
-              <p className="blog-results-text">
-                {filteredBlogs.length === 0 ? 'No articles found' : 
-                 `Showing ${filteredBlogs.length} article${filteredBlogs.length !== 1 ? 's' : ''}`}
-                {selectedCategory !== 'all' && ` in ${categories.find(c => c.id === selectedCategory)?.name}`}
-                {searchTerm && ` matching "${searchTerm}"`}
-              </p>
-            </div>
-
             {/* Blog Grid */}
             {filteredBlogs.length > 0 ? (
               <>
@@ -371,9 +329,6 @@ export default function Blog() {
                           alt={blog.title}
                           loading="lazy"
                         />
-                        <div className="blog-card-category">
-                          {categories.find(c => c.id === blog.category)?.name || blog.category}
-                        </div>
                       </div>
                       
                       <div className="blog-card-content">

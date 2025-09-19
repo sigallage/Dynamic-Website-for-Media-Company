@@ -122,7 +122,7 @@ export default function Contact() {
                       id="firstName"
                       {...register('firstName', { required: 'First name is required' })}
                       className="form-input"
-                      placeholder="John"
+                      placeholder="Pete"
                     />
                     {errors.firstName && (
                       <p className="form-error">{errors.firstName.message}</p>
@@ -138,7 +138,7 @@ export default function Contact() {
                       id="lastName"
                       {...register('lastName', { required: 'Last name is required' })}
                       className="form-input"
-                      placeholder="Doe"
+                      placeholder="Anderson"
                     />
                     {errors.lastName && (
                       <p className="form-error">{errors.lastName.message}</p>
@@ -161,7 +161,7 @@ export default function Contact() {
                       }
                     })}
                     className="form-input"
-                    placeholder="john.doe@company.com"
+                    placeholder="pete.anderson@company.com"
                   />
                   {errors.email && (
                     <p className="form-error">{errors.email.message}</p>
