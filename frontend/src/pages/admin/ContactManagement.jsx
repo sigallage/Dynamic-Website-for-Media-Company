@@ -97,30 +97,22 @@ export default function ContactManagement() {
   const getStatusBadge = (status) => {
     const configs = {
       new: { 
-        background: 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)',
-        border: '1px solid #93c5fd',
-        color: '#1d4ed8',
+        className: 'admin-status-badge-new',
         icon: ExclamationTriangleIcon,
         label: 'New'
       },
       'in-progress': { 
-        background: 'linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)',
-        border: '1px solid #f59e0b',
-        color: '#d97706',
+        className: 'admin-status-badge-in-progress',
         icon: ClockIcon,
         label: 'In Progress'
       },
       resolved: { 
-        background: 'linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%)',
-        border: '1px solid #86efac',
-        color: '#047857',
+        className: 'admin-status-badge-resolved',
         icon: CheckCircleIcon,
         label: 'Resolved'
       },
       closed: { 
-        background: 'linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%)',
-        border: '1px solid #9ca3af',
-        color: '#374151',
+        className: 'admin-status-badge-closed',
         icon: XCircleIcon,
         label: 'Closed'
       }
@@ -130,18 +122,8 @@ export default function ContactManagement() {
     const IconComponent = config.icon;
     
     return (
-      <span style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        padding: '0.25rem 0.75rem',
-        borderRadius: '9999px',
-        fontSize: '0.75rem',
-        fontWeight: '600',
-        background: config.background,
-        border: config.border,
-        color: config.color
-      }}>
-        <IconComponent style={{width: '0.75rem', height: '0.75rem', marginRight: '0.25rem'}} />
+      <span className={config.className}>
+        <IconComponent className="admin-status-badge-icon" />
         {config.label}
       </span>
     );
@@ -239,11 +221,11 @@ export default function ContactManagement() {
       </div>
 
       {/* Filters and Search */}
-      <div className="admin-content-card" style={{marginBottom: '2rem'}}>
+      <div className="admin-content-card admin-contact-search-section" style={{marginBottom: '2rem'}}>
         <div className="admin-content-card-header">
           <div style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
             <FunnelIcon style={{width: '1.25rem', height: '1.25rem', color: '#6b7280'}} />
-            <h3 style={{margin: 0, fontSize: '1.125rem', fontWeight: '600', color: '#1f2937'}}>
+            <h3 style={{margin: 0, fontSize: '1.125rem', fontWeight: '600'}}>
               Search & Filter
             </h3>
           </div>
@@ -252,7 +234,7 @@ export default function ContactManagement() {
           <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem'}}>
             {/* Search */}
             <div>
-              <label style={{display: 'block', fontSize: '0.875rem', fontWeight: '500', color: '#374151', marginBottom: '0.5rem'}}>
+              <label style={{display: 'block', fontSize: '0.875rem', fontWeight: '500', marginBottom: '0.5rem'}}>
                 Search Contacts
               </label>
               <div style={{position: 'relative'}}>
@@ -269,22 +251,18 @@ export default function ContactManagement() {
                     paddingRight: '1rem',
                     paddingTop: '0.75rem',
                     paddingBottom: '0.75rem',
-                    border: '1px solid #d1d5db',
                     borderRadius: '8px',
                     fontSize: '0.875rem',
-                    background: 'white',
                     transition: 'all 0.2s ease'
                   }}
                   placeholder="Search by name, email, or company..."
-                  onFocus={(e) => e.target.style.borderColor = '#3b82f6'}
-                  onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
                 />
               </div>
             </div>
 
             {/* Status Filter */}
             <div>
-              <label style={{display: 'block', fontSize: '0.875rem', fontWeight: '500', color: '#374151', marginBottom: '0.5rem'}}>
+              <label style={{display: 'block', fontSize: '0.875rem', fontWeight: '500', marginBottom: '0.5rem'}}>
                 Filter by Status
               </label>
               <select
@@ -293,15 +271,11 @@ export default function ContactManagement() {
                 style={{
                   width: '100%',
                   padding: '0.75rem 1rem',
-                  border: '1px solid #d1d5db',
                   borderRadius: '8px',
                   fontSize: '0.875rem',
-                  background: 'white',
                   cursor: 'pointer',
                   transition: 'all 0.2s ease'
                 }}
-                onFocus={(e) => e.target.style.borderColor = '#3b82f6'}
-                onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
               >
                 <option value="all">All Status</option>
                 <option value="new">New</option>

@@ -148,6 +148,7 @@
   border: 1px solid #6b7280;
   border-radius: 0.375rem;
   background-color: #111827;
+  color: #f9fafb;
   font-size: 0.875rem;
   resize: vertical;
   min-height: 150px;
@@ -160,6 +161,10 @@
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
+.form-textarea::placeholder {
+  color: #9ca3af;
+}
+
 .form-select {
   display: block;
   width: 100%;
@@ -167,6 +172,7 @@
   border: 1px solid #6b7280;
   border-radius: 0.375rem;
   background-color: #111827;
+  color: #f9fafb;
   font-size: 0.875rem;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
@@ -175,6 +181,11 @@
   outline: none;
   border-color: #4b5563;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-select option {
+  background-color: #111827;
+  color: #f9fafb;
 }
 
 .form-error {

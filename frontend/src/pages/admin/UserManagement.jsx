@@ -132,36 +132,14 @@ export default function UserManagement() {
   const getRoleBadge = (role) => {
     if (role === 'admin') {
       return (
-        <span style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '0.25rem',
-          padding: '0.25rem 0.5rem',
-          borderRadius: '6px',
-          fontSize: '0.75rem',
-          fontWeight: '500',
-          background: 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)',
-          color: '#1d4ed8',
-          border: '1px solid #bfdbfe'
-        }}>
+        <span className="admin-role-badge-admin">
           <ShieldCheckIcon style={{width: '0.75rem', height: '0.75rem'}} />
           Admin
         </span>
       );
     }
     return (
-      <span style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        gap: '0.25rem',
-        padding: '0.25rem 0.5rem',
-        borderRadius: '6px',
-        fontSize: '0.75rem',
-        fontWeight: '500',
-        background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
-        color: '#166534',
-        border: '1px solid #dcfce7'
-      }}>
+      <span className="admin-role-badge-user">
         <UserIcon style={{width: '0.75rem', height: '0.75rem'}} />
         User
       </span>
@@ -171,36 +149,14 @@ export default function UserManagement() {
   const getStatusBadge = (isActive) => {
     if (isActive) {
       return (
-        <span style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '0.25rem',
-          padding: '0.25rem 0.5rem',
-          borderRadius: '6px',
-          fontSize: '0.75rem',
-          fontWeight: '500',
-          background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
-          color: '#166534',
-          border: '1px solid #dcfce7'
-        }}>
+        <span className="admin-user-status-active">
           <CheckCircleIcon style={{width: '0.75rem', height: '0.75rem'}} />
           Active
         </span>
       );
     }
     return (
-      <span style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        gap: '0.25rem',
-        padding: '0.25rem 0.5rem',
-        borderRadius: '6px',
-        fontSize: '0.75rem',
-        fontWeight: '500',
-        background: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)',
-        color: '#dc2626',
-        border: '1px solid #fecaca'
-      }}>
+      <span className="admin-user-status-inactive">
         <XCircleIcon style={{width: '0.75rem', height: '0.75rem'}} />
         Inactive
       </span>
@@ -277,11 +233,11 @@ export default function UserManagement() {
       </div>
 
       {/* Filters and Search */}
-      <div className="admin-content-card" style={{marginBottom: '2rem'}}>
+      <div className="admin-content-card admin-user-search-section" style={{marginBottom: '2rem'}}>
         <div className="admin-content-card-header">
           <div style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
             <FunnelIcon style={{width: '1.25rem', height: '1.25rem', color: '#6b7280'}} />
-            <h3 style={{margin: 0, fontSize: '1.125rem', fontWeight: '600', color: '#1f2937'}}>
+            <h3 style={{margin: 0, fontSize: '1.125rem', fontWeight: '600'}}>
               Search & Filter
             </h3>
           </div>
@@ -290,7 +246,7 @@ export default function UserManagement() {
           <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem'}}>
             {/* Search */}
             <div>
-              <label style={{display: 'block', fontSize: '0.875rem', fontWeight: '500', color: '#374151', marginBottom: '0.5rem'}}>
+              <label style={{display: 'block', fontSize: '0.875rem', fontWeight: '500', marginBottom: '0.5rem'}}>
                 Search Users
               </label>
               <div style={{position: 'relative'}}>
@@ -307,22 +263,18 @@ export default function UserManagement() {
                     paddingRight: '1rem',
                     paddingTop: '0.75rem',
                     paddingBottom: '0.75rem',
-                    border: '1px solid #d1d5db',
                     borderRadius: '8px',
                     fontSize: '0.875rem',
-                    background: 'white',
                     transition: 'all 0.2s ease'
                   }}
                   placeholder="Search by name or email..."
-                  onFocus={(e) => e.target.style.borderColor = '#3b82f6'}
-                  onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
                 />
               </div>
             </div>
 
             {/* Role Filter */}
             <div>
-              <label style={{display: 'block', fontSize: '0.875rem', fontWeight: '500', color: '#374151', marginBottom: '0.5rem'}}>
+              <label style={{display: 'block', fontSize: '0.875rem', fontWeight: '500', marginBottom: '0.5rem'}}>
                 Filter by Role
               </label>
               <select
@@ -331,15 +283,11 @@ export default function UserManagement() {
                 style={{
                   width: '100%',
                   padding: '0.75rem 1rem',
-                  border: '1px solid #d1d5db',
                   borderRadius: '8px',
                   fontSize: '0.875rem',
-                  background: 'white',
                   cursor: 'pointer',
                   transition: 'all 0.2s ease'
                 }}
-                onFocus={(e) => e.target.style.borderColor = '#3b82f6'}
-                onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
               >
                 <option value="all">All Roles</option>
                 <option value="admin">Administrators</option>
@@ -349,7 +297,7 @@ export default function UserManagement() {
 
             {/* Status Filter */}
             <div>
-              <label style={{display: 'block', fontSize: '0.875rem', fontWeight: '500', color: '#374151', marginBottom: '0.5rem'}}>
+              <label style={{display: 'block', fontSize: '0.875rem', fontWeight: '500', marginBottom: '0.5rem'}}>
                 Filter by Status
               </label>
               <select
@@ -358,15 +306,11 @@ export default function UserManagement() {
                 style={{
                   width: '100%',
                   padding: '0.75rem 1rem',
-                  border: '1px solid #d1d5db',
                   borderRadius: '8px',
                   fontSize: '0.875rem',
-                  background: 'white',
                   cursor: 'pointer',
                   transition: 'all 0.2s ease'
                 }}
-                onFocus={(e) => e.target.style.borderColor = '#3b82f6'}
-                onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
               >
                 <option value="all">All Status</option>
                 <option value="active">Active</option>

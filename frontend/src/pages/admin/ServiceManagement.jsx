@@ -107,9 +107,9 @@ export default function ServiceManagement() {
         borderRadius: '9999px',
         fontSize: '0.75rem',
         fontWeight: '600',
-        background: 'linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%)',
-        border: '1px solid #86efac',
-        color: '#047857'
+        background: 'linear-gradient(135deg, #065f46 0%, #047857 100%)',
+        border: '1px solid #10b981',
+        color: '#d1fae5'
       }}>
         <CheckCircleIcon style={{width: '0.75rem', height: '0.75rem', marginRight: '0.25rem'}} />
         Active
@@ -122,9 +122,9 @@ export default function ServiceManagement() {
         borderRadius: '9999px',
         fontSize: '0.75rem',
         fontWeight: '600',
-        background: 'linear-gradient(135deg, #fee2e2 0%, #fecaca 100%)',
-        border: '1px solid #fca5a5',
-        color: '#dc2626'
+        background: 'linear-gradient(135deg, #991b1b 0%, #dc2626 100%)',
+        border: '1px solid #ef4444',
+        color: '#fee2e2'
       }}>
         <XCircleIcon style={{width: '0.75rem', height: '0.75rem', marginRight: '0.25rem'}} />
         Inactive
@@ -252,11 +252,11 @@ export default function ServiceManagement() {
       </div>
 
       {/* Filters and Search */}
-      <div className="admin-content-card" style={{marginBottom: '2rem'}}>
-        <div className="admin-content-card-header">
+      <div className="admin-content-card" style={{marginBottom: '2rem', background: '#1f2937', border: '1px solid #374151'}}>
+        <div className="admin-content-card-header" style={{background: '#111827', borderBottom: '1px solid #374151'}}>
           <div style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-            <FunnelIcon style={{width: '1.25rem', height: '1.25rem', color: '#6b7280'}} />
-            <h3 style={{margin: 0, fontSize: '1.125rem', fontWeight: '600', color: '#1f2937'}}>
+            <FunnelIcon style={{width: '1.25rem', height: '1.25rem', color: '#9ca3af'}} />
+            <h3 style={{margin: 0, fontSize: '1.125rem', fontWeight: '600', color: '#f9fafb'}}>
               Search & Filter
             </h3>
           </div>
@@ -265,7 +265,7 @@ export default function ServiceManagement() {
           <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem'}}>
             {/* Search */}
             <div>
-              <label style={{display: 'block', fontSize: '0.875rem', fontWeight: '500', color: '#374151', marginBottom: '0.5rem'}}>
+              <label style={{display: 'block', fontSize: '0.875rem', fontWeight: '500', color: '#f9fafb', marginBottom: '0.5rem'}}>
                 Search Services
               </label>
               <div style={{position: 'relative'}}>
@@ -282,10 +282,11 @@ export default function ServiceManagement() {
                     paddingRight: '1rem',
                     paddingTop: '0.75rem',
                     paddingBottom: '0.75rem',
-                    border: '1px solid #d1d5db',
+                    border: '1px solid #374151',
                     borderRadius: '8px',
                     fontSize: '0.875rem',
-                    background: 'white',
+                    background: '#1f2937',
+                    color: '#f9fafb',
                     transition: 'all 0.2s ease'
                   }}
                   placeholder="Search by title, description, or category..."
@@ -295,7 +296,7 @@ export default function ServiceManagement() {
 
             {/* Category Filter */}
             <div>
-              <label style={{display: 'block', fontSize: '0.875rem', fontWeight: '500', color: '#374151', marginBottom: '0.5rem'}}>
+              <label style={{display: 'block', fontSize: '0.875rem', fontWeight: '500', color: '#f9fafb', marginBottom: '0.5rem'}}>
                 Category
               </label>
               <select
@@ -304,10 +305,11 @@ export default function ServiceManagement() {
                 style={{
                   width: '100%',
                   padding: '0.75rem',
-                  border: '1px solid #d1d5db',
+                  border: '1px solid #374151',
                   borderRadius: '8px',
                   fontSize: '0.875rem',
-                  background: 'white',
+                  background: '#1f2937',
+                  color: '#f9fafb',
                   transition: 'all 0.2s ease'
                 }}
               >
@@ -322,7 +324,7 @@ export default function ServiceManagement() {
 
             {/* Status Filter */}
             <div>
-              <label style={{display: 'block', fontSize: '0.875rem', fontWeight: '500', color: '#374151', marginBottom: '0.5rem'}}>
+              <label style={{display: 'block', fontSize: '0.875rem', fontWeight: '500', color: '#f9fafb', marginBottom: '0.5rem'}}>
                 Status
               </label>
               <select
@@ -331,10 +333,11 @@ export default function ServiceManagement() {
                 style={{
                   width: '100%',
                   padding: '0.75rem',
-                  border: '1px solid #d1d5db',
+                  border: '1px solid #374151',
                   borderRadius: '8px',
                   fontSize: '0.875rem',
-                  background: 'white',
+                  background: '#1f2937',
+                  color: '#f9fafb',
                   transition: 'all 0.2s ease'
                 }}
               >
@@ -359,7 +362,7 @@ export default function ServiceManagement() {
             <div style={{
               width: '4rem',
               height: '4rem',
-              background: 'linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%)',
+              background: 'linear-gradient(135deg, #4b5563 0%, #374151 100%)',
               borderRadius: '50%',
               display: 'flex',
               alignItems: 'center',
@@ -368,10 +371,10 @@ export default function ServiceManagement() {
             }}>
               <CurrencyDollarIcon style={{width: '2rem', height: '2rem', color: '#9ca3af'}} />
             </div>
-            <h3 style={{fontSize: '1.125rem', fontWeight: '600', color: '#374151', marginBottom: '0.5rem'}}>
+            <h3 style={{fontSize: '1.125rem', fontWeight: '600', color: '#f9fafb', marginBottom: '0.5rem'}}>
               No services found
             </h3>
-            <p style={{color: '#6b7280', marginBottom: '1.5rem'}}>
+            <p style={{color: '#d1d5db', marginBottom: '1.5rem'}}>
               {searchTerm || categoryFilter !== 'all' || statusFilter !== 'all'
                 ? 'No services match your current search criteria.'
                 : 'Get started by creating your first service.'
@@ -385,14 +388,14 @@ export default function ServiceManagement() {
         ) : (
           <div style={{overflowX: 'auto'}}>
             <table style={{width: '100%', borderCollapse: 'collapse'}}>
-              <thead style={{background: 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)', borderBottom: '2px solid #e2e8f0'}}>
+              <thead style={{background: 'linear-gradient(135deg, #4b5563 0%, #374151 100%)', borderBottom: '2px solid #6b7280'}}>
                 <tr>
                   <th style={{
                     padding: '1rem 1.5rem',
                     textAlign: 'left',
                     fontSize: '0.75rem',
                     fontWeight: '600',
-                    color: '#64748b',
+                    color: '#f9fafb',
                     textTransform: 'uppercase',
                     letterSpacing: '0.05em'
                   }}>
@@ -403,7 +406,7 @@ export default function ServiceManagement() {
                     textAlign: 'left',
                     fontSize: '0.75rem',
                     fontWeight: '600',
-                    color: '#64748b',
+                    color: '#f9fafb',
                     textTransform: 'uppercase',
                     letterSpacing: '0.05em'
                   }}>
@@ -414,7 +417,7 @@ export default function ServiceManagement() {
                     textAlign: 'left',
                     fontSize: '0.75rem',
                     fontWeight: '600',
-                    color: '#64748b',
+                    color: '#f9fafb',
                     textTransform: 'uppercase',
                     letterSpacing: '0.05em'
                   }}>
@@ -425,7 +428,7 @@ export default function ServiceManagement() {
                     textAlign: 'left',
                     fontSize: '0.75rem',
                     fontWeight: '600',
-                    color: '#64748b',
+                    color: '#f9fafb',
                     textTransform: 'uppercase',
                     letterSpacing: '0.05em'
                   }}>
@@ -436,7 +439,7 @@ export default function ServiceManagement() {
                     textAlign: 'left',
                     fontSize: '0.75rem',
                     fontWeight: '600',
-                    color: '#64748b',
+                    color: '#f9fafb',
                     textTransform: 'uppercase',
                     letterSpacing: '0.05em'
                   }}>
@@ -447,7 +450,7 @@ export default function ServiceManagement() {
                     textAlign: 'left',
                     fontSize: '0.75rem',
                     fontWeight: '600',
-                    color: '#64748b',
+                    color: '#f9fafb',
                     textTransform: 'uppercase',
                     letterSpacing: '0.05em'
                   }}>
@@ -455,16 +458,16 @@ export default function ServiceManagement() {
                   </th>
                 </tr>
               </thead>
-              <tbody style={{background: 'white'}}>
+              <tbody style={{background: '#374151'}}>
                 {filteredServices.map((service) => (
                   <tr 
                     key={service._id} 
                     style={{
-                      borderBottom: '1px solid #f1f5f9',
+                      borderBottom: '1px solid #4b5563',
                       transition: 'background-color 0.2s ease'
                     }}
-                    onMouseEnter={(e) => e.target.closest('tr').style.background = '#f8fafc'}
-                    onMouseLeave={(e) => e.target.closest('tr').style.background = 'white'}
+                    onMouseEnter={(e) => e.target.closest('tr').style.background = '#4b5563'}
+                    onMouseLeave={(e) => e.target.closest('tr').style.background = '#374151'}
                   >
                     <td style={{padding: '1.5rem'}}>
                       <div style={{display: 'flex', alignItems: 'flex-start', gap: '1rem'}}>
@@ -473,7 +476,7 @@ export default function ServiceManagement() {
                             <div style={{
                               fontSize: '0.875rem',
                               fontWeight: '600',
-                              color: '#1e293b',
+                              color: '#f9fafb',
                               marginRight: '0.5rem'
                             }}>
                               {service.title}
@@ -496,7 +499,7 @@ export default function ServiceManagement() {
                           </div>
                           <div style={{
                             fontSize: '0.75rem',
-                            color: '#64748b',
+                            color: '#d1d5db',
                             lineHeight: '1.4',
                             marginBottom: '0.5rem'
                           }}>
@@ -505,7 +508,7 @@ export default function ServiceManagement() {
                           {service.features && service.features.length > 0 && (
                             <div style={{
                               fontSize: '0.75rem',
-                              color: '#94a3b8'
+                              color: '#9ca3af'
                             }}>
                               {service.features.length} features included
                             </div>
@@ -536,16 +539,16 @@ export default function ServiceManagement() {
                         borderRadius: '9999px',
                         fontSize: '0.75rem',
                         fontWeight: '600',
-                        background: 'linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%)',
-                        border: '1px solid #cbd5e1',
-                        color: '#475569'
+                        background: 'linear-gradient(135deg, #4b5563 0%, #374151 100%)',
+                        border: '1px solid #6b7280',
+                        color: '#f9fafb'
                       }}>
                         {service.category}
                       </span>
                     </td>
                     <td style={{padding: '1.5rem', whiteSpace: 'nowrap'}}>
-                      <div style={{display: 'flex', alignItems: 'center', fontSize: '0.875rem', color: '#1e293b'}}>
-                        <CurrencyDollarIcon style={{width: '1rem', height: '1rem', marginRight: '0.5rem', color: '#94a3b8'}} />
+                      <div style={{display: 'flex', alignItems: 'center', fontSize: '0.875rem', color: '#f9fafb'}}>
+                        <CurrencyDollarIcon style={{width: '1rem', height: '1rem', marginRight: '0.5rem', color: '#9ca3af'}} />
                         {formatPrice(service.price)}
                       </div>
                     </td>
@@ -559,7 +562,7 @@ export default function ServiceManagement() {
                           onClick={() => toggleServiceStatus(service._id, service.isActive)}
                           style={{
                             fontSize: '0.75rem',
-                            color: '#6b7280',
+                            color: '#9ca3af',
                             background: 'none',
                             border: 'none',
                             cursor: 'pointer',
@@ -568,12 +571,12 @@ export default function ServiceManagement() {
                             transition: 'all 0.2s ease'
                           }}
                           onMouseEnter={(e) => {
-                            e.target.style.background = '#f9fafb';
-                            e.target.style.color = '#374151';
+                            e.target.style.background = '#4b5563';
+                            e.target.style.color = '#f9fafb';
                           }}
                           onMouseLeave={(e) => {
                             e.target.style.background = 'none';
-                            e.target.style.color = '#6b7280';
+                            e.target.style.color = '#9ca3af';
                           }}
                         >
                           Toggle
@@ -592,20 +595,20 @@ export default function ServiceManagement() {
                             width: '2rem',
                             height: '2rem',
                             borderRadius: '6px',
-                            background: 'linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%)',
-                            border: '1px solid #cbd5e1',
-                            color: '#64748b',
+                            background: 'linear-gradient(135deg, #4b5563 0%, #374151 100%)',
+                            border: '1px solid #6b7280',
+                            color: '#d1d5db',
                             transition: 'all 0.2s ease',
                             textDecoration: 'none'
                           }}
                           title="View Service"
                           onMouseEnter={(e) => {
-                            e.target.style.background = 'linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%)';
-                            e.target.style.color = '#1e293b';
+                            e.target.style.background = 'linear-gradient(135deg, #6b7280 0%, #4b5563 100%)';
+                            e.target.style.color = '#f9fafb';
                           }}
                           onMouseLeave={(e) => {
-                            e.target.style.background = 'linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%)';
-                            e.target.style.color = '#64748b';
+                            e.target.style.background = 'linear-gradient(135deg, #4b5563 0%, #374151 100%)';
+                            e.target.style.color = '#d1d5db';
                           }}
                         >
                           <EyeIcon style={{width: '1rem', height: '1rem'}} />
@@ -619,20 +622,20 @@ export default function ServiceManagement() {
                             width: '2rem',
                             height: '2rem',
                             borderRadius: '6px',
-                            background: 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)',
-                            border: '1px solid #93c5fd',
-                            color: '#3b82f6',
+                            background: 'linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%)',
+                            border: '1px solid #3b82f6',
+                            color: '#dbeafe',
                             transition: 'all 0.2s ease',
                             textDecoration: 'none'
                           }}
                           title="Edit Service"
                           onMouseEnter={(e) => {
-                            e.target.style.background = 'linear-gradient(135deg, #bfdbfe 0%, #93c5fd 100%)';
-                            e.target.style.color = '#1e40af';
+                            e.target.style.background = 'linear-gradient(135deg, #2563eb 0%, #1e40af 100%)';
+                            e.target.style.color = '#f0f9ff';
                           }}
                           onMouseLeave={(e) => {
-                            e.target.style.background = 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)';
-                            e.target.style.color = '#3b82f6';
+                            e.target.style.background = 'linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%)';
+                            e.target.style.color = '#dbeafe';
                           }}
                         >
                           <PencilIcon style={{width: '1rem', height: '1rem'}} />
@@ -646,20 +649,20 @@ export default function ServiceManagement() {
                             width: '2rem',
                             height: '2rem',
                             borderRadius: '6px',
-                            background: 'linear-gradient(135deg, #fee2e2 0%, #fecaca 100%)',
-                            border: '1px solid #fca5a5',
-                            color: '#dc2626',
+                            background: 'linear-gradient(135deg, #dc2626 0%, #b91c1c 100%)',
+                            border: '1px solid #ef4444',
+                            color: '#fee2e2',
                             transition: 'all 0.2s ease',
                             cursor: 'pointer'
                           }}
                           title="Delete Service"
                           onMouseEnter={(e) => {
-                            e.target.style.background = 'linear-gradient(135deg, #fecaca 0%, #fca5a5 100%)';
-                            e.target.style.color = '#991b1b';
+                            e.target.style.background = 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)';
+                            e.target.style.color = '#fef2f2';
                           }}
                           onMouseLeave={(e) => {
-                            e.target.style.background = 'linear-gradient(135deg, #fee2e2 0%, #fecaca 100%)';
-                            e.target.style.color = '#dc2626';
+                            e.target.style.background = 'linear-gradient(135deg, #dc2626 0%, #b91c1c 100%)';
+                            e.target.style.color = '#fee2e2';
                           }}
                         >
                           <TrashIcon style={{width: '1rem', height: '1rem'}} />
@@ -675,9 +678,9 @@ export default function ServiceManagement() {
       </div>
 
       {/* Service Categories Overview */}
-      <div className="admin-content-card" style={{marginTop: '2rem'}}>
-        <div className="admin-content-card-header">
-          <h3 style={{margin: 0, fontSize: '1.125rem', fontWeight: '600', color: '#1f2937'}}>
+      <div className="admin-content-card" style={{marginTop: '2rem', background: '#1f2937', border: '1px solid #374151'}}>
+        <div className="admin-content-card-header" style={{background: '#111827', borderBottom: '1px solid #374151'}}>
+          <h3 style={{margin: 0, fontSize: '1.125rem', fontWeight: '600', color: '#f9fafb'}}>
             Services by Category
           </h3>
         </div>
@@ -690,22 +693,22 @@ export default function ServiceManagement() {
               
               return (
                 <div key={category} style={{
-                  border: '1px solid #e2e8f0',
+                  border: '1px solid #374151',
                   borderRadius: '12px',
                   padding: '1.5rem',
-                  background: 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)',
+                  background: 'linear-gradient(135deg, #1f2937 0%, #111827 100%)',
                   transition: 'all 0.3s ease'
                 }}>
                   <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem'}}>
-                    <h4 style={{fontWeight: '600', color: '#1e293b', margin: 0}}>{category}</h4>
-                    <span style={{fontSize: '0.875rem', color: '#64748b', fontWeight: '500'}}>
+                    <h4 style={{fontWeight: '600', color: '#f9fafb', margin: 0}}>{category}</h4>
+                    <span style={{fontSize: '0.875rem', color: '#d1d5db', fontWeight: '500'}}>
                       {activeCount}/{categoryServices.length} active
                     </span>
                   </div>
                   <div style={{
                     width: '100%',
                     height: '8px',
-                    background: '#e2e8f0',
+                    background: '#111827',
                     borderRadius: '4px',
                     overflow: 'hidden',
                     marginBottom: '0.5rem'
@@ -720,7 +723,7 @@ export default function ServiceManagement() {
                       }}
                     ></div>
                   </div>
-                  <div style={{fontSize: '0.75rem', color: '#94a3b8', textAlign: 'right'}}>
+                  <div style={{fontSize: '0.75rem', color: '#9ca3af', textAlign: 'right'}}>
                     {Math.round(percentage)}% active
                   </div>
                 </div>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { CalendarIcon, ClockIcon, EyeIcon, TagIcon } from '@heroicons/react/24/outline';
+import { blogAPI } from '../services/api';
 import '../styles/blog.css';
 
 const categories = [
@@ -12,7 +13,7 @@ const categories = [
   { id: 'business-tips', name: 'Business Tips' }
 ];
 
-// Mock blog data - this would come from the API in a real application
+// Fallback mock data for better UX when API is unavailable
 const mockBlogs = [
   {
     id: 1,
@@ -97,174 +98,6 @@ const mockBlogs = [
     views: 1123,
     featuredImage: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&h=400&fit=crop',
     status: 'published'
-  },
-  {
-    id: 7,
-    title: 'Digital Transformation in Financial Services',
-    slug: 'digital-transformation-financial-services',
-    excerpt: 'How digital transformation is reshaping financial services and what it means for audit professionals and businesses.',
-    content: 'Full content would be here...',
-    category: 'industry-news',
-    tags: ['Digital Transformation', 'FinTech', 'Innovation'],
-    author: { name: 'Alex Wang' },
-    publishedDate: '2024-02-25',
-    views: 987,
-    featuredImage: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=800&h=400&fit=crop',
-    status: 'published'
-  },
-  {
-    id: 8,
-    title: 'ESG Reporting: The New Compliance Frontier',
-    slug: 'esg-reporting-new-compliance-frontier',
-    excerpt: 'Environmental, Social, and Governance reporting is becoming mandatory. Learn how to prepare your organization.',
-    content: 'Full content would be here...',
-    category: 'compliance',
-    tags: ['ESG', 'Sustainability', 'Reporting'],
-    author: { name: 'Lisa Parker' },
-    publishedDate: '2024-02-22',
-    views: 1456,
-    featuredImage: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=400&fit=crop',
-    status: 'published'
-  },
-  {
-    id: 9,
-    title: 'Fraud Detection in the Digital Age',
-    slug: 'fraud-detection-digital-age',
-    excerpt: 'Advanced techniques and technologies for detecting and preventing fraud in modern business environments.',
-    content: 'Full content would be here...',
-    category: 'audit-insights',
-    tags: ['Fraud Detection', 'Cybersecurity', 'Risk Assessment'],
-    author: { name: 'Robert Kim' },
-    publishedDate: '2024-02-20',
-    views: 2134,
-    featuredImage: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=400&fit=crop',
-    status: 'published'
-  },
-  {
-    id: 10,
-    title: 'Cryptocurrency and Tax Implications',
-    slug: 'cryptocurrency-tax-implications',
-    excerpt: 'Understanding the complex tax landscape of cryptocurrency transactions and how to stay compliant.',
-    content: 'Full content would be here...',
-    category: 'tax-updates',
-    tags: ['Cryptocurrency', 'Tax Law', 'Digital Assets'],
-    author: { name: 'Jennifer Liu' },
-    publishedDate: '2024-02-18',
-    views: 1678,
-    featuredImage: 'https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&h=400&fit=crop',
-    status: 'published'
-  },
-  {
-    id: 11,
-    title: 'Building Effective Audit Committees',
-    slug: 'building-effective-audit-committees',
-    excerpt: 'Best practices for establishing and managing audit committees that provide genuine oversight and value.',
-    content: 'Full content would be here...',
-    category: 'business-tips',
-    tags: ['Audit Committee', 'Governance', 'Best Practices'],
-    author: { name: 'Thomas Anderson' },
-    publishedDate: '2024-02-15',
-    views: 856,
-    featuredImage: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&h=400&fit=crop',
-    status: 'published'
-  },
-  {
-    id: 12,
-    title: 'Remote Work Impact on Financial Controls',
-    slug: 'remote-work-impact-financial-controls',
-    excerpt: 'How the shift to remote work has affected financial controls and what organizations need to do to adapt.',
-    content: 'Full content would be here...',
-    category: 'compliance',
-    tags: ['Remote Work', 'Internal Controls', 'Risk Management'],
-    author: { name: 'Maria Gonzalez' },
-    publishedDate: '2024-02-12',
-    views: 1234,
-    featuredImage: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=400&fit=crop',
-    status: 'published'
-  },
-  {
-    id: 13,
-    title: 'AI in Audit: Opportunities and Challenges',
-    slug: 'ai-in-audit-opportunities-challenges',
-    excerpt: 'Exploring the potential of artificial intelligence in auditing while addressing implementation challenges.',
-    content: 'Full content would be here...',
-    category: 'audit-insights',
-    tags: ['Artificial Intelligence', 'Audit Technology', 'Innovation'],
-    author: { name: 'Dr. Kevin Park' },
-    publishedDate: '2024-02-10',
-    views: 1789,
-    featuredImage: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=400&fit=crop',
-    status: 'published'
-  },
-  {
-    id: 14,
-    title: 'Quarterly Tax Filing Tips for Businesses',
-    slug: 'quarterly-tax-filing-tips-businesses',
-    excerpt: 'Essential tips and strategies to streamline your quarterly tax filing process and avoid common pitfalls.',
-    content: 'Full content would be here...',
-    category: 'tax-updates',
-    tags: ['Quarterly Taxes', 'Business Filing', 'Tax Strategy'],
-    author: { name: 'Amanda Brooks' },
-    publishedDate: '2024-02-08',
-    views: 967,
-    featuredImage: 'https://images.unsplash.com/photo-1554224154-22dec7ec8818?w=800&h=400&fit=crop',
-    status: 'published'
-  },
-  {
-    id: 15,
-    title: 'Supply Chain Auditing in Post-Pandemic Era',
-    slug: 'supply-chain-auditing-post-pandemic',
-    excerpt: 'How supply chain auditing has evolved and what auditors need to focus on in the post-pandemic business environment.',
-    content: 'Full content would be here...',
-    category: 'industry-news',
-    tags: ['Supply Chain', 'Post-Pandemic', 'Risk Assessment'],
-    author: { name: 'Carlos Rivera' },
-    publishedDate: '2024-02-05',
-    views: 1345,
-    featuredImage: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=400&fit=crop',
-    status: 'published'
-  },
-  {
-    id: 16,
-    title: 'Data Privacy and Financial Records',
-    slug: 'data-privacy-financial-records',
-    excerpt: 'Understanding data privacy requirements when handling financial records and ensuring compliance with regulations.',
-    content: 'Full content would be here...',
-    category: 'compliance',
-    tags: ['Data Privacy', 'GDPR', 'Financial Records'],
-    author: { name: 'Sophie Turner' },
-    publishedDate: '2024-02-02',
-    views: 876,
-    featuredImage: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=400&fit=crop',
-    status: 'published'
-  },
-  {
-    id: 17,
-    title: 'Best Practices for Financial Reporting',
-    slug: 'best-practices-financial-reporting',
-    excerpt: 'Comprehensive guide to financial reporting best practices that ensure accuracy, transparency, and compliance.',
-    content: 'Full content would be here...',
-    category: 'business-tips',
-    tags: ['Financial Reporting', 'Best Practices', 'Transparency'],
-    author: { name: 'Mark Johnson' },
-    publishedDate: '2024-01-30',
-    views: 1456,
-    featuredImage: 'https://images.unsplash.com/photo-1554224154-26032fced8bd?w=800&h=400&fit=crop',
-    status: 'published'
-  },
-  {
-    id: 18,
-    title: 'Technology Trends Shaping Modern Audits',
-    slug: 'technology-trends-shaping-modern-audits',
-    excerpt: 'Latest technology trends that are revolutionizing the audit profession and improving audit quality.',
-    content: 'Full content would be here...',
-    category: 'audit-insights',
-    tags: ['Technology Trends', 'Modern Auditing', 'Innovation'],
-    author: { name: 'Rachel Green' },
-    publishedDate: '2024-01-28',
-    views: 1123,
-    featuredImage: 'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&h=400&fit=crop',
-    status: 'published'
   }
 ];
 
@@ -275,12 +108,12 @@ export default function Blog() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const blogsPerPage = 6;
 
   useEffect(() => {
-    // In a real application, this would fetch from API
-    setBlogs(mockBlogs);
-    setFilteredBlogs(mockBlogs);
+    fetchBlogs();
     
     // Handle URL parameters
     const category = searchParams.get('category') || 'all';
@@ -288,6 +121,64 @@ export default function Blog() {
     setSelectedCategory(category);
     setSearchTerm(search);
   }, [searchParams]);
+
+  const fetchBlogs = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      console.log('Fetching blogs from API...');
+      const response = await blogAPI.getAllBlogs();
+      console.log('API response:', response.data);
+      
+      // Handle the actual API response format: { blogs, totalPages, currentPage, total }
+      if (response.data && response.data.blogs) {
+        const allBlogs = response.data.blogs || [];
+        console.log('All blogs from API:', allBlogs);
+        
+        // These are already filtered for published status by the backend
+        if (allBlogs.length > 0) {
+          setBlogs(allBlogs);
+          setFilteredBlogs(allBlogs);
+          console.log('Using API blogs:', allBlogs.length, 'blogs found');
+        } else {
+          // No published blogs found, use mock data
+          setBlogs(mockBlogs);
+          setFilteredBlogs(mockBlogs);
+          console.log('Using mock blogs (no published blogs found)');
+        }
+      } else if (response.data && response.data.success && response.data.data) {
+        // Handle alternative format: { success: true, data: [...] }
+        const allBlogs = response.data.data || [];
+        console.log('All blogs from API (alternative format):', allBlogs);
+        
+        const publishedBlogs = allBlogs.filter(blog => blog.status === 'published');
+        console.log('Published blogs:', publishedBlogs);
+        
+        if (publishedBlogs.length > 0) {
+          setBlogs(publishedBlogs);
+          setFilteredBlogs(publishedBlogs);
+          console.log('Using API blogs (alternative format)');
+        } else {
+          setBlogs(mockBlogs);
+          setFilteredBlogs(mockBlogs);
+          console.log('Using mock blogs (no published blogs in alternative format)');
+        }
+      } else {
+        console.log('Unexpected API response format:', response.data);
+        setBlogs(mockBlogs);
+        setFilteredBlogs(mockBlogs);
+      }
+    } catch (error) {
+      console.log('API error, using demo content:', error);
+      console.error('Full error:', error);
+      // Use mock data when API is unavailable
+      setBlogs(mockBlogs);
+      setFilteredBlogs(mockBlogs);
+      setError(null); // Don't show error, just use fallback
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     let filtered = blogs;
@@ -343,14 +234,57 @@ export default function Blog() {
 
   const getReadTime = (content) => {
     const wordsPerMinute = 200;
-    const words = content.split(' ').length;
+    const words = content ? content.split(' ').length : 100;
     return Math.ceil(words / wordsPerMinute);
   };
 
   // Pagination
   const totalPages = Math.ceil(filteredBlogs.length / blogsPerPage);
   const startIndex = (currentPage - 1) * blogsPerPage;
-  const paginatedBlogs = filteredBlogs.slice(startIndex, startIndex + blogsPerPage);
+  const endIndex = startIndex + blogsPerPage;
+  const currentBlogs = filteredBlogs.slice(startIndex, endIndex);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  if (loading) {
+    return (
+      <div className="blog-page">
+        <div className="blog-container">
+          <div className="blog-hero">
+            <div className="blog-hero-content">
+              <h1>Our Blog</h1>
+              <p>Stay updated with the latest insights, industry news, and expert advice</p>
+            </div>
+          </div>
+          <div className="blog-loading">
+            <div className="loading-spinner">Loading blogs...</div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="blog-page">
+        <div className="blog-container">
+          <div className="blog-hero">
+            <div className="blog-hero-content">
+              <h1>Our Blog</h1>
+              <p>Stay updated with the latest insights, industry news, and expert advice</p>
+            </div>
+          </div>
+          <div className="blog-error">
+            <p>{error}</p>
+            <button onClick={fetchBlogs} className="retry-button">Try Again</button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="blog-page">
@@ -376,174 +310,194 @@ export default function Blog() {
             {/* Search */}
             <div className="blog-search-container">
               <label htmlFor="search" className="blog-search-label">
-                Search blog posts
+                Search Articles
               </label>
               <input
-                type="text"
                 id="search"
-                placeholder="Search articles..."
+                type="text"
+                placeholder="Search by title, content, or tags..."
                 value={searchTerm}
                 onChange={handleSearchChange}
                 className="blog-search-input"
               />
             </div>
 
-            {/* Category Filter */}
-            <div className="blog-category-filters">
-              {categories.map((category) => (
-                <button
-                  key={category.id}
-                  onClick={() => handleCategoryChange(category.id)}
-                  className={`blog-category-button ${
-                    selectedCategory === category.id ? 'active' : ''
-                  }`}
-                >
-                  {category.name}
-                </button>
-              ))}
+            {/* Categories */}
+            <div className="blog-categories-container">
+              <span className="blog-categories-label">Categories:</span>
+              <div className="blog-categories">
+                {categories.map((category) => (
+                  <button
+                    key={category.id}
+                    onClick={() => handleCategoryChange(category.id)}
+                    className={`blog-category-btn ${selectedCategory === category.id ? 'active' : ''}`}
+                  >
+                    {category.name}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Blog Grid */}
-      <div className="blog-main">
-        {filteredBlogs.length === 0 ? (
-          <div className="blog-empty-state">
-            <p className="blog-empty-text">No blog posts found matching your criteria.</p>
+      {/* Main Content */}
+      <div className="blog-container">
+        {loading ? (
+          <div className="blog-loading">
+            <div className="loading-spinner">Loading articles...</div>
           </div>
         ) : (
           <>
-            <div className="blog-grid">
-              {paginatedBlogs.map((blog) => (
-                <article
-                  key={blog.id}
-                  className="blog-card"
-                >
-                  {/* Featured Image */}
-                  <div className="blog-card-image">
-                    {blog.featuredImage ? (
-                      <img 
-                        src={blog.featuredImage} 
-                        alt={blog.title}
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                      />
-                    ) : (
-                      <div className="blog-card-image-placeholder">
-                        <span>Featured Image</span>
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="blog-card-content">
-                    {/* Category Badge */}
-                    <div className="blog-card-category">
-                      <span className="blog-category-badge">
-                        {categories.find(cat => cat.id === blog.category)?.name}
-                      </span>
-                    </div>
-
-                    {/* Title */}
-                    <h3>
-                      <Link to={`/blog/${blog.slug}`} className="blog-card-title">
-                        {blog.title}
-                      </Link>
-                    </h3>
-
-                    {/* Excerpt */}
-                    <p className="blog-card-excerpt">
-                      {blog.excerpt}
-                    </p>
-
-                    {/* Meta Information */}
-                    <div className="blog-card-meta">
-                      <div className="blog-meta-item">
-                        <CalendarIcon className="blog-meta-icon" />
-                        {formatDate(blog.publishedDate)}
-                      </div>
-                      <span className="blog-meta-separator">•</span>
-                      <div className="blog-meta-item">
-                        <ClockIcon className="blog-meta-icon" />
-                        {getReadTime(blog.content)} min read
-                      </div>
-                      <span className="blog-meta-separator">•</span>
-                      <div className="blog-meta-item">
-                        <EyeIcon className="blog-meta-icon" />
-                        {blog.views}
-                      </div>
-                    </div>
-
-                    {/* Tags */}
-                    <div className="blog-card-tags">
-                      {blog.tags.slice(0, 3).map((tag) => (
-                        <span
-                          key={tag}
-                          className="blog-tag"
-                        >
-                          <TagIcon className="blog-tag-icon" />
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Author */}
-                    <div className="blog-card-author">
-                      <p className="blog-author-text">
-                        By <span className="blog-author-name">{blog.author.name}</span>
-                      </p>
-                    </div>
-                  </div>
-                </article>
-              ))}
+            {/* Results Summary */}
+            <div className="blog-results-summary">
+              <p className="blog-results-text">
+                {filteredBlogs.length === 0 ? 'No articles found' : 
+                 `Showing ${filteredBlogs.length} article${filteredBlogs.length !== 1 ? 's' : ''}`}
+                {selectedCategory !== 'all' && ` in ${categories.find(c => c.id === selectedCategory)?.name}`}
+                {searchTerm && ` matching "${searchTerm}"`}
+              </p>
             </div>
 
-            {/* Pagination */}
-            {totalPages > 1 && (
-              <div className="blog-pagination">
-                <nav className="blog-pagination-nav">
-                  <button
-                    onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                    disabled={currentPage === 1}
-                    className="blog-pagination-button"
-                  >
-                    Previous
-                  </button>
-                  
-                  {[...Array(totalPages)].map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentPage(index + 1)}
-                      className={`blog-pagination-button ${
-                        currentPage === index + 1 ? 'active' : ''
-                      }`}
-                    >
-                      {index + 1}
-                    </button>
+            {/* Blog Grid */}
+            {filteredBlogs.length > 0 ? (
+              <>
+                <div className="blog-grid">
+                  {currentBlogs.map((blog) => (
+                    <article key={blog.id} className="blog-card">
+                      <div className="blog-card-image">
+                        <img 
+                          src={blog.featuredImage || 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=400&fit=crop'} 
+                          alt={blog.title}
+                          loading="lazy"
+                        />
+                        <div className="blog-card-category">
+                          {categories.find(c => c.id === blog.category)?.name || blog.category}
+                        </div>
+                      </div>
+                      
+                      <div className="blog-card-content">
+                        <div className="blog-card-meta">
+                          <div className="blog-meta-item">
+                            <CalendarIcon className="blog-meta-icon" />
+                            <span>{formatDate(blog.publishedDate || blog.createdAt)}</span>
+                          </div>
+                          <div className="blog-meta-item">
+                            <ClockIcon className="blog-meta-icon" />
+                            <span>{getReadTime(blog.content)} min read</span>
+                          </div>
+                          <div className="blog-meta-item">
+                            <EyeIcon className="blog-meta-icon" />
+                            <span>{blog.views || 0} views</span>
+                          </div>
+                        </div>
+                        
+                        <h3 className="blog-card-title">
+                          <Link to={`/blog/${blog.slug || blog.id}`}>
+                            {blog.title}
+                          </Link>
+                        </h3>
+                        
+                        <p className="blog-card-excerpt">
+                          {blog.excerpt}
+                        </p>
+                        
+                        <div className="blog-card-tags">
+                          <TagIcon className="blog-tag-icon" />
+                          <div className="blog-tags-list">
+                            {blog.tags && blog.tags.slice(0, 3).map((tag, index) => (
+                              <span key={index} className="blog-tag">
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                        
+                        <div className="blog-card-footer">
+                          <div className="blog-author">
+                            <span>By {blog.author?.name || 'Anonymous'}</span>
+                          </div>
+                          <Link 
+                            to={`/blog/${blog.slug || blog.id}`}
+                            className="blog-read-more"
+                          >
+                            Read More →
+                          </Link>
+                        </div>
+                      </div>
+                    </article>
                   ))}
-                  
-                  <button
-                    onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-                    disabled={currentPage === totalPages}
-                    className="blog-pagination-button"
-                  >
-                    Next
-                  </button>
-                </nav>
+                </div>
+
+                {/* Pagination */}
+                {totalPages > 1 && (
+                  <div className="blog-pagination">
+                    <button
+                      onClick={() => handlePageChange(currentPage - 1)}
+                      disabled={currentPage === 1}
+                      className="blog-pagination-btn"
+                    >
+                      ← Previous
+                    </button>
+                    
+                    <div className="blog-pagination-numbers">
+                      {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                        <button
+                          key={page}
+                          onClick={() => handlePageChange(page)}
+                          className={`blog-pagination-number ${currentPage === page ? 'active' : ''}`}
+                        >
+                          {page}
+                        </button>
+                      ))}
+                    </div>
+                    
+                    <button
+                      onClick={() => handlePageChange(currentPage + 1)}
+                      disabled={currentPage === totalPages}
+                      className="blog-pagination-btn"
+                    >
+                      Next →
+                    </button>
+                  </div>
+                )}
+              </>
+            ) : (
+              <div className="blog-empty-state">
+                <div className="blog-empty-content">
+                  <h3 className="blog-empty-title">No articles found</h3>
+                  <p className="blog-empty-description">
+                    {searchTerm || selectedCategory !== 'all' 
+                      ? 'Try adjusting your search or filter criteria.'
+                      : 'No blog posts are currently available.'
+                    }
+                  </p>
+                  {(searchTerm || selectedCategory !== 'all') && (
+                    <button 
+                      onClick={() => {
+                        setSearchTerm('');
+                        setSelectedCategory('all');
+                        setSearchParams({});
+                      }}
+                      className="blog-clear-filters"
+                    >
+                      Clear All Filters
+                    </button>
+                  )}
+                </div>
               </div>
             )}
           </>
         )}
       </div>
 
-      {/* Newsletter Signup */}
+      {/* Newsletter CTA */}
       <div className="blog-newsletter">
         <div className="blog-newsletter-container">
           <div className="blog-newsletter-content">
-            <h2 className="blog-newsletter-title">
-              Stay Updated
-            </h2>
+            <h3 className="blog-newsletter-title">Stay Updated</h3>
             <p className="blog-newsletter-description">
-              Subscribe to our newsletter to receive the latest insights and updates directly in your inbox.
+              Get the latest insights and industry updates delivered to your inbox.
             </p>
             <div className="blog-newsletter-actions">
               <Link
