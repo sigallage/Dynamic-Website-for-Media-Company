@@ -30,9 +30,14 @@ export default function ServiceManagement() {
   const fetchServices = async () => {
     try {
       setLoading(true);
+      console.log('Fetching services from API...');
       const response = await serviceAPI.getAllServices();
-      if (response.data.success) {
-        let fetchedServices = response.data.data;
+      console.log('Services API response:', response.data);
+      
+      // Handle the actual API response format: direct array of services
+      if (Array.isArray(response.data)) {
+        let fetchedServices = response.data;
+        console.log('All services from API:', fetchedServices);
         
         // Apply filters
         if (categoryFilter !== 'all') {
@@ -46,6 +51,26 @@ export default function ServiceManagement() {
         }
         
         setServices(fetchedServices);
+      } else if (response.data && response.data.success && response.data.data) {
+        // Handle alternative format: { success: true, data: [...] }
+        let fetchedServices = response.data.data;
+        console.log('All services from API (alternative format):', fetchedServices);
+        
+        // Apply filters
+        if (categoryFilter !== 'all') {
+          fetchedServices = fetchedServices.filter(service => service.category === categoryFilter);
+        }
+        
+        if (statusFilter !== 'all') {
+          fetchedServices = fetchedServices.filter(service => 
+            statusFilter === 'active' ? service.isActive : !service.isActive
+          );
+        }
+        
+        setServices(fetchedServices);
+      } else {
+        console.log('Unexpected API response format:', response.data);
+        setServices([]);
       }
     } catch (error) {
       console.error('Error fetching services:', error);
@@ -514,21 +539,6 @@ export default function ServiceManagement() {
                             </div>
                           )}
                         </div>
-                        {service.icon && (
-                          <div style={{
-                            width: '3rem',
-                            height: '3rem',
-                            background: 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)',
-                            borderRadius: '8px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            border: '1px solid #93c5fd',
-                            flexShrink: 0
-                          }}>
-                            <span style={{color: '#3b82f6', fontSize: '1.25rem'}}>{service.icon}</span>
-                          </div>
-                        )}
                       </div>
                     </td>
                     <td style={{padding: '1.5rem', whiteSpace: 'nowrap'}}>

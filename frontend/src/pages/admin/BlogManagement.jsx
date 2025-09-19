@@ -105,11 +105,14 @@ export default function BlogManagement() {
     }
   };
 
-  const filteredBlogs = blogs.filter(blog =>
-    blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    blog.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    blog.author.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredBlogs = blogs.filter(blog => {
+    const authorText = typeof blog.author === 'object' ? (blog.author.name || blog.author.id || '') : blog.author;
+    return (
+      blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      blog.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      authorText.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  });
 
   const getStatusBadge = (status) => {
     return (
@@ -266,29 +269,16 @@ export default function BlogManagement() {
                             </div>
                             <div className="admin-blog-post-meta">
                               <TagIcon style={{width: '0.875rem', height: '0.875rem'}} />
-                              <span>{blog.category}</span>
+                              <span>{typeof blog.category === 'object' ? blog.category.name || blog.category.id || 'Uncategorized' : blog.category}</span>
                             </div>
                           </div>
-                          {blog.featuredImage && (
-                            <img
-                              src={blog.featuredImage}
-                              alt=""
-                              style={{
-                                width: '4rem',
-                                height: '4rem',
-                                objectFit: 'cover',
-                                borderRadius: '8px',
-                                border: '2px solid #374151'
-                              }}
-                            />
-                          )}
                         </div>
                       </div>
                     </td>
                     <td className="admin-blog-table-cell">
                       <div style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
                         <UserIcon style={{width: '1rem', height: '1rem', color: '#9ca3af'}} />
-                        <span>{blog.author}</span>
+                        <span>{typeof blog.author === 'object' ? blog.author.name || blog.author.id || 'Unknown' : blog.author}</span>
                       </div>
                     </td>
                     <td className="admin-blog-table-cell">

@@ -9,6 +9,7 @@ import {
   BriefcaseIcon,
   CheckIcon
 } from '@heroicons/react/24/outline';
+import { serviceAPI } from '../services/api';
 import '../styles/services.css';
 
 const serviceCategories = [
@@ -20,132 +21,41 @@ const serviceCategories = [
   { id: 'specialized-services', name: 'Specialized Services' }
 ];
 
-const services = [
-  {
-    id: 1,
-    title: 'Annual Financial Audit',
-    category: 'financial-audit',
-    shortDescription: 'Comprehensive annual financial statement audits ensuring accuracy and compliance with accounting standards.',
-    description: 'Our annual financial audit service provides a thorough examination of your financial statements, internal controls, and accounting practices. We ensure compliance with GAAP, identify potential risks, and provide valuable insights to improve your financial reporting processes.',
-    icon: ChartBarIcon,
-    features: [
-      'Financial statement examination',
-      'Internal control assessment',
-      'Risk identification and mitigation',
-      'GAAP compliance verification',
-      'Management letter with recommendations',
-      'Regulatory compliance review'
-    ],
-    pricing: {
-      startingPrice: 5000,
-      priceType: 'project-based'
-    }
-  },
-  {
-    id: 2,
-    title: 'Tax Planning & Preparation',
-    category: 'tax-services',
-    shortDescription: 'Strategic tax planning and preparation services to minimize tax liability while ensuring full compliance.',
-    description: 'Our comprehensive tax services include strategic planning, preparation, and filing of all tax returns. We help businesses and individuals optimize their tax positions while maintaining full compliance with federal, state, and local tax regulations.',
-    icon: CurrencyDollarIcon,
-    features: [
-      'Strategic tax planning',
-      'Federal and state tax preparation',
-      'Tax compliance review',
-      'Quarterly estimated payments',
-      'Tax audit representation',
-      'Multi-state tax filing'
-    ],
-    pricing: {
-      startingPrice: 1500,
-      priceType: 'project-based'
-    }
-  },
-  {
-    id: 3,
-    title: 'Business Consulting',
-    category: 'consulting',
-    shortDescription: 'Expert business advisory services to help optimize operations and drive strategic growth.',
-    description: 'Our business consulting services provide strategic guidance to help organizations improve efficiency, reduce costs, and achieve sustainable growth. We work closely with management teams to identify opportunities and implement effective solutions.',
-    icon: BriefcaseIcon,
-    features: [
-      'Strategic planning assistance',
-      'Financial analysis and modeling',
-      'Process improvement recommendations',
-      'Risk management strategies',
-      'Performance metrics development',
-      'M&A due diligence support'
-    ],
-    pricing: {
-      startingPrice: 200,
-      priceType: 'hourly'
-    }
-  },
-  {
-    id: 4,
-    title: 'SOX Compliance Review',
-    category: 'compliance',
-    shortDescription: 'Sarbanes-Oxley compliance assessment and implementation support for public companies.',
-    description: 'Comprehensive SOX compliance services including internal control assessment, documentation, testing, and remediation. We help public companies maintain compliance with Section 404 requirements and improve overall financial reporting quality.',
-    icon: ShieldCheckIcon,
-    features: [
-      'Internal control documentation',
-      'SOX 404 compliance testing',
-      'Deficiency remediation support',
-      'Management certification assistance',
-      'Ongoing monitoring procedures',
-      'Auditor coordination'
-    ],
-    pricing: {
-      startingPrice: 15000,
-      priceType: 'project-based'
-    }
-  },
-  {
-    id: 5,
-    title: 'Forensic Accounting',
-    category: 'specialized-services',
-    shortDescription: 'Expert forensic accounting services for fraud investigation and litigation support.',
-    description: 'Our forensic accounting team provides specialized services for fraud investigations, litigation support, and dispute resolution. We combine accounting expertise with investigative skills to uncover financial irregularities and provide expert testimony.',
-    icon: DocumentCheckIcon,
-    features: [
-      'Fraud investigation and detection',
-      'Economic damage calculations',
-      'Expert witness testimony',
-      'Asset tracing and recovery',
-      'Insurance claim support',
-      'Dispute resolution assistance'
-    ],
-    pricing: {
-      startingPrice: 300,
-      priceType: 'hourly'
-    }
-  },
-  {
-    id: 6,
-    title: 'QuickBooks Setup & Training',
-    category: 'consulting',
-    shortDescription: 'Professional QuickBooks implementation, setup, and staff training services.',
-    description: 'Complete QuickBooks implementation services including system setup, chart of accounts configuration, data migration, and comprehensive staff training. We ensure your accounting system is optimized for your business needs.',
-    icon: UserGroupIcon,
-    features: [
-      'System setup and configuration',
-      'Chart of accounts design',
-      'Data migration assistance',
-      'Staff training programs',
-      'Best practices implementation',
-      'Ongoing support available'
-    ],
-    pricing: {
-      startingPrice: 2500,
-      priceType: 'project-based'
-    }
-  }
-];
-
 export default function Services() {
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [filteredServices, setFilteredServices] = useState(services);
+  const [services, setServices] = useState([]);
+  const [filteredServices, setFilteredServices] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchServices();
+  }, []);
+
+  const fetchServices = async () => {
+    try {
+      setLoading(true);
+      const response = await serviceAPI.getAllServices();
+      
+      // Handle the API response format: direct array of services
+      if (Array.isArray(response.data)) {
+        const activeServices = response.data.filter(service => service.isActive);
+        setServices(activeServices);
+        setFilteredServices(activeServices);
+      } else {
+        console.error('Unexpected API response format:', response.data);
+        // Fallback to empty array
+        setServices([]);
+        setFilteredServices([]);
+      }
+    } catch (error) {
+      console.error('Error fetching services:', error);
+      // Fallback to empty array
+      setServices([]);
+      setFilteredServices([]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     if (selectedCategory === 'all') {
@@ -153,9 +63,11 @@ export default function Services() {
     } else {
       setFilteredServices(services.filter(service => service.category === selectedCategory));
     }
-  }, [selectedCategory]);
+  }, [selectedCategory, services]);
 
   const formatPrice = (service) => {
+    if (!service.pricing) return 'Custom pricing';
+    
     const { startingPrice, priceType } = service.pricing;
     
     if (priceType === 'hourly') {
@@ -166,6 +78,34 @@ export default function Services() {
       return 'Custom pricing';
     }
   };
+
+  const getIconComponent = (iconName) => {
+    const iconMap = {
+      'ChartBarIcon': ChartBarIcon,
+      'CurrencyDollarIcon': CurrencyDollarIcon,
+      'BriefcaseIcon': BriefcaseIcon,
+      'ShieldCheckIcon': ShieldCheckIcon,
+      'DocumentCheckIcon': DocumentCheckIcon,
+      'UserGroupIcon': UserGroupIcon
+    };
+    
+    return iconMap[iconName] || BriefcaseIcon;
+  };
+
+  if (loading) {
+    return (
+      <div className="services-page">
+        <div className="services-header">
+          <div className="services-header-container">
+            <div className="services-header-content">
+              <h1 className="services-header-title">Our Services</h1>
+              <p className="services-header-description">Loading services...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="services-page">
@@ -206,14 +146,16 @@ export default function Services() {
       {/* Services Grid */}
       <div className="services-main">
         <div className="services-grid">
-          {filteredServices.map((service) => (
+          {filteredServices.map((service) => {
+            const IconComponent = getIconComponent(service.icon);
+            return (
             <div
-              key={service.id}
+              key={service._id}
               className="service-card"
             >
               <div className="service-card-header">
                 <div className="service-icon-container">
-                  <service.icon className="service-icon" aria-hidden="true" />
+                  <IconComponent className="service-icon" aria-hidden="true" />
                 </div>
                 <div className="service-content">
                   <h3 className="service-title">
@@ -264,7 +206,8 @@ export default function Services() {
                 </div>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 

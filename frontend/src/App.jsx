@@ -19,6 +19,7 @@ import BlogManagement from './pages/admin/BlogManagement';
 import BlogCreate from './pages/admin/BlogCreate';
 import ContactManagement from './pages/admin/ContactManagement';
 import ServiceManagement from './pages/admin/ServiceManagement';
+import ServiceCreate from './pages/admin/ServiceCreate';
 import UserManagement from './pages/admin/UserManagement';
 import Analytics from './pages/admin/Analytics';
 import Settings from './pages/admin/Settings';
@@ -51,6 +52,7 @@ function App() {
               <Route path="blogs/new" element={<BlogCreate />} />
               <Route path="contacts" element={<ContactManagement />} />
               <Route path="services" element={<ServiceManagement />} />
+              <Route path="services/new" element={<ServiceCreate />} />
               <Route path="users" element={<UserManagement />} />
               <Route path="settings" element={<Settings />} />
             </Route>
